@@ -24,12 +24,10 @@
             <a href="/location_db_list.do" class="active">리스트형</a>
             <a href="/location_db_map.do">지도형</a>
         </div>
-        <div class="input-container">
+        <form action="" id="search_fm" name="search_fm" method="get" class="input-container">
             <div class="icon"></div>
-            <form action="" id="search_fm" name="search_fm" method="get">
-            	<input type="text" class="search" id="search_text" name="search_text" placeholder="어떤 장소를 찾으세요?" onkeypress="if(event.keyCode == 13){search();}" value="${pictVO.search_text}">
-           	</form>
-        </div>
+           	<input type="text" class="search" id="search_text" name="search_text" placeholder="어떤 장소를 찾으세요?" onkeypress="if(event.keyCode == 13){search();}" value="${pictVO.search_text}">
+        </form>
         <ul class="navigator">
             <li class="<c:if test="${pictVO.location_category eq '' || pictVO.location_category eq null || pictVO.location_category eq undefined}">active</c:if>">
                 <a href="/location_db_list.do">전체보기</a>
