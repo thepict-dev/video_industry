@@ -5,15 +5,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <header class="header">
-    <a class="logo" href="#">
+    <a class="logo" href="/lending.do">
         <img src="/img/user_img/logo.png" alt="로고" srcset="">
     </a>
     <ul class="menu-depth">
         <li>
-            <a href="">센터소개</a>
+            <a href="#lnk">센터소개</a>
         </li>
         <li>
-            <a href="">지원사업</a>
+            <a href="#lnk">지원사업</a>
         </li>
         <li class="active-sub-depth">
             <a href="">콘텐츠DB</a>
@@ -22,7 +22,7 @@
                 <li><a href="/industry_db.do">산업체DB</a></li>
             </ul>
         </li>
-        <li><a href="">센터소식</a></li>
+        <li><a href="#lnk">센터소식</a></li>
     </ul>
     <button class="hamburger">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
