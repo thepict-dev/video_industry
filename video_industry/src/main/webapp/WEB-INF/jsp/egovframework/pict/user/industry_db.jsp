@@ -417,7 +417,7 @@
         </div>
         <div class="location-container">
         	<c:forEach var="resultList" items="${resultList}" varStatus="status">
-	            <a href="/location_view.do?idx="${resultList.idx}" class="location-item">
+	            <a href="/industry_portfolio.do?idx=${resultList.idx}" class="location-item">
 	                <div class="img-container">
 	                    <img src="/img/user_img/main.webp" alt="" srcset="">
 	                </div>
