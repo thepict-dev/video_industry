@@ -416,50 +416,65 @@
             </div>
         </div>
         <div class="location-container">
-            <a href="/location_view.do" class="location-item">
-                <div class="img-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
-                </div>
-                <span class="type">법인</span>
-                <h6>더픽트</h6>
-                <p class="hashtag">영상 촬영, 광고/홍보, 무대영상, SNS영상, 행사, 기타</p>
-                <p class="address">강원특별자치도 춘천시 효자로 144, 픽트스퀘어</p>
-                <p class="tel">1644-4845</p>
-            </a>
-        </div>
+        	<c:forEach var="resultList" items="${resultList}" varStatus="status">
+	            <a href="/location_view.do?idx="${resultList.idx}" class="location-item">
+	                <div class="img-container">
+	                    <img src="/img/user_img/main.webp" alt="" srcset="">
+	                </div>
+	                <span class="type">
+	                	<c:if test="${resultList.scale eq '1'}">법인</c:if>
+	                	<c:if test="${resultList.scale eq '2'}">개인</c:if>
+	                	<c:if test="${resultList.scale eq '3'}">협동조합</c:if>
+	                </span>
+	                <h6>${resultList.title}</h6>
+	                <p class="hashtag">${resultList.introduce}</p>
+	                <p class="address">${resultList.address}</p>
+	                <p class="tel">${resultList.tel}</p>
+				</a>
+			</c:forEach>
+		</div>
         <div class="pagination">
-            <a href="#lnk" class="first-page page-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+			<c:if test="${pictVO.pageNumber ne 1}">
+				<a class="first-page page-button" href="/industry_db.do?search_text=${pictVO.search_text}&location_category=${pictVO.location_category}&pageNumber=1">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M11.7266 12L12.6666 11.06L9.61329 8L12.6666 4.94L11.7266 4L7.72663 8L11.7266 12Z"
                         fill="#242A30" />
                     <path d="M7.33332 12L8.27332 11.06L5.21998 8L8.27331 4.94L7.33331 4L3.33332 8L7.33332 12Z"
                         fill="#242A30" />
-                </svg>
-            </a>
-            <a href="#lnk" class="prev-page page-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#242A30" />
-                </svg>
-            </a>
-            <a href="#lnk" class="page-button active">1</a>
-            <a href="#lnk" class="page-button">2</a>
-            <a href="#lnk" class="page-button">3</a>
-            <a href="#lnk" class="page-button else-page">...</a>
-            <a href="#lnk" class="page-button">10</a>
-            <a href="#lnk" class="next-page page-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#242A30" />
-                </svg>
-            </a>
-            <a href="#lnk" class="last-page page-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M4.27325 4L3.33325 4.94L6.38659 8L3.33325 11.06L4.27325 12L8.27325 8L4.27325 4Z"
-                        fill="#242A30" />
-                    <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z"
-                        fill="#242A30" />
-                </svg>
-            </a>
-        </div>
+                	</svg>
+				</a>
+
+				<a class="prev-page page-button" href="/industry_db.do?search_text=${pictVO.search_text}&location_category=${pictVO.location_category}&pageNumber=${pictVO.pageNumber - 10 < 1 ? 1 : pictVO.pageNumber - 10}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    	<path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#242A30" />
+                	</svg>
+				</a>
+			</c:if>	
+
+			<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
+				<c:if test="${i eq pictVO.pageNumber}">
+					<a class="page-button active" href="/industry_db.do?search_text=${pictVO.search_text}&pageNumber=${i}" >${i}</a>
+				</c:if>
+				<c:if test="${i ne pictVO.pageNumber}">
+					<a class="page-button" href="/industry_db.do?search_text=${pictVO.search_text}&pageNumber=${i}" >${i}</a>
+				</c:if>
+			</c:forEach>	
+
+
+			<c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
+				<a class="next-page page-button" href="/industry_db.do?search_text=${pictVO.search_text}&pageNumber=${pictVO.pageNumber + 10 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 10}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#242A30" />
+					</svg>
+				</a>
+				<a class="last-page page-button" href="/industry_db.do?search_text=${pictVO.search_text}&pageNumber=${pictVO.lastPage}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<path d="M4.27325 4L3.33325 4.94L6.38659 8L3.33325 11.06L4.27325 12L8.27325 8L4.27325 4Z" fill="#242A30" />
+                    	<path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="#242A30" />
+					</svg>
+				</a>
+			</c:if>
+		</div>
     </div>
 	<%@ include file="./include/footer.jsp" %>
 	<script src="/js/user_js/header.js"></script>

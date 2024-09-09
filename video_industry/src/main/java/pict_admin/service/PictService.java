@@ -70,5 +70,13 @@ public interface PictService {
 
 	List<PictVO> video_location_list(PictVO pictVO) throws Exception;
 
+	PictVO video_location_list_one(PictVO pictVO) throws Exception;
+
+	void location_apply_save(PictVO pictVO) throws Exception;
+
+	Integer industry_list_cnt(PictVO pictVO) throws Exception;
+
+	List<PictVO> industry_list(PictVO pictVO) throws Exception;
+
 
 }

@@ -165,8 +165,72 @@ public class PictVO extends PictDefaultVO {
 	private String wating;
 	private String width;
 	private String wifi;
+	private String file_url;
+	private String location_id;
+	private String start_date;
+	private String end_date;
+	private String company;
+	private double lat;
+	private double lng;
+	private String flag;
+	private String scale;
 	
 	
+	public String getScale() {
+		return scale;
+	}
+	public void setScale(String scale) {
+		this.scale = scale;
+	}
+	public double getLat() {
+		return lat;
+	}
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+	public double getLng() {
+		return lng;
+	}
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
+	public String getFile_url() {
+		return file_url;
+	}
+	public void setFile_url(String file_url) {
+		this.file_url = file_url;
+	}
+	public String getLocation_id() {
+		return location_id;
+	}
+	public void setLocation_id(String location_id) {
+		this.location_id = location_id;
+	}
+	public String getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
+	}
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
 	public String getAddress() {
 		return address;
 	}

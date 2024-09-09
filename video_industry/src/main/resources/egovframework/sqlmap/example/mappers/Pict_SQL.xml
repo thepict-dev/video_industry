@@ -129,8 +129,10 @@
 		<if test="location_category != null and location_category != '' ">
 			and location_category = #{location_category}
 		</if>
-		order by reg_date desc
-		LIMIT #{limit_cnt} OFFSET #{startNumber}
+		<if test="flag == null or flag == '' ">
+			order by reg_date desc
+			LIMIT #{limit_cnt} OFFSET #{startNumber}
+		</if>
 		
 	</select>
 	
@@ -146,4 +148,50 @@
 			) 
 		</if>
 	</select>
+	
+	<select id="video_location_list_one" resultType="pictVO">
+		select * from location_table 
+		where 1=1
+		and idx = #{idx}
+		
+	</select>
+	
+	<insert id="location_apply_save" parameterType="pictVO">
+		INSERT INTO location_apply_table
+			(
+			 location_id, start_date, end_date, name, tel, email, company, depart, category, title, file_url, reg_date
+			)
+		VALUES (
+			 #{idx}, #{start_date}, #{end_date}, #{name}, #{tel}, #{email}, #{company}, #{depart}, #{category}, #{title}, #{file_url}, now()
+			  ) 
+	</insert>
+	
+	
+	
+	<!-- 산업체리스트 -->
+	<select id="industry_list" resultType="pictVO">
+		select * from industry_table 
+		where 1=1
+		<if test="search_text != null and search_text != '' ">
+			and (
+				title LIKE CONCAT('%', #{search_text}, '%') 
+			) 
+		</if>
+		order by reg_date desc
+		LIMIT #{limit_cnt} OFFSET #{startNumber}
+	</select>
+	
+	<select id="industry_list_cnt" resultType="int">
+		select count(idx) from industry_table 
+		where 1=1
+
+		<if test="search_text != null and search_text != '' ">
+			and (
+				title LIKE CONCAT('%', #{search_text}, '%') 
+			) 
+		</if>
+	</select>
+	
+	
+	
 </mapper>

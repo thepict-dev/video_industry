@@ -60,7 +60,7 @@
         <div class="list-container active">
             <div class="location-container">
             	<c:forEach var="resultList" items="${resultList}" varStatus="status">
-	                <a href="location_view.do" class="location-item">
+	                <a href="/location_view.do?idx=${resultList.idx}" class="location-item">
 	                    <div class="img-container">
 	                        <img src="./img/user_img/main.webp" alt="" srcset="">
 	                    </div>
@@ -132,6 +132,9 @@
 	<%@ include file="./include/footer.jsp" %>
 	<script src="/js/user_js/header.js"></script>
 	<script>
+
+	
+
 		function search(){
 			$("#search_fm").attr("action", "/location_db_list.do");
 			$("#search_fm").submit();

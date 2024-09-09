@@ -14,7 +14,10 @@ import java.security.MessageDigest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.mail.PasswordAuthentication;
 import pict_admin.service.PictService;
@@ -32,6 +35,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.apache.commons.codec.binary.Base64;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -92,16 +97,114 @@ public class pictController {
 	}
 	@RequestMapping(value = "/location_db_map.do")
 	public String location_db_map(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		pictVO.setFlag("isactive");
+		
+		List<PictVO> reference_list = pictService.video_location_list(pictVO);
+	
+		JSONArray jsonArr = new JSONArray();
+		
+		for(int i=0; i<reference_list.size(); i++) {
+			JSONObject jsonObj1 = new JSONObject();
+
+			jsonObj1.put("idx", reference_list.get(i).getIdx());
+			String type = "";
+			if(reference_list.get(i).getCategory() != null) {
+				if(reference_list.get(i).getCategory().equals("1")) type = "공공/기관";
+				if(reference_list.get(i).getCategory().equals("2")) type = "관광/공원/카페";
+				if(reference_list.get(i).getCategory().equals("3")) type = "도로/교통";
+				if(reference_list.get(i).getCategory().equals("4")) type = "숙박시설";
+				if(reference_list.get(i).getCategory().equals("5")) type = "야외 스튜디오";
+				if(reference_list.get(i).getCategory().equals("6")) type = "유휴시설";
+				if(reference_list.get(i).getCategory().equals("7")) type = "종교/전통";
+				if(reference_list.get(i).getCategory().equals("8")) type = "기타";
+			}
+			
+			jsonObj1.put("name", reference_list.get(i).getCategory());
+			jsonObj1.put("title", reference_list.get(i).getTitle());
+			jsonObj1.put("lat", reference_list.get(i).getLat());
+			jsonObj1.put("lng", reference_list.get(i).getLng());
+			
+			jsonArr.put(jsonObj1);
+			
+			/*
+			map.put("idx", "1");
+			map.put("type", "더픽트");
+			map.put("title", "더픽트");
+			map.put("lat", "37.87520275487296");
+			map.put("lng", "127.73536032930221");
+			*/
+		}
+
+		
+		model.addAttribute("jsonArr", jsonArr);
+		model.addAttribute("pictVO", pictVO);
+		
 		return "pict/user/location_db_map";
 	}
 	@RequestMapping(value = "/location_view.do")
 	public String location_view(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		pictVO = pictService.video_location_list_one(pictVO);
+		model.addAttribute("pictVO", pictVO);
 		return "pict/user/location_view";
 	}
+	@RequestMapping(value = "/location_apply_save.do", method = RequestMethod.POST)
+	public String location_apply_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, MultipartHttpServletRequest request,
+			@RequestParam("attach_file") MultipartFile attach_file) throws Exception {
+		if(attach_file.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			//String filepath = "D:\\user1\\upload_file\\billconcert\\";
+			String filename = uuid+uploadPath.split("#####")[1];
+			
+			pictVO.setFile_url(filepath+filename);
+		}
+
+		pictService.location_apply_save(pictVO);
+		model.addAttribute("message", "정상적으로 저장되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/location_view.do?idx="+pictVO.getIdx());
+		return "pict/main/message";	
+		
+	}	
+	
 	
 	//산업체
 	@RequestMapping(value = "/industry_db.do")
 	public String industry_db(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		int limitNumber = 16;
+		pictVO.setLimit_cnt(limitNumber);
+		Integer pageNum = pictVO.getPageNumber();
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		Integer totalCnt = pictService.industry_list_cnt(pictVO);
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 16 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		model.addAttribute("pictVO", pictVO);
+		model.addAttribute("board_cnt", totalCnt);
+    	
+    	List<PictVO> reference_list = pictService.industry_list(pictVO);
+		model.addAttribute("resultList", reference_list);
+		model.addAttribute("pictVO", pictVO);
+		
 		return "pict/user/industry_db";
 	}
 	@RequestMapping(value = "/industry_portfolio.do")
@@ -386,9 +489,12 @@ public class pictController {
 		}
 		 
 		if(attach_file.getSize() != 0) {
-			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"));
-			String filepath = uploadPath.split("#####")[0];
-			String filename = uploadPath.split("#####")[1];
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/billconcert_chuncheon/";
+			//String filepath = "D:\\user1\\upload_file\\billconcert\\";
+			String filename = uuid+uploadPath.split("#####")[1];
+			
 			pictVO.setImg_url(filepath+filename);
 		}
 
@@ -489,9 +595,11 @@ public class pictController {
 		}
 		 
 		if(attach_file.getSize() != 0) {
-			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"));
-			String filepath = uploadPath.split("#####")[0];
-			String filename = uploadPath.split("#####")[1];
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			//String filepath = "D:\\user1\\upload_file\\billconcert\\";
+			String filename = uuid+uploadPath.split("#####")[1];
 			pictVO.setImg_url(filepath+filename);
 		}
 
@@ -616,7 +724,7 @@ public class pictController {
     	return path + "#####" + fileName;
     }
     
-    public String fileUpload_board(MultipartHttpServletRequest request, MultipartFile uploadFile, String target) {
+    public String fileUpload_board(MultipartHttpServletRequest request, MultipartFile uploadFile, String target, UUID uuid) {
     	String path = "";
     	String fileName = "";
     	OutputStream out = null;
@@ -632,36 +740,12 @@ public class pictController {
     		File file = new File(path);
     		if(fileName != null && !fileName.equals("")) {
     			if(file.exists()) {
-    				file = new File(path + fileName);
+    				file = new File(path +uuid+ fileName);
     			}
     		}
     		out = new FileOutputStream(file);
     		out.write(bytes);
-    		
-
-    		//FTP업로드
-//    		System.out.println("여기가 타긴타는지?");
-//    		FTPClient ftp = null;
-//    		ftp = new FTPClient();
-//    		try {
-//    			System.out.println("여기가 타긴타는지?11111");
-//	    		ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(file)));
-//	    		ftp.connect("220.76.177.118", 30000);
-//	    		ftp.login("root", "admin1!");
-//	    		
-//	    		ftp.makeDirectory("/home/build/upload_file/");
-//	    		
-//	    		ftp.changeWorkingDirectory("/home/build/upload_file/");
-//	    		ftp.setFileType(FTP.BINARY_FILE_TYPE);
-//	    		FileInputStream fis = null;
-//	    		fis = new FileInputStream(file);
-//	    		ftp.storeFile(file.getName(), fis);
-//	    		System.out.println("여기가 타긴타는지?22222ㄴ");
-//    		}
-//    		catch(Exception e) {
-//    			System.out.println(e);
-//    		}
-
+    	
     		
     	}
     	catch(Exception e) {
@@ -672,11 +756,7 @@ public class pictController {
     }
     
     private String getSaveLocation(MultipartHttpServletRequest request, MultipartFile uploadFile) {
-    	String uploadPath = "/user1/upload_file/";
-    	return uploadPath;
-    }
-    private String getSaveLocation_board(MultipartHttpServletRequest request, MultipartFile uploadFile) {
-    	String uploadPath = "/home/build/upload_file/";
+    	String uploadPath = "/user1/upload_file/video_industry/";
     	return uploadPath;
     }
 
