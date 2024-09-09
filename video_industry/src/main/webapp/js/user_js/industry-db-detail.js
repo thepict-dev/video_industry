@@ -57,3 +57,6 @@ tabItem.forEach((tab, idx) => {
         activateTab(tabItem, idx);
     });
 });
+
+
+    var swiper = new Swiper(".mySwiper", {});

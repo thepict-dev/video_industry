@@ -43,7 +43,16 @@
         <div class="company-info-container">
             <div class="left-container">
                 <div class="logo-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
+				    <div class="swiper mySwiper">
+				        <div class="swiper-wrapper">
+					        <div class="swiper-slide">
+	                    		<img src="/img/user_img/main.webp" alt="" srcset="">
+                    		</div>
+					        <div class="swiper-slide">
+	                    		<img src="/img/user_img/main.webp" alt="" srcset="">
+                    		</div>
+                   		</div>
+                	</div>
                 </div>
                 <a href="#" target="_blank" class="active-form pc">
                     <span>홈페이지 이동하기</span>

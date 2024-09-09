@@ -309,20 +309,22 @@
 
 .logo-container {
     width: 100%;
-    padding-bottom: 74%;
+   	height: 424px;
     border-radius: 20px;
-    border: 1px solid var(--grey-grey-100, #DBDEE2);
-    position: relative;
 }
 
+.mySwiper{
+	height: 100%;
+}
+.swiper-wrapper{
+	height: 100%;
+}
 .logo-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
+    border: 1px solid var(--grey-grey-100, #DBDEE2);
 }
 
 
