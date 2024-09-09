@@ -50,22 +50,37 @@ public class pictController {
 	
 	@RequestMapping(value = "/lending.do")
 	public String lending(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
-		//공지사항
-		List<?> board_list = pictService.board_list(pictVO);
-		model.addAttribute("resultList", board_list);
-		model.addAttribute("size", board_list.size());
-		
-		//이벤트
-		List<?> event_list = pictService.event_list(pictVO);
-		model.addAttribute("resultList2", event_list);
-		model.addAttribute("size2", event_list.size());
-		
-		//팸투어
-		pictVO = pictService.pemtour_select(pictVO);
-		model.addAttribute("pictVO", pictVO);
-		
-		return "pict/main/main";
+		return "pict/user/user_main";
 	}
+	
+	//로케이션
+	@RequestMapping(value = "/location_db_list.do")
+	public String location_db_list(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/location_db_list";
+	}
+	@RequestMapping(value = "/location_db_map.do")
+	public String location_db_map(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/location_db_map";
+	}
+	@RequestMapping(value = "/location_view.do")
+	public String location_view(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/location_view";
+	}
+	
+	//산업체
+	@RequestMapping(value = "/industry_db.do")
+	public String industry_db(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/industry_db";
+	}
+	@RequestMapping(value = "/industry_portfolio.do")
+	public String industry_portfolio(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/industry_portfolio";
+	}
+	@RequestMapping(value = "/industry_info.do")
+	public String industry_info(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/industry_info";
+	}
+
 	
 	@RequestMapping(value = "/pict_login.do")
 	public String login_main(@ModelAttribute("searchVO") AdminVO adminVO, HttpServletRequest request, ModelMap model, HttpServletResponse response) throws Exception {

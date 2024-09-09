@@ -4,7 +4,8 @@
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <!DOCTYPE html>
 <html lang="ko">
 	<c:import url="../main/header.jsp">
@@ -14,13 +15,7 @@
     <body class="sb-nav-fixed">
     
     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
-        <%@include file="../main/navigation.jsp" %>
         <div id="layoutSidenav">
-	        <div id="layoutSidenav_nav">
-				<%@include file="../main/gnb.jsp" %>
-			</div>
-			
-			
 			<div id="layoutSidenav_content">
 				<main class="contents">
 					<h2 class="contents-title">관리자 등록</h2>

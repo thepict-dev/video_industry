@@ -13,11 +13,8 @@
     
     
     <body class="sb-nav-fixed">
-        <%@include file="../main/navigation.jsp" %>
         <div id="layoutSidenav">
-	        <div id="layoutSidenav_nav">
-				<%@include file="../main/gnb.jsp" %>
-			</div>
+
 			
 			<div id="layoutSidenav_content">
 				<main class="contents">
