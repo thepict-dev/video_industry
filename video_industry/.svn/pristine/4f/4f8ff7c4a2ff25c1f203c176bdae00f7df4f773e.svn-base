@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pict_admin.service.impl.PictMapper">
+
+ 	<resultMap id="lecture_list" type="pict_admin.service.PictVO">
+		<result property="idx" column="idx"/>
+		<result property="title" column="title"/>
+		<result property="name" column="name"/>
+		<result property="zoom_no" column="zoom_no"/>
+		<result property="zoom_pw" column="zoom_pw"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="use_at" column="use_at"/>
+		
+		<result property="category" column="category"/>
+		<result property="category_id" column="category_id"/>
+		<result property="category_cnt" column="category_cnt"/>
+		<result property="week" column="week"/>
+		<result property="campus" column="campus"/>
+		<result property="campus_id" column="campus_id"/>
+		
+	</resultMap>
+	
+	
+	<resultMap id="lecture_attendance" type="pict_admin.service.PictVO">
+		<result property="idx" column="idx"/>
+		<result property="title" column="title"/>
+		<result property="lecture_id" column="lecture_id"/>
+		<result property="professor" column="professor"/>
+		<result property="name" column="name"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="in_date" column="in_date"/>
+		<result property="out_date" column="out_date"/>
+		<result property="timediff" column="timediff"/>
+		<result property="category_cnt" column="category_cnt"/>
+		<result property="whole_timediff" column="whole_timediff"/>
+		
+	</resultMap>
+	
+	<resultMap id="lecture_category_list" type="pict_admin.service.PictVO">
+		<result property="idx" column="idx"/>
+		<result property="category" column="category"/>
+		<result property="use_at" column="use_at"/>
+		<result property="name" column="name"/>
+		<result property="campus" column="campus"/>
+		<result property="professor_id" column="professor_id"/>
+		
+	</resultMap>
+	
+	<resultMap id="connection_user" type="pict_admin.service.PictVO">
+		<result property="id" column="id"/>
+		<result property="nick_name" column="nick_name"/>
+		<result property="mobile" column="mobile"/>
+		<result property="email" column="email"/>
+	</resultMap>
+
+	
+	<select id="board_list" resultType="pictVO">
+		select * from board_master
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+		order by reg_date desc
+	</select>
+	
+	<select id="board_list_one" resultType="pictVO">
+		select * from board_master
+		where idx = #{idx}
+	</select>
+	
+	<insert id="board_insert" parameterType="pictVO">
+		INSERT INTO board_master
+			(
+			 title, reg_date, use_at, img_url, link_url, category, depart, text
+			)
+		VALUES (
+			 #{title}, now(), 'N', #{img_url}, #{link_url}, #{category}, #{depart}, #{text}
+			  ) 
+	</insert>
+	
+	<update id="board_update" parameterType="pictVO">
+		update board_master
+		set title =#{title}, 
+		reg_date = now(), 
+		<if test="img_url != null and img_url != '' ">
+			img_url = #{img_url}, 
+		</if>
+		link_url = #{link_url}, 
+		category = #{category}, 
+		depart = #{depart}, 
+		text =#{text}
+		where idx = #{idx}
+	</update>
+	
+
+	<delete id="board_delete" parameterType="pictVO">
+		delete from board_master where idx = #{idx}
+	</delete>
+	
+	<update id="board_cng_use_at" parameterType="pictVO">
+		update board_master
+		set use_at = 'N';
+		
+		update board_master
+		set use_at = 'Y' where idx = #{idx}
+	</update>
+	
+	<update id="board_cng_use_at2" parameterType="pictVO">
+		update board_master
+		set use_at = #{use_at} where idx = #{idx}
+	</update>
+	
+	
+	<update id="board_file_delete" parameterType="pictVO">
+		update board_master
+		set img_url=NULL
+		where idx = #{idx}
+	</update>
+	
+	
+	
+	
+	
+	<!-- 포스터 -->
+	<select id="poster_list" resultType="pictVO">
+		select * from poster_table
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title1 LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+		order by reg_date desc
+	</select>
+	
+	<select id="poster_list_one" resultType="pictVO">
+		select * from poster_table
+		where idx = #{idx}
+	</select>
+	
+	<insert id="poster_insert" parameterType="pictVO">
+		INSERT INTO poster_table
+			(
+			 title1, title2, reg_date, use_at, img_url1, img_url2, category, link_url1, link_url2
+			)
+		VALUES (
+			 #{title1}, #{title2}, now(), 'N', #{img_url1}, #{img_url2}, #{category}, #{link_url1}, #{link_url2}
+			  ) 
+	</insert>
+	
+	<update id="poster_update" parameterType="pictVO">
+		update poster_table
+		set title1 =#{title1},
+		title2 =#{title2}, 
+		reg_date = now(), 
+		<if test="img_url1 != null and img_url1 != '' ">
+			img_url1 = #{img_url1}, 
+		</if>
+		<if test="img_url2 != null and img_url2 != '' ">
+			img_url2 = #{img_url2}, 
+		</if>
+		category = #{category},
+		link_url1 = #{link_url1},
+		link_url2 = #{link_url2}
+		where idx = #{idx}
+	</update>
+	
+	<delete id="poster_delete" parameterType="pictVO">
+		delete from poster_table where idx = #{idx}
+	</delete>
+	
+	<update id="poster_cng_use_at2" parameterType="pictVO">
+		update poster_table
+		set use_at = #{use_at} where idx = #{idx}
+	</update>
+	
+	<update id="poster_file_delete" parameterType="pictVO">
+		update poster_table
+		set img_url=NULL
+		where idx = #{idx}
+	</update>
+	
+	<!-- 강서구에 바라요 -->
+	<select id="wish_list" resultType="pictVO">
+		select w.idx, w.text, w.reg_date, w.category, r.text as reply, u.nick_name 
+		from wish_table w 
+		left outer join wish_reply_table r on w.idx = r.wish_id 
+		left outer join user_table u on w.reg_id = u.id
+		where 1=1
+		<if test="search_text != null and search_text != '' ">
+			and (
+				w.text LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+		<if test="search_category != null and search_category != '' and search_category != 0 ">
+			and (
+			w.category = #{search_category}
+			)
+		</if>
+	</select>
+	<select id="wish_list_one" resultType="pictVO">
+		select * from wish_table where idx = #{wish_id}
+	</select>
+	
+	<select id="wish_reply_one" resultType="pictVO">
+		select * from wish_reply_table
+		where wish_id = #{idx}
+	</select>
+	
+	<insert id="wish_reply_insert" parameterType="pictVO">
+		INSERT INTO wish_reply_table
+			(
+			 wish_id, text
+			)
+		VALUES (
+			 #{wish_id}, #{text}
+			  ) 
+	</insert>
+	
+	<update id="wish_reply_update" parameterType="pictVO">
+		update wish_reply_table
+		set text = #{text}
+		where wish_id = #{wish_id}
+	</update>
+	
+	<delete id="wish_delete" parameterType="pictVO">
+		delete from wish_reply_table where wish_id= #{idx};
+		delete from wish_table where idx = #{idx}
+	</delete>
+</mapper>

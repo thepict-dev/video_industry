@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pict_admin.service.impl.PictMapper">
+
+ 	<resultMap id="lecture_list" type="pict_admin.service.PictVO">
+		<result property="idx" column="idx"/>
+		<result property="title" column="title"/>
+		<result property="name" column="name"/>
+		<result property="zoom_no" column="zoom_no"/>
+		<result property="zoom_pw" column="zoom_pw"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="use_at" column="use_at"/>
+		
+		<result property="category" column="category"/>
+		<result property="category_id" column="category_id"/>
+		<result property="category_cnt" column="category_cnt"/>
+		<result property="week" column="week"/>
+		<result property="campus" column="campus"/>
+		<result property="campus_id" column="campus_id"/>
+		
+	</resultMap>
+	
+	
+	<resultMap id="lecture_attendance" type="pict_admin.service.PictVO">
+		<result property="idx" column="idx"/>
+		<result property="title" column="title"/>
+		<result property="lecture_id" column="lecture_id"/>
+		<result property="professor" column="professor"/>
+		<result property="name" column="name"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="in_date" column="in_date"/>
+		<result property="out_date" column="out_date"/>
+		<result property="timediff" column="timediff"/>
+		<result property="category_cnt" column="category_cnt"/>
+		<result property="whole_timediff" column="whole_timediff"/>
+		
+	</resultMap>
+	
+	<resultMap id="lecture_category_list" type="pict_admin.service.PictVO">
+		<result property="idx" column="idx"/>
+		<result property="category" column="category"/>
+		<result property="use_at" column="use_at"/>
+		<result property="name" column="name"/>
+		<result property="campus" column="campus"/>
+		<result property="professor_id" column="professor_id"/>
+		
+	</resultMap>
+	
+	<resultMap id="connection_user" type="pict_admin.service.PictVO">
+		<result property="id" column="id"/>
+		<result property="nick_name" column="nick_name"/>
+		<result property="mobile" column="mobile"/>
+		<result property="email" column="email"/>
+	</resultMap>
+
+	
+	<select id="board_list" resultType="pictVO">
+		select idx, title, img_url, text, date_format(reg_date, '%Y-%m-%d') as reg_date from board_master
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+		order by reg_date desc
+	</select>
+	
+	<select id="board_list_one" resultType="pictVO">
+		select * from board_master
+		where idx = #{idx}
+	</select>
+	
+	<insert id="board_insert" parameterType="pictVO">
+		INSERT INTO board_master
+			(
+			 title, reg_date, use_at, img_url, text
+			)
+		VALUES (
+			 #{title}, now(), 'N', #{img_url}, #{text}
+			  ) 
+	</insert>
+	
+	<update id="board_update" parameterType="pictVO">
+		update board_master
+		set title =#{title}, 
+		reg_date = now(), 
+		<if test="img_url != null and img_url != '' ">
+			img_url = #{img_url}, 
+		</if>
+		text =#{text}
+		where idx = #{idx}
+	</update>
+	
+
+	<delete id="board_delete" parameterType="pictVO">
+		delete from board_master where idx = #{idx}
+	</delete>
+	
+	<update id="board_cng_use_at" parameterType="pictVO">
+		update board_master
+		set use_at = 'N';
+		
+		update board_master
+		set use_at = 'Y' where idx = #{idx}
+	</update>
+	
+	<update id="board_cng_use_at2" parameterType="pictVO">
+		update board_master
+		set use_at = #{use_at} where idx = #{idx}
+	</update>
+	
+	
+	<update id="board_file_delete" parameterType="pictVO">
+		update board_master
+		set img_url=NULL
+		where idx = #{idx}
+	</update>
+	
+	
+	<select id="pemtour_select" resultType="pictVO">
+		select * from pemtour_table
+	</select>
+	
+	<update id="pemtour_update" parameterType="pictVO">
+		update pemtour_table
+		set pemtour_url = #{pemtour_url},
+		title = #{title}, subtitle = #{subtitle}
+	</update>
+	
+	
+</mapper>

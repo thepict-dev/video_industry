@@ -1,0 +1,105 @@
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<!DOCTYPE html>
+<html lang="ko">
+    <c:import url="../main/header.jsp">
+    	<c:param name="pageTitle" value="출석정보"/>
+    </c:import>
+    
+    <body class="sb-nav-fixed">
+        <%@include file="../main/navigation.jsp" %>
+        <div id="layoutSidenav">
+	        <div id="layoutSidenav_nav">
+				<%@include file="../main/gnb.jsp" %>
+			</div>
+			<div id="layoutSidenav_content">
+				<main class="contents">
+					<h2 class="contents-title">출석정보</h2>
+					<div class="contents-box">
+						<div class="card">
+						    <div class="card-body">
+						    	<h3 class="card-title">${pictVO.title}</h3>
+						    	<div class="tbl-basic tbl-hover">
+							        <table>
+							        	<colgroup>
+							        		<col style="width:10%;">
+							        		<col style="width:15%;">
+							        		<col style="width:15%;">
+							        		<col style="width:20%;">
+							        		<col style="width:20%;">
+							        		<col style="width:auto;">
+							        	</colgroup>
+							            <thead>
+							                <tr class="thead">
+							                    <th>순서</th>
+							                    <th>학번</th>
+							                    <th>학생명</th>
+							                    <th>입장시간</th>
+							                    <th>퇴장시간</th>
+							                    <th>출석</th>
+							                </tr>
+							            </thead>
+							            <tbody>
+								            <c:forEach var="resultList" items="${resultList}" varStatus="status">
+								                <tr>
+								                    <td>${status.count}</td>
+								                    <td>${resultList.std_num}</td>
+								                    <td>${resultList.name}</td>
+								                    <td>${resultList.in_date}</td>
+								                    <td>${resultList.out_date}</td>            
+								                    <c:if test="${tmp != 0 && tmp != resultList.std_num}">
+									                    <td rowspan="${resultList.category_cnt}">
+									                    	<c:if test="${resultList.whole_timediff eq null || resultList.whole_timediff < 15}">
+									                    		<span class="state-badge state-badge-n">시간미달 (${resultList.whole_timediff}분)</span>
+									                    	</c:if>
+									                    	<c:if test="${resultList.whole_timediff >= 20}">
+									                    		<span class="state-badge state-badge-y">출석인정 (${resultList.whole_timediff}분)</span>
+									                    	</c:if>
+									                    </td>
+								                    </c:if>
+								                    <c:set var="tmp" value="${resultList.std_num}"/>
+								                </tr>
+							                </c:forEach>
+							            </tbody>
+						            </table>
+					            </div>
+					            <div class="btn-box opt-tr">
+					            	<button type="button" onclick="button1_click();" class="btn-basic btn-sm btn-default">이전</button>
+					            	<button type="button" onclick="btn_excel('${pictVO.idx}');" class="btn-basic btn-sm btn-default"><i class="fa-solid fa-file-excel"></i> 엑셀서식내려받기</button>
+					            </div>
+				            </div>
+			            </div>
+		            </div>
+				</main>
+				<%@include file="../main/footer.jsp" %>
+				<form action="" id="att" name="att" method="post" enctype="multipart/form-data">
+					<input type='hidden' name="idx" id="idx" value='' />
+				</form>
+			</div>
+		</div>
+
+		<script>
+			function button1_click(){
+				window.history.back()
+			}
+			function btn_excel(idx){
+				if(confirm("해당 강의의 출석리스트를 엑셀파일로 내려받으시겠습니까?")){
+					$('#idx').val(idx);
+					$("#att").attr("action", "/lecture/excel_down.do");
+					$("#att").submit();
+					
+				}
+			}
+		</script>
+            
+		<script src="../../../../../js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+		<script src="../../../../../js/scripts.js"></script>
+		<script src="../../../../../js/Chart.min.js" crossorigin="anonymous"></script>
+		<script src="../../../../../js/simple-datatables@latest.js" crossorigin="anonymous"></script>
+		
+    </body>
+</html>

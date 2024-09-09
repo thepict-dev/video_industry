@@ -1,0 +1,86 @@
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+	<c:import url="../main/header.jsp">
+    	<c:param name="pageTitle" value="이벤트리스트"/>
+    </c:import>
+    
+    
+    <body class="sb-nav-fixed">
+        <%@include file="../main/navigation.jsp" %>
+        <div id="layoutSidenav">
+	        <div id="layoutSidenav_nav">
+				<%@include file="../main/gnb.jsp" %>
+			</div>
+			
+			<div id="layoutSidenav_content">
+				<main>
+					
+				</main>
+				<%@include file="../main/footer.jsp" %>
+			</div>
+		</div>
+        
+        <script>
+        $(document).ready(function (){
+        	var dataObj = {
+        	        Cmd : "E" // 고정
+        	       , Token : '427a21f43ed91da8f8f58cce27aa21d4'//토큰값
+        	       , SvcID     : 'KMV0002'//서비스 아이디
+        	       , YY : "2022"
+        	       , HAKGI_GB : 'chj19001'
+        	       , HAKGIKIND_GB : "cse33001"
+        	       , HAKBEON : '20042236'// 검색 조건INPUT
+       	    	   
+        	   };
+        	   
+        	$.ajax( {
+     	       type : 'post'
+     	       , url : "https://kapi.kangwon.ac.kr/fsppop/KMV0002" 
+     	       , cache : false
+     	       , data : JSON.stringify(dataObj)
+     	       , dataType : 'json'
+     	       , headers : { "Accept": "application/json" }
+     	       , complete : function(xhr,textStatus) {
+     	           var status =  xhr.status;
+     	           if( status == 200 ) {
+     	               eval("var rtnData = " +  xhr.responseText + ";");
+     	        	   console.log(rtnData)
+     	               if( rtnData.ErrorCode == "0" ) {
+     	               console.log("------------처리성공-----------");
+     	               console.log(rtnData);
+     	               } else {
+     	                   alert("처리에 실패했습니다. \n에러코드:" 
+     	                       + rtnData.ErrorCode 
+     	                       + " \n에러메시지:" + rtnData.ErrorMsg);
+     	               }
+     	           } else {
+     	               // 처리 실패 
+     	               if( status == 12029 ) { // server shutdown 
+     	                   alert("서버에 접속할 수 없습니다. 잠시 후 다시 요청해 주십시오.:" + status);
+     	               } else if( status == 404 ) {
+     	                   alert("서버 접속 경로가 잘못 되었습니다. 경로를 확인해 주십시오.:" + status);
+     	               } else if( status == 500 || status == 412 || status == 400) {
+     	                   alert("서비스 처리 오류 :[" + status + "] " + xhr.responseText );
+     	               } else {
+     	                   alert("서버 접속 중 처리에 실패했습니다.:" + status);
+     	               }
+     	           }
+     	       }// end compelte
+     	   });   
+        })
+        
+        </script>
+		<script src="../../../../../js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+		<script src="../../../../../js/scripts.js"></script>
+		<script src="../../../../../js/Chart.min.js" crossorigin="anonymous"></script>
+		<script src="../../../../../js/simple-datatables@latest.js" crossorigin="anonymous"></script>
+		
+    </body>
+</html>

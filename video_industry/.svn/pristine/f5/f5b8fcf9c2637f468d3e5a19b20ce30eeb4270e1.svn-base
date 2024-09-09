@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pict_admin.service.impl.PictMapper">
+	<select id="board_list" resultType="pictVO">
+		select idx, title, img_url, text, date_format(reg_date, '%Y-%m-%d') as reg_date, from_date, to_date, link_url from board_master
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+		order by reg_date desc
+	</select>
+	
+	<select id="board_list_one" resultType="pictVO">
+		select * from board_master
+		where idx = #{idx}
+	</select>
+	
+	<insert id="board_insert" parameterType="pictVO">
+		INSERT INTO board_master
+			(
+			 title, reg_date, use_at, img_url, text, link_url, from_date, to_date
+			)
+		VALUES (
+			 #{title}, now(), 'Y', #{img_url}, #{text}, #{link_url}, #{from_date}, #{to_date}
+			  ) 
+	</insert>
+	
+	<update id="board_update" parameterType="pictVO">
+		update board_master
+		set title =#{title}, 
+		reg_date = now(), 
+		<if test="img_url != null and img_url != '' ">
+			img_url = #{img_url}, 
+		</if>
+		text =#{text},
+		link_url = #{link_url},
+		from_date = #{from_date},
+		to_date = #{to_date} 
+		where idx = #{idx}
+	</update>
+	
+
+	<delete id="board_delete" parameterType="pictVO">
+		delete from board_master where idx = #{idx}
+	</delete>
+	
+	<update id="board_file_delete" parameterType="pictVO">
+		update board_master
+		set img_url=NULL
+		where idx = #{idx}
+	</update>
+	
+	
+	<select id="pemtour_select" resultType="pictVO">
+		select * from pemtour_table
+	</select>
+	
+	<update id="pemtour_update" parameterType="pictVO">
+		update pemtour_table
+		set pemtour_url = #{pemtour_url},
+		maintitle = #{maintitle}, title = #{title}, subtitle = #{subtitle}
+	</update>
+	
+	
+	<select id="event_list" resultType="pictVO">
+		select idx, title, img_url, text, date_format(reg_date, '%Y-%m-%d') as reg_date, from_date, to_date, link_url from event_table
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+		order by reg_date desc
+	</select>
+	
+	<select id="event_list_one" resultType="pictVO">
+		select * from event_table
+		where idx = #{idx}
+	</select>
+	
+	<insert id="event_insert" parameterType="pictVO">
+		INSERT INTO event_table
+			(
+			 title, reg_date, use_at, img_url, text, link_url, from_date, to_date
+			)
+		VALUES (
+			 #{title}, now(), 'Y', #{img_url}, #{text}, #{link_url}, #{from_date}, #{to_date}
+			  ) 
+	</insert>
+	
+	<update id="event_update" parameterType="pictVO">
+		update event_table
+		set title =#{title}, 
+		reg_date = now(), 
+		<if test="img_url != null and img_url != '' ">
+			img_url = #{img_url}, 
+		</if>
+		text =#{text},
+		link_url = #{link_url},
+		from_date = #{from_date},
+		to_date = #{to_date} 
+		where idx = #{idx}
+	</update>
+	
+
+	<delete id="event_delete" parameterType="pictVO">
+		delete from event_table where idx = #{idx}
+	</delete>
+	
+	<update id="event_file_delete" parameterType="pictVO">
+		update event_table
+		set img_url=NULL
+		where idx = #{idx}
+	</update>
+	
+</mapper>
