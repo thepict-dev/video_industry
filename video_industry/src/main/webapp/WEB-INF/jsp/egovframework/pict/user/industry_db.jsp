@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="main-section">
-        <div class="navigator">
+        <form action="" class="navigator">
             <div class="categories-container">
                 <div class="category">
                     <div class="category-head">
@@ -416,7 +416,7 @@
             </div>
         </div>
         <div class="location-container">
-            <div class="location-item">
+            <a href="/location_view.do" class="location-item">
                 <div class="img-container">
                     <img src="/img/user_img/main.webp" alt="" srcset="">
                 </div>
@@ -425,57 +425,7 @@
                 <p class="hashtag">영상 촬영, 광고/홍보, 무대영상, SNS영상, 행사, 기타</p>
                 <p class="address">강원특별자치도 춘천시 효자로 144, 픽트스퀘어</p>
                 <p class="tel">1644-4845</p>
-            </div>
-            <div class="location-item">
-                <div class="img-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
-                </div>
-                <span class="type">법인</span>
-                <h6>더픽트</h6>
-                <p class="hashtag">영상 촬영, 광고/홍보, 무대영상, SNS영상, 행사, 기타</p>
-                <p class="address">강원특별자치도 춘천시 효자로 144, 픽트스퀘어</p>
-                <p class="tel">1644-4845</p>
-            </div>
-            <div class="location-item">
-                <div class="img-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
-                </div>
-                <span class="type">법인</span>
-                <h6>더픽트</h6>
-                <p class="hashtag">영상 촬영, 광고/홍보, 무대영상, SNS영상, 행사, 기타</p>
-                <p class="address">강원특별자치도 춘천시 효자로 144, 픽트스퀘어</p>
-                <p class="tel">1644-4845</p>
-            </div>
-            <div class="location-item">
-                <div class="img-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
-                </div>
-                <span class="type">법인</span>
-                <h6>더픽트</h6>
-                <p class="hashtag">영상 촬영, 광고/홍보, 무대영상, SNS영상, 행사, 기타</p>
-                <p class="address">강원특별자치도 춘천시 효자로 144, 픽트스퀘어</p>
-                <p class="tel">1644-4845</p>
-            </div>
-            <div class="location-item">
-                <div class="img-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
-                </div>
-                <span class="type">법인</span>
-                <h6>더픽트</h6>
-                <p class="hashtag">영상 촬영, 광고/홍보, 무대영상, SNS영상, 행사, 기타</p>
-                <p class="address">강원특별자치도 춘천시 효자로 144, 픽트스퀘어</p>
-                <p class="tel">1644-4845</p>
-            </div>
-            <div class="location-item">
-                <div class="img-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
-                </div>
-                <span class="type">법인</span>
-                <h6>더픽트</h6>
-                <p class="hashtag">영상 촬영, 광고/홍보, 무대영상, SNS영상, 행사, 기타</p>
-                <p class="address">강원특별자치도 춘천시 효자로 144, 픽트스퀘어</p>
-                <p class="tel">1644-4845</p>
-            </div>
+            </a>
         </div>
         <div class="pagination">
             <a href="#lnk" class="first-page page-button">

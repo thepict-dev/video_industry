@@ -18,8 +18,8 @@
         <li class="active-sub-depth">
             <a href="">콘텐츠DB</a>
             <ul class="sub-depth">
-                <li><a href="#">로케이션DB</a></li>
-                <li><a href="#">산업체DB</a></li>
+                <li><a href="/location_db_list.do">로케이션DB</a></li>
+                <li><a href="/industry_db.do">산업체DB</a></li>
             </ul>
         </li>
         <li><a href="">센터소식</a></li>
@@ -69,10 +69,10 @@
                 <span>콘텐츠DB</span>
                 <ul class="sub-depth">
                     <li>
-                        <a href="">로케이션DB</a>
+                        <a href="/location_db_list.do">로케이션DB</a>
                     </li>
                     <li>
-                        <a href="">산업체DB</a>
+                        <a href="/industry_db.do">산업체DB</a>
                     </li>
                 </ul>
             </li>

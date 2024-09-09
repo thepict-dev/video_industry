@@ -59,7 +59,7 @@
         </ul>
         <div class="list-container active">
             <div class="location-container">
-                <div class="location-item">
+                <a href="location_view.do" class="location-item">
                     <div class="img-container">
                         <img src="./img/user_img/main.webp" alt="" srcset="">
                     </div>
@@ -68,37 +68,7 @@
                     <p class="hashtag">#관광, #케이블카, #풍경, #멋짐</p>
                     <p class="address">강원특별자치도 춘천시 신동면 김유정로 1430-14</p>
                     <p class="tel">033-261-4650</p>
-                </div>
-                <div class="location-item">
-                    <div class="img-container">
-                        <img src="./img/user_img/main.webp" alt="" srcset="">
-                    </div>
-                    <span class="type">관광/공원 카페</span>
-                    <h6>김유정문학촌</h6>
-                    <p class="hashtag">#관광, #케이블카, #풍경, #멋짐</p>
-                    <p class="address">강원특별자치도 춘천시 신동면 김유정로 1430-14</p>
-                    <p class="tel">033-261-4650</p>
-                </div>
-                <div class="location-item">
-                    <div class="img-container">
-                        <img src="./img/user_img/main.webp" alt="" srcset="">
-                    </div>
-                    <span class="type">관광/공원 카페</span>
-                    <h6>김유정문학촌</h6>
-                    <p class="hashtag">#관광, #케이블카, #풍경, #멋짐</p>
-                    <p class="address">강원특별자치도 춘천시 신동면 김유정로 1430-14</p>
-                    <p class="tel">033-261-4650</p>
-                </div>
-                <div class="location-item">
-                    <div class="img-container">
-                        <img src="./img/user_img/main.webp" alt="" srcset="">
-                    </div>
-                    <span class="type">관광/공원 카페</span>
-                    <h6>김유정문학촌</h6>
-                    <p class="hashtag">#관광, #케이블카, #풍경, #멋짐</p>
-                    <p class="address">강원특별자치도 춘천시 신동면 김유정로 1430-14</p>
-                    <p class="tel">033-261-4650</p>
-                </div>
+                </a>
             </div>
         	<div class="list-container"></div>
         	<div class="list-container"></div>
