@@ -56,6 +56,38 @@ public class pictController {
 	//로케이션
 	@RequestMapping(value = "/location_db_list.do")
 	public String location_db_list(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		int limitNumber = 16;
+		pictVO.setLimit_cnt(limitNumber);
+		Integer pageNum = pictVO.getPageNumber();
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		Integer totalCnt = pictService.video_location_list_cnt(pictVO);
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 16 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		model.addAttribute("pictVO", pictVO);
+		model.addAttribute("board_cnt", totalCnt);
+    	
+    	List<PictVO> reference_list = pictService.video_location_list(pictVO);
+		model.addAttribute("resultList", reference_list);
+		model.addAttribute("pictVO", pictVO);
+		
 		return "pict/user/location_db_list";
 	}
 	@RequestMapping(value = "/location_db_map.do")

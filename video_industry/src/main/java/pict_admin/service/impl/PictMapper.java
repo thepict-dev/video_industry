@@ -68,4 +68,8 @@ public interface PictMapper {
 	
 	void event_file_delete(PictVO pictVO) throws Exception;
 
+	Integer video_location_list_cnt(PictVO pictVO) throws Exception;
+
+	List<PictVO> video_location_list(PictVO pictVO) throws Exception;
+
 }

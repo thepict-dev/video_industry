@@ -37,42 +37,7 @@ public class apiController {
 	@Resource(name = "adminService")
 	private AdminService adminService;
 	
-	@GetMapping("api/lecture_attendance.do")
-	@ResponseBody
-	public void lecture_attendance(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Content-Type", "application/xml");
-		response.setContentType("text/xml;charset=UTF-8");
-		response.setCharacterEncoding("utf-8");
-		response.setHeader("Access-Control-Allow-Methods", "GET");
-		
-		String idx = request.getParameter("idx");
-		pictVO.setIdx(Integer.parseInt(idx));
-		List<PictVO> attendance_list = pictService.lecture_attendance_api(pictVO);
-		
-		ArrayList<Map<String, Object>> list = new ArrayList();
-		for(PictVO a : attendance_list){
-			Map<String, Object> map = new HashMap<>();
-			map.put("idx" , a.getIdx()); 
-			map.put("title" , a.getTitle());
-			map.put("professor" , a.getProfessor());
-			map.put("name" , a.getName());
-			map.put("in_date" , a.getIn_date());
-			map.put("out_date" , a.getOut_date());
-			map.put("std_num" , a.getStd_num());
-			map.put("timediff" , a.getTimediff());
-			map.put("category_cnt" , a.getCategory_cnt());
-			map.put("whole_timediff" , a.getWhole_timediff());
-			
-			list.add(map);
-		}
-		
-		PrintWriter out = response.getWriter();
-		JSONArray js = JSONArray.fromObject(list);
-		out.print(js);
-		out.flush();
 	
-	}
 
 	public static String encryptPassword(String password, String id) throws Exception {
 		if (password == null) return "";

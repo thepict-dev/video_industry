@@ -146,5 +146,17 @@ public class PictServiceImpl extends EgovAbstractServiceImpl implements PictServ
 		
 	}
 
+	@Override
+	public Integer video_location_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.video_location_list_cnt(pictVO);
+	}
+
+	@Override
+	public List<PictVO> video_location_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.video_location_list(pictVO);
+	}
+
 	
 }

@@ -128,7 +128,249 @@ public class PictVO extends PictDefaultVO {
 	private String from_date;
 	private String to_date;
 	
+	private int pageNumber;
+	private int startNumber;
 	
+	private int totalPage;
+	
+	private int lastPage;
+	private int startPage;
+	private int endPage;
+	private int limit_cnt;
+	
+	private String address;
+	private String control;
+	private String drone;
+	private String electricity;
+	private String elevator;
+	private String etc;
+	private String fee;
+	private String holiyday;
+	private String img_thumb;
+	private String img_url3;
+	private String img_url4;
+	private String img_url5;
+	private String introduce;
+	private String keyword;
+	private String light;
+	private String lighting;
+	private String location_category;
+	private String night;
+	private String parking;
+	private String person_cnt;
+	private String pet;
+	private String sound;
+	private String tel;
+	private String toilet;
+	private String wating;
+	private String width;
+	private String wifi;
+	
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getControl() {
+		return control;
+	}
+	public void setControl(String control) {
+		this.control = control;
+	}
+	public String getDrone() {
+		return drone;
+	}
+	public void setDrone(String drone) {
+		this.drone = drone;
+	}
+	public String getElectricity() {
+		return electricity;
+	}
+	public void setElectricity(String electricity) {
+		this.electricity = electricity;
+	}
+	public String getElevator() {
+		return elevator;
+	}
+	public void setElevator(String elevator) {
+		this.elevator = elevator;
+	}
+	public String getEtc() {
+		return etc;
+	}
+	public void setEtc(String etc) {
+		this.etc = etc;
+	}
+	public String getFee() {
+		return fee;
+	}
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
+	public String getHoliyday() {
+		return holiyday;
+	}
+	public void setHoliyday(String holiyday) {
+		this.holiyday = holiyday;
+	}
+	public String getImg_thumb() {
+		return img_thumb;
+	}
+	public void setImg_thumb(String img_thumb) {
+		this.img_thumb = img_thumb;
+	}
+	public String getImg_url3() {
+		return img_url3;
+	}
+	public void setImg_url3(String img_url3) {
+		this.img_url3 = img_url3;
+	}
+	public String getImg_url4() {
+		return img_url4;
+	}
+	public void setImg_url4(String img_url4) {
+		this.img_url4 = img_url4;
+	}
+	public String getImg_url5() {
+		return img_url5;
+	}
+	public void setImg_url5(String img_url5) {
+		this.img_url5 = img_url5;
+	}
+	public String getIntroduce() {
+		return introduce;
+	}
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getLight() {
+		return light;
+	}
+	public void setLight(String light) {
+		this.light = light;
+	}
+	public String getLighting() {
+		return lighting;
+	}
+	public void setLighting(String lighting) {
+		this.lighting = lighting;
+	}
+	public String getLocation_category() {
+		return location_category;
+	}
+	public void setLocation_category(String location_category) {
+		this.location_category = location_category;
+	}
+	public String getNight() {
+		return night;
+	}
+	public void setNight(String night) {
+		this.night = night;
+	}
+	public String getParking() {
+		return parking;
+	}
+	public void setParking(String parking) {
+		this.parking = parking;
+	}
+	public String getPerson_cnt() {
+		return person_cnt;
+	}
+	public void setPerson_cnt(String person_cnt) {
+		this.person_cnt = person_cnt;
+	}
+	public String getPet() {
+		return pet;
+	}
+	public void setPet(String pet) {
+		this.pet = pet;
+	}
+	public String getSound() {
+		return sound;
+	}
+	public void setSound(String sound) {
+		this.sound = sound;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getToilet() {
+		return toilet;
+	}
+	public void setToilet(String toilet) {
+		this.toilet = toilet;
+	}
+	public String getWating() {
+		return wating;
+	}
+	public void setWating(String wating) {
+		this.wating = wating;
+	}
+	public String getWidth() {
+		return width;
+	}
+	public void setWidth(String width) {
+		this.width = width;
+	}
+	public String getWifi() {
+		return wifi;
+	}
+	public void setWifi(String wifi) {
+		this.wifi = wifi;
+	}
+	public int getPageNumber() {
+		return pageNumber;
+	}
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+	public int getStartNumber() {
+		return startNumber;
+	}
+	public void setStartNumber(int startNumber) {
+		this.startNumber = startNumber;
+	}
+	public int getTotalPage() {
+		return totalPage;
+	}
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
+	public int getLastPage() {
+		return lastPage;
+	}
+	public void setLastPage(int lastPage) {
+		this.lastPage = lastPage;
+	}
+	public int getStartPage() {
+		return startPage;
+	}
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+	public int getEndPage() {
+		return endPage;
+	}
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	public int getLimit_cnt() {
+		return limit_cnt;
+	}
+	public void setLimit_cnt(int limit_cnt) {
+		this.limit_cnt = limit_cnt;
+	}
 	public String getFrom_date() {
 		return from_date;
 	}
