@@ -14,7 +14,7 @@
 	<%@ include file="./include/header.jsp" %>
     <main class="container">
         <div class="content-header">
-            <a href="location_db_list.do">
+            <a href="/location_db_list.do">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                     <mask id="mask0_86_3625" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40"
                         height="40">
@@ -43,21 +43,28 @@
         </div>
         <div class="grid-container">
             <div class="img-grid-container">
-                <div class="main-img-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
-                </div>
-                <div class="sub-img-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
-
-                </div>
-                <div class="sub-img-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
-
-                </div>
-                <div class="sub-img-container">
-                    <img src="/img/user_img/main.webp" alt="" srcset="">
-
-                </div>
+            	<c:if test="${pictVO.img_thumb ne '' && pictVO.img_thumb ne null && pictVO.img_thumb ne undefined}">
+	                <div class="main-img-container">
+	                    <img src="http://118.67.128.150:8080${pictVO.img_thumb}" alt="" srcset="">
+	                </div>
+                </c:if>
+                <c:if test="${pictVO.img_url1 ne '' && pictVO.img_url1 ne null && pictVO.img_url1 ne undefined}">
+	                <div class="sub-img-container">
+	                    <img src="http://118.67.128.150:8080${pictVO.img_url1}" alt="" srcset="">
+	
+	                </div>
+                </c:if>
+                <c:if test="${pictVO.img_url2 ne '' && pictVO.img_url2 ne null && pictVO.img_url2 ne undefined}">
+	                <div class="sub-img-container">
+	                    <img src="http://118.67.128.150:8080${pictVO.img_url2}" alt="" srcset="">
+                    </div>
+				</c:if>
+                <c:if test="${pictVO.img_url3 ne '' && pictVO.img_url3 ne null && pictVO.img_url3 ne undefined}">
+	                
+	                <div class="sub-img-container">
+	                    <img src="http://118.67.128.150:8080${pictVO.img_url3}" alt="" srcset="">
+	                </div>
+                </c:if>
             </div>
             <div class="content-container">
                 <ul class="navigator">
@@ -158,35 +165,28 @@
                     </div>
                 </div>
                 <div class="view-info-container poster-container">
-                    <div class="poster">
-                        <div class="img-container">
-                            <img src="/img/user_img/poster.png" alt="" srcset="">
-                        </div>
-                        <div class="movie-info">
-                            <div class="info-box">
-                                <span class="date">2024.02.07 개봉</span>
-                                <h6>도그데이즈</h6>
-                                <p class="text">
-                                    깔끔한 성격의 계획형 싱글남 ‘민상’(유해진). 영끌까지 모아 산 건물을 개똥밭으로 만드는 세입자 수의사 ‘진영’(김서형) 때문에 매일 머리가 아프다.
-                                    오늘도
-                                    ‘진영’과
-                                    티격태격하던 ‘민상’은 동물병원에서 한 성격하는 할머니를 만나는데, 다름 아닌 세계적 건축가 ‘민서’(윤여정)! 진행 중인 프로젝트를 위해 ‘민서’의
-                                    도움이 절실한
-                                    ‘민상’은 ‘민서’에게 잘 보이기 위해 ‘진영’과 그녀의 반려견 ‘차장님’을 공략하기 시작한다. 갑자기 길에서 쓰러지게 되며 유일한 가족인 반려견
-                                    ‘완다’를 잃어
-                                    버리고만
-                                    ‘민서’. 동네에 살고 있는 케이팝 작곡가 ‘선용’(정성화)과 ‘정아’(김윤진) 가족이 완다를 보살피고 있다는 사실을 모르는 ‘민서’는 자신을 구해준
-                                    MZ 배달
-                                    라이더
-                                    ‘진우’(탕준상)와 함께 완다를 찾아 나선다. 한편 ‘선용’의 후배인 밴드 리더 ‘현’(이현우)은 자리를 비운 여친의 반려견 ‘스팅’을 돌보던 중
-                                    스팅의 대디를
-                                    자청하며
-                                    나타난 여친의 전남친 ‘다니엘’(다니엘 헤니)의 등장에 기가 막힐 따름인데…! 특별한 단짝 덕분에 엮이게 된 이들의 기분 좋은 갓생 스토리가 시작된다!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                	<c:if test="${movie_cnt ne 0}">
+		                <c:forEach var="resultList" items="${resultList}" varStatus="status">
+		                    <div class="poster">
+		                        <div class="img-container">
+		                            <img src="http://118.67.128.150:8080${resultList.img_thumb}" alt="" srcset="">
+		                        </div>
+		                        <div class="movie-info">
+		                            <div class="info-box">
+		                                <span class="date">${resultList.open_date} 개봉</span>
+		                                <h6>${resultList.title}</h6>
+		                                <p class="text">${resultList.text }</p>
+		                            </div>
+		                        </div>
+		                    </div>
+	                    </c:forEach>
+                    </c:if>
+                    <c:if test="${movie_cnt eq 0}">
+                    	<span style="text-align:center">등록된 촬영작품이 없습니다.</span>
+					</c:if>
+                    
                 </div>
+
                 <!-- 촬영 데이터 없을 때 -->
                 <!-- <div class="table">
                     <div class="table-row no-data">

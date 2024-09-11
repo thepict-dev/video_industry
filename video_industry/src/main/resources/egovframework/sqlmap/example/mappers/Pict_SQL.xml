@@ -177,6 +177,67 @@
 				title LIKE CONCAT('%', #{search_text}, '%') 
 			) 
 		</if>
+		
+		<if test="
+			(scale1 != null and scale1 != '') or (scale2 != null and scale2 != '' ) or (scale3 != null and scale3 != '')
+			or (main_subject1 != null and main_subject1 != '') or (main_subject2 != null and main_subject2 != '' ) or (main_subject3 != null and main_subject3 != '')
+			or (main_subject4 != null and main_subject4 != '') or (main_subject5 != null and main_subject5 != '' ) or (main_subject6 != null and main_subject6 != '')
+			or (certificate_category1 != null and certificate_category1 != '') or (certificate_category2 != null and certificate_category2 != '' ) or (certificate_category3 != null and certificate_category3 != '')
+			or (certificate_category4 != null and certificate_category4 != '') or (certificate_category5 != null and certificate_category5 != '' ) or (certificate_category6 != null and certificate_category6 != '')
+		
+		">
+			and (
+				0=1
+			<if test="scale1 != null and scale1 != '' ">
+				or scale LIKE CONCAT('%', #{scale1}, '%')
+			</if>
+			<if test="scale2 != null and scale2 != '' ">
+				or scale LIKE CONCAT('%', #{scale2}, '%')
+			</if>
+			<if test="scale3 != null and scale3 != '' ">
+				or scale LIKE CONCAT('%', #{scale3}, '%')
+			</if>
+			
+			<if test="main_subject1 != null and main_subject1 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject1}, '%')
+			</if>
+			<if test="main_subject2 != null and main_subject2 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject2}, '%')
+			</if>
+			<if test="main_subject3 != null and main_subject3 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject3}, '%')
+			</if>
+			<if test="main_subject4 != null and main_subject4 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject4}, '%')
+			</if>
+			<if test="main_subject5 != null and main_subject5 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject5}, '%')
+			</if>
+			<if test="main_subject6 != null and main_subject6 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject6}, '%')
+			</if>
+			
+			<if test="certificate_category1 != null and certificate_category1 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category1}, '%')
+			</if>
+			<if test="certificate_category2 != null and certificate_category2 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category2}, '%')
+			</if>
+			<if test="certificate_category3 != null and certificate_category3 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category3}, '%')
+			</if>
+			<if test="certificate_category4 != null and certificate_category4 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category4}, '%')
+			</if>
+			<if test="certificate_category5 != null and certificate_category5 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category5}, '%')
+			</if>
+			<if test="certificate_category6 != null and certificate_category6 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category6}, '%')
+			</if>
+			
+		)
+		</if>
 		order by reg_date desc
 		LIMIT #{limit_cnt} OFFSET #{startNumber}
 	</select>
@@ -190,8 +251,77 @@
 				title LIKE CONCAT('%', #{search_text}, '%') 
 			) 
 		</if>
+		<if test="
+			(scale1 != null and scale1 != '') or (scale2 != null and scale2 != '' ) or (scale3 != null and scale3 != '')
+			or (main_subject1 != null and main_subject1 != '') or (main_subject2 != null and main_subject2 != '' ) or (main_subject3 != null and main_subject3 != '')
+			or (main_subject4 != null and main_subject4 != '') or (main_subject5 != null and main_subject5 != '' ) or (main_subject6 != null and main_subject6 != '')
+			or (certificate_category1 != null and certificate_category1 != '') or (certificate_category2 != null and certificate_category2 != '' ) or (certificate_category3 != null and certificate_category3 != '')
+			or (certificate_category4 != null and certificate_category4 != '') or (certificate_category5 != null and certificate_category5 != '' ) or (certificate_category6 != null and certificate_category6 != '')
+		
+		">
+			and (
+				0=1
+			<if test="scale1 != null and scale1 != '' ">
+				or scale LIKE CONCAT('%', #{scale1}, '%')
+			</if>
+			<if test="scale2 != null and scale2 != '' ">
+				or scale LIKE CONCAT('%', #{scale2}, '%')
+			</if>
+			<if test="scale3 != null and scale3 != '' ">
+				or scale LIKE CONCAT('%', #{scale3}, '%')
+			</if>
+			
+			<if test="main_subject1 != null and main_subject1 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject1}, '%')
+			</if>
+			<if test="main_subject2 != null and main_subject2 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject2}, '%')
+			</if>
+			<if test="main_subject3 != null and main_subject3 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject3}, '%')
+			</if>
+			<if test="main_subject4 != null and main_subject4 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject4}, '%')
+			</if>
+			<if test="main_subject5 != null and main_subject5 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject5}, '%')
+			</if>
+			<if test="main_subject6 != null and main_subject6 != '' ">
+				or main_subject LIKE CONCAT('%', #{main_subject6}, '%')
+			</if>
+			
+			<if test="certificate_category1 != null and certificate_category1 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category1}, '%')
+			</if>
+			<if test="certificate_category2 != null and certificate_category2 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category2}, '%')
+			</if>
+			<if test="certificate_category3 != null and certificate_category3 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category3}, '%')
+			</if>
+			<if test="certificate_category4 != null and certificate_category4 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category4}, '%')
+			</if>
+			<if test="certificate_category5 != null and certificate_category5 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category5}, '%')
+			</if>
+			<if test="certificate_category6 != null and certificate_category6 != '' ">
+				or certificate_category LIKE CONCAT('%', #{certificate_category6}, '%')
+			</if>
+			
+		)
+		</if>
 	</select>
 	
+	<select id="industry_list_one" resultType="pictVO">
+		select * from industry_table where idx = #{idx}
 	
+	</select>
+	<select id="portfolio_list" resultType="pictVO">
+		select * from portfolio_table where industry_id = #{idx}
+	</select>
 	
+	<select id="movie_list" resultType="pictVO">
+		select * from movie_table where location_id = #{idx}
+	</select>
 </mapper>

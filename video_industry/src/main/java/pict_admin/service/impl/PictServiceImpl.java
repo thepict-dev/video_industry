@@ -182,5 +182,23 @@ public class PictServiceImpl extends EgovAbstractServiceImpl implements PictServ
 		return pictMapper.industry_list(pictVO);
 	}
 
+	@Override
+	public List<PictVO> portfolio_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.portfolio_list(pictVO);
+	}
+
+	@Override
+	public PictVO industry_list_one(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.industry_list_one(pictVO);
+	}
+
+	@Override
+	public List<PictVO> movie_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.movie_list(pictVO);
+	}
+
 	
 }

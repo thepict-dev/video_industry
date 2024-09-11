@@ -145,6 +145,12 @@ public class pictController {
 	public String location_view(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
 		pictVO = pictService.video_location_list_one(pictVO);
 		model.addAttribute("pictVO", pictVO);
+		
+		List<PictVO> reference_list = pictService.movie_list(pictVO);
+		model.addAttribute("resultList", reference_list);
+		model.addAttribute("movie_cnt", reference_list.size());
+		
+		
 		return "pict/user/location_view";
 	}
 	@RequestMapping(value = "/location_apply_save.do", method = RequestMethod.POST)
@@ -209,10 +215,17 @@ public class pictController {
 	}
 	@RequestMapping(value = "/industry_portfolio.do")
 	public String industry_portfolio(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		List<PictVO> reference_list = pictService.portfolio_list(pictVO);
+		model.addAttribute("resultList", reference_list);
+		
+		pictVO = pictService.industry_list_one(pictVO);
+		model.addAttribute("pictVO", pictVO);
 		return "pict/user/industry_portfolio";
 	}
 	@RequestMapping(value = "/industry_info.do")
 	public String industry_info(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		pictVO = pictService.industry_list_one(pictVO);
+		model.addAttribute("pictVO", pictVO);
 		return "pict/user/industry_info";
 	}
 

@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="main-section">
-        <form action="" class="navigator">
+        <form action="" id="search_fm" name="search_fm" method="get" class="navigator">
             <div class="categories-container">
                 <div class="category">
                     <div class="category-head">
@@ -45,8 +45,8 @@
                         <p class="selector-title">기업 형태</p>
                         <ul class="selector-container">
                             <li>
-                                <label for="industry_type_1">
-                                    <input type="checkbox" name="industry_type" id="industry_type_1">
+                                <label for="scale1">
+                                    <input type="checkbox" name="scale1" id="scale1" value="1" <c:if test="${pictVO.scale1 eq '1'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -65,8 +65,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="industry_type_2">
-                                    <input type="checkbox" name="industry_type" id="industry_type_2">
+                                <label for="scale2">
+                                    <input type="checkbox" name="scale2" id="scale2" value="2" <c:if test="${pictVO.scale2 eq '2'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -85,8 +85,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="industry_type_3">
-                                    <input type="checkbox" name="industry_type" id="industry_type_3">
+                                <label for="scale3">
+                                    <input type="checkbox" name="scale3" id="scale3" value="3" <c:if test="${pictVO.scale3 eq '3'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -101,12 +101,12 @@
                                                 fill="#583D94" />
                                         </svg>
                                     </i>
-                                    <span>기타</span>
+                                    <span>협동조합</span>
                                 </label>
                             </li>
                         </ul>
                         <div class="category-controller">
-                            <button class="reset">초기화</button>
+                            <a class="reset" onclick="reset_scale()">초기화</a>
                             <button class="submit">적용</button>
                         </div>
                     </div>
@@ -134,8 +134,8 @@
                         <p class="selector-title">주력 제품</p>
                         <ul class="selector-container">
                             <li>
-                                <label for="product_type_1">
-                                    <input type="checkbox" name="product_type" id="product_type_1">
+                                <label for="main_subject1">
+                                    <input type="checkbox" name="main_subject1" id="main_subject1" value="1" <c:if test="${pictVO.main_subject1 eq '1'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -154,8 +154,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="product_type_2">
-                                    <input type="checkbox" name="product_type" id="product_type_2">
+                                <label for="main_subject2">
+                                    <input type="checkbox" name="main_subject2" id="main_subject2" value="2" <c:if test="${pictVO.main_subject2 eq '2'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -174,8 +174,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="product_type_3">
-                                    <input type="checkbox" name="product_type" id="product_type_3">
+                                <label for="main_subject3">
+                                    <input type="checkbox" name="main_subject3" id="main_subject3" value="3" <c:if test="${pictVO.main_subject3 eq '3'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -194,8 +194,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="product_type_4">
-                                    <input type="checkbox" name="product_type" id="product_type_4">
+                                <label for="main_subject4">
+                                    <input type="checkbox" name="main_subject4" id="main_subject4" value="4" <c:if test="${pictVO.main_subject4 eq '4'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -214,8 +214,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="product_type_5">
-                                    <input type="checkbox" name="product_type" id="product_type_5">
+                                <label for="main_subject5">
+                                    <input type="checkbox" name="main_subject5" id="main_subject5" value="5" <c:if test="${pictVO.main_subject5 eq '5'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -234,8 +234,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="product_type_6">
-                                    <input type="checkbox" name="product_type" id="product_type_6">
+                                <label for="main_subject6">
+                                    <input type="checkbox" name="main_subject6" id="main_subject6" value="6" <c:if test="${pictVO.main_subject6 eq '6'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -255,7 +255,7 @@
                             </li>
                         </ul>
                         <div class="category-controller">
-                            <button class="reset">초기화</button>
+                            <a class="reset" onclick="reset_main_subject()">초기화</a>
                             <button class="submit">적용</button>
                         </div>
                     </div>
@@ -283,8 +283,8 @@
                         <p class="selector-title">인증 현황</p>
                         <ul class="selector-container">
                             <li>
-                                <label for="certification_type_1">
-                                    <input type="checkbox" name="certification_type" id="certification_type_1">
+                                <label for="certificate_category1">
+                                    <input type="checkbox" name="certificate_category1" id="certificate_category1" value="1" <c:if test="${pictVO.certificate_category1 eq '1'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -303,8 +303,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="certification_type_2">
-                                    <input type="checkbox" name="certification_type" id="certification_type_2">
+                                <label for="certificate_category2">
+                                    <input type="checkbox" name="certificate_category2" id="certificate_category2" value="2" <c:if test="${pictVO.certificate_category2 eq '2'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -323,8 +323,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="certification_type_3">
-                                    <input type="checkbox" name="certification_type" id="certification_type_3">
+                                <label for="certificate_category3">
+                                    <input type="checkbox" name="certificate_category3" id="certificate_category3" value="3" <c:if test="${pictVO.certificate_category3 eq '3'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -343,8 +343,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="certification_type_4">
-                                    <input type="checkbox" name="certification_type" id="certification_type_4">
+                                <label for="certificate_category4">
+                                    <input type="checkbox" name="certificate_category4" id="certificate_category4" value="4" <c:if test="${pictVO.certificate_category4 eq '4'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -363,8 +363,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="certification_type_5">
-                                    <input type="checkbox" name="certification_type" id="certification_type_5">
+                                <label for="certificate_category5">
+                                    <input type="checkbox" name="certificate_category5" id="certificate_category5" value="5" <c:if test="${pictVO.certificate_category5 eq '5'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -383,8 +383,8 @@
                                 </label>
                             </li>
                             <li>
-                                <label for="certification_type_6">
-                                    <input type="checkbox" name="certification_type" id="certification_type_6">
+                                <label for="certificate_category6">
+                                    <input type="checkbox" name="certificate_category6" id="certificate_category6" value="6" <c:if test="${pictVO.certificate_category6 eq '6'}">checked</c:if>>
                                     <i class="checkbox">
                                         <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" viewBox="0 0 20 20" fill="none">
@@ -404,7 +404,7 @@
                             </li>
                         </ul>
                         <div class="category-controller">
-                            <button class="reset">초기화</button>
+                            <a class="reset" onclick="reset_certificate_category()">초기화</a>
                             <button class="submit">적용</button>
                         </div>
                     </div>
@@ -412,14 +412,14 @@
             </div>
             <div class="input-container">
                 <div class="icon"></div>
-                <input type="text" class="search" placeholder="어떤 업체를 찾으세요?">
+                <input type="text" class="search" placeholder="어떤 업체를 찾으세요?" id="search_text" name="search_text" value="${pictVO.search_text}">
             </div>
         </div>
         <div class="location-container">
         	<c:forEach var="resultList" items="${resultList}" varStatus="status">
 	            <a href="/industry_portfolio.do?idx=${resultList.idx}" class="location-item">
 	                <div class="img-container">
-	                    <img src="/img/user_img/main.webp" alt="" srcset="">
+	                    <img src="http://118.67.128.150:8080${resultList.logo_url}" alt="" srcset="">
 	                </div>
 	                <span class="type">
 	                	<c:if test="${resultList.scale eq '1'}">법인</c:if>
@@ -476,6 +476,33 @@
 			</c:if>
 		</div>
     </div>
+    <script>
+	    function search(){
+			$("#search_fm").attr("action", "/industry_db.do");
+			$("#search_fm").submit();
+		}
+	    function reset_scale(){
+	    	$('#scale1').prop("checked", false)
+	    	$('#scale2').prop("checked", false)
+	    	$('#scale3').prop("checked", false)
+	    }
+		function reset_main_subject(){
+			$('#main_subject1').prop("checked", false)
+	    	$('#main_subject2').prop("checked", false)
+	    	$('#main_subject3').prop("checked", false)
+	    	$('#main_subject4').prop("checked", false)
+	    	$('#main_subject5').prop("checked", false)
+	    	$('#main_subject6').prop("checked", false)
+		}
+		function reset_certificate_category(){
+			$('#certificate_category1').prop("checked", false)
+			$('#certificate_category2').prop("checked", false)
+			$('#certificate_category3').prop("checked", false)
+			$('#certificate_category4').prop("checked", false)
+			$('#certificate_category5').prop("checked", false)
+			$('#certificate_category6').prop("checked", false)
+		}
+    </script>
 	<%@ include file="./include/footer.jsp" %>
 	<script src="/js/user_js/header.js"></script>
 	<script src="/js/user_js/industry-db.js"></script>

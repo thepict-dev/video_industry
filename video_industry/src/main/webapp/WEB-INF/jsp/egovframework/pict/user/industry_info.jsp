@@ -14,7 +14,7 @@
 	<%@ include file="./include/header.jsp" %>
     <main class="container">
         <div class="content-header">
-            <a href="industry_db.do">
+            <a href="/industry_db.do">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                     <mask id="mask0_86_3625" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40"
                         height="40">
@@ -28,33 +28,51 @@
                 </svg>
             </a>
             <div class="summary">
-                <p>법인</p>
-                <h1>주식회사 더픽트</h1>
+               <p>
+                	<c:if test="${pictVO.scale eq '1'}">법인</c:if>
+                	<c:if test="${pictVO.scale eq '2'}">개인</c:if>
+                	<c:if test="${pictVO.scale eq '3'}">협동조합</c:if>
+                </p>
+                <h1>${pictVO.title}</h1>
             </div>
         </div>
         <ul class="navigator">
             <li>
-                <a href="/industry_portfolio.do">포트폴리오</a>
+                <a href="/industry_portfolio.do?idx=${pictVO.idx}">포트폴리오</a>
             </li>
             <li>
-                <a class="active" href="/industry_info.do">회사정보</a>
+                <a class="active" href="/industry_info.do?idx=${pictVO.idx}">회사정보</a>
             </li>
-        </ul> 
+        </ul>
         <div class="company-info-container">
             <div class="left-container">
                 <div class="logo-container">
 				    <div class="swiper mySwiper">
 				        <div class="swiper-wrapper">
-					        <div class="swiper-slide">
-	                    		<img src="/img/user_img/main.webp" alt="" srcset="">
-                    		</div>
-					        <div class="swiper-slide">
-	                    		<img src="/img/user_img/main.webp" alt="" srcset="">
-                    		</div>
+					        <c:if test="${pictVO.main_img_url ne '' && pictVO.main_img_url ne null && pictVO.main_img_url ne undefined}">
+						        <div class="swiper-slide">
+		                    		<img src="http://118.67.128.150:8080${pictVO.main_img_url}" alt="" srcset="">
+	                    		</div>
+					        </c:if>
+					        <c:if test="${pictVO.img_1 ne '' && pictVO.img_1 ne null && pictVO.img_1 ne undefined}">
+						        <div class="swiper-slide">
+		                    		<img src="http://118.67.128.150:8080${pictVO.img_1}" alt="" srcset="">
+	                    		</div>
+					        </c:if>
+					        <c:if test="${pictVO.img_2 ne '' && pictVO.img_2 ne null && pictVO.img_2 ne undefined}">
+						        <div class="swiper-slide">
+		                    		<img src="http://118.67.128.150:8080${pictVO.img_2}" alt="" srcset="">
+	                    		</div>
+					        </c:if>
+					        <c:if test="${pictVO.img_3 ne '' && pictVO.img_3 ne null && pictVO.img_3 ne undefined}">
+						        <div class="swiper-slide">
+		                    		<img src="http://118.67.128.150:8080${pictVO.img_3}" alt="" srcset="">
+	                    		</div>
+					        </c:if>
                    		</div>
                 	</div>
                 </div>
-                <a href="#" target="_blank" class="active-form pc">
+                <a href="${pictVO.homepage_url}" target="_blank" class="active-form pc">
                     <span>홈페이지 이동하기</span>
                     <i>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -74,38 +92,42 @@
             <div class="table">
                 <div class="table-row">
                     <div class="table-head">업체명</div>
-                    <div class="table-data">영상문화프로덕션 이리</div>
+                    <div class="table-data">${pictVO.title}</div>
                 </div>
                 <div class="table-row">
                     <div class="table-head">대표자명</div>
-                    <div class="table-data">박동일</div>
+                    <div class="table-data">${pictVO.ceo}</div>
                 </div>
                 <div class="table-row">
                     <div class="table-head">설립일</div>
-                    <div class="table-data">2014. 6. 16</div>
+                    <div class="table-data">${pictVO.establishment_date}</div>
                 </div>
                 <div class="table-row">
                     <div class="table-head">기업 형태</div>
-                    <div class="table-data">개인</div>
+                    <div class="table-data">
+                    	<c:if test="${pictVO.scale eq '1'}">법인</c:if>
+	                	<c:if test="${pictVO.scale eq '2'}">개인</c:if>
+	                	<c:if test="${pictVO.scale eq '3'}">협동조합</c:if>
+                    </div>
                 </div>
                 <div class="table-row">
                     <div class="table-head">회사 주소</div>
-                    <div class="table-data">강원특별자치도 춘천시 후석로420번길 7, 춘천하이테크타워 527,528,529호</div>
+                    <div class="table-data">${pictVO.address}</div>
                 </div>
                 <div class="table-row">
                     <div class="table-head">주력 제품</div>
-                    <div class="table-data">홍보영상, 유튜브콘텐츠, 축제·행사·공연기록, 무대영상, 영상 중계 등</div>
+                    <div class="table-data">${pictVO.introduce}</div>
                 </div>
                 <div class="table-row">
                     <div class="table-head">인증 현황</div>
-                    <div class="table-data">비디오 제작업</div>
+                    <div class="table-data">${pictVO.certificate}</div>
                 </div>
                 <div class="table-row">
                     <div class="table-head">연락처</div>
-                    <div class="table-data">033-257-2236 / ipdyoupd@hanmail.net</div>
+                    <div class="table-data">${pictVO.tel}</div>
                 </div>
             </div>
-            <a href="#" target="_blank" class="active-form mobile">
+            <a href="${pictVO.homepage_url}" target="_blank" class="active-form mobile">
                 <span>홈페이지 이동하기</span>
                 <i>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

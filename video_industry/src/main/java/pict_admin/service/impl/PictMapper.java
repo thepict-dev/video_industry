@@ -80,4 +80,10 @@ public interface PictMapper {
 
 	List<PictVO> industry_list(PictVO pictVO) throws Exception;
 
+	List<PictVO> portfolio_list(PictVO pictVO) throws Exception;
+
+	PictVO industry_list_one(PictVO pictVO) throws Exception;
+
+	List<PictVO> movie_list(PictVO pictVO) throws Exception;
+
 }

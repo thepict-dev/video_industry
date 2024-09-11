@@ -174,8 +174,205 @@ public class PictVO extends PictDefaultVO {
 	private double lng;
 	private String flag;
 	private String scale;
+	private String logo_url;
+	private String main_img_url;
+	private String img_1;
+	private String img_2;
+	private String img_3;
+	private String main_subject1;
+	private String main_subject2;
+	private String main_subject3;
+	private String main_subject4;
+	private String main_subject5;
+	private String main_subject6;
+	
+	private String certificate_category1;
+	private String certificate_category2;
+	private String certificate_category3;
+	private String certificate_category4;
+	private String certificate_category5;
+	private String certificate_category6;
+	private String scale1;
+	private String scale2;
+	private String scale3;
+	private String portfolio_link;
+	private String portfolio_thumb;
+	private String portfolio_title;
+	private String homepage_url;
+	private String ceo;
+	private String establishment_date;
+	private String certificate;
+	private String open_date;
 	
 	
+	public String getOpen_date() {
+		return open_date;
+	}
+	public void setOpen_date(String open_date) {
+		this.open_date = open_date;
+	}
+	public String getCeo() {
+		return ceo;
+	}
+	public void setCeo(String ceo) {
+		this.ceo = ceo;
+	}
+	public String getEstablishment_date() {
+		return establishment_date;
+	}
+	public void setEstablishment_date(String establishment_date) {
+		this.establishment_date = establishment_date;
+	}
+	public String getCertificate() {
+		return certificate;
+	}
+	public void setCertificate(String certificate) {
+		this.certificate = certificate;
+	}
+	public String getHomepage_url() {
+		return homepage_url;
+	}
+	public void setHomepage_url(String homepage_url) {
+		this.homepage_url = homepage_url;
+	}
+	public String getPortfolio_link() {
+		return portfolio_link;
+	}
+	public void setPortfolio_link(String portfolio_link) {
+		this.portfolio_link = portfolio_link;
+	}
+	public String getPortfolio_thumb() {
+		return portfolio_thumb;
+	}
+	public void setPortfolio_thumb(String portfolio_thumb) {
+		this.portfolio_thumb = portfolio_thumb;
+	}
+	public String getPortfolio_title() {
+		return portfolio_title;
+	}
+	public void setPortfolio_title(String portfolio_title) {
+		this.portfolio_title = portfolio_title;
+	}
+	public String getScale1() {
+		return scale1;
+	}
+	public void setScale1(String scale1) {
+		this.scale1 = scale1;
+	}
+	public String getScale2() {
+		return scale2;
+	}
+	public void setScale2(String scale2) {
+		this.scale2 = scale2;
+	}
+	public String getScale3() {
+		return scale3;
+	}
+	public void setScale3(String scale3) {
+		this.scale3 = scale3;
+	}
+	public String getMain_subject1() {
+		return main_subject1;
+	}
+	public void setMain_subject1(String main_subject1) {
+		this.main_subject1 = main_subject1;
+	}
+	public String getMain_subject2() {
+		return main_subject2;
+	}
+	public void setMain_subject2(String main_subject2) {
+		this.main_subject2 = main_subject2;
+	}
+	public String getMain_subject3() {
+		return main_subject3;
+	}
+	public void setMain_subject3(String main_subject3) {
+		this.main_subject3 = main_subject3;
+	}
+	public String getMain_subject4() {
+		return main_subject4;
+	}
+	public void setMain_subject4(String main_subject4) {
+		this.main_subject4 = main_subject4;
+	}
+	public String getMain_subject5() {
+		return main_subject5;
+	}
+	public void setMain_subject5(String main_subject5) {
+		this.main_subject5 = main_subject5;
+	}
+	public String getMain_subject6() {
+		return main_subject6;
+	}
+	public void setMain_subject6(String main_subject6) {
+		this.main_subject6 = main_subject6;
+	}
+	public String getCertificate_category1() {
+		return certificate_category1;
+	}
+	public void setCertificate_category1(String certificate_category1) {
+		this.certificate_category1 = certificate_category1;
+	}
+	public String getCertificate_category2() {
+		return certificate_category2;
+	}
+	public void setCertificate_category2(String certificate_category2) {
+		this.certificate_category2 = certificate_category2;
+	}
+	public String getCertificate_category3() {
+		return certificate_category3;
+	}
+	public void setCertificate_category3(String certificate_category3) {
+		this.certificate_category3 = certificate_category3;
+	}
+	public String getCertificate_category4() {
+		return certificate_category4;
+	}
+	public void setCertificate_category4(String certificate_category4) {
+		this.certificate_category4 = certificate_category4;
+	}
+	public String getCertificate_category5() {
+		return certificate_category5;
+	}
+	public void setCertificate_category5(String certificate_category5) {
+		this.certificate_category5 = certificate_category5;
+	}
+	public String getCertificate_category6() {
+		return certificate_category6;
+	}
+	public void setCertificate_category6(String certificate_category6) {
+		this.certificate_category6 = certificate_category6;
+	}
+	public String getMain_img_url() {
+		return main_img_url;
+	}
+	public void setMain_img_url(String main_img_url) {
+		this.main_img_url = main_img_url;
+	}
+	public String getLogo_url() {
+		return logo_url;
+	}
+	public void setLogo_url(String logo_url) {
+		this.logo_url = logo_url;
+	}
+	public String getImg_1() {
+		return img_1;
+	}
+	public void setImg_1(String img_1) {
+		this.img_1 = img_1;
+	}
+	public String getImg_2() {
+		return img_2;
+	}
+	public void setImg_2(String img_2) {
+		this.img_2 = img_2;
+	}
+	public String getImg_3() {
+		return img_3;
+	}
+	public void setImg_3(String img_3) {
+		this.img_3 = img_3;
+	}
 	public String getScale() {
 		return scale;
 	}

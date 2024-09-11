@@ -28,62 +28,57 @@
                 </svg>
             </a>
             <div class="summary">
-                <p>법인</p>
-                <h1>주식회사 더픽트</h1>
+                <p>
+                	<c:if test="${pictVO.scale eq '1'}">법인</c:if>
+                	<c:if test="${pictVO.scale eq '2'}">개인</c:if>
+                	<c:if test="${pictVO.scale eq '3'}">협동조합</c:if>
+                </p>
+                <h1>${pictVO.title}</h1>
             </div>
         </div>
         <ul class="navigator">
             <li>
-                <a class="active" href="/industry_portfolio.do">포트폴리오</a>
+                <a class="active" href="/industry_portfolio.do?idx=${pictVO.idx}">포트폴리오</a>
             </li>
             <li>
-                <a href="/industry_info.do">회사정보</a>
+                <a href="/industry_info.do?idx=${pictVO.idx}">회사정보</a>
             </li>
         </ul>
          <div class="portfolio-container">
             <ul class="list">
-                <li class="active">
-                    <a href="#lnk">
-                        강원워케이션 홍보동영상(강원관광재단)
-                    </a>
-                </li>
-                <li>
-                    <a href="#lnk">
-                        고향사랑기부제 홍보동영상 (강원특별자치도청)
-                    </a>
-                </li>
-                <li>
-                    <a href="#lnk">
-                        생명존중캠페인 홍보동영상 (강원특별자치도교육청)
-                    </a>
-                </li>
+            	<c:forEach var="resultList" items="${resultList}" varStatus="status">
+	                <li class="active">
+	                    <a href="#lnk">${resultList.portfolio_title}</a>
+	                </li>
+                </c:forEach>
+                
             </ul>
-            <div class="portfolio active">
-                <img src="/img/user_img/main.webp" alt="" srcset="">
-                <div class="hover">
-                    <h1>주식회사 더픽트</h1>
-                    <a href="">
-                        <span>포트폴리오 보러가기</span>
-                        <i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"
-                                fill="none">
-                                <mask id="mask0_26_5546" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
-                                    width="48" height="48">
-                                    <rect width="48" height="48" fill="#D9D9D9" />
-                                </mask>
-                                <g mask="url(#mask0_26_5546)">
-                                    <path
-                                        d="M12.5885 35.2885L10.5 33.2L30.181 13.5H12.2885V10.5H35.2885V33.5H32.2885V15.6075L12.5885 35.2885Z"
-                                        fill="white" />
-                                </g>
-                            </svg>
-                        </i>
-                    </a>
-                    <p>고향사랑기부제 홍보동영상 (강원특별자치도청)</p>
-                </div>
-            </div>
-            <div class="portfolio"></div>
-            <div class="portfolio"></div>
+            <c:forEach var="resultList" items="${resultList}" varStatus="status">
+	            <div class="portfolio <c:if test='${status.index eq 0}'>active</c:if> ">
+	                <img src="http://118.67.128.150:8080${resultList.portfolio_thumb }" alt="" srcset="">
+	                <div class="hover">
+	                    <h1>${pictVO.title}</h1>
+	                    <a href="${resultList.portfolio_link}" target="_blank">
+	                        <span>포트폴리오 보러가기</span>
+	                        <i>
+	                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"
+	                                fill="none">
+	                                <mask id="mask0_26_5546" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+	                                    width="48" height="48">
+	                                    <rect width="48" height="48" fill="#D9D9D9" />
+	                                </mask>
+	                                <g mask="url(#mask0_26_5546)">
+	                                    <path
+	                                        d="M12.5885 35.2885L10.5 33.2L30.181 13.5H12.2885V10.5H35.2885V33.5H32.2885V15.6075L12.5885 35.2885Z"
+	                                        fill="white" />
+	                                </g>
+	                            </svg>
+	                        </i>
+	                    </a>
+	                    <p>포트폴리오 명칭</p>
+	                </div>
+	            </div>
+            </c:forEach>
         </div>
     </main>
 	<%@ include file="./include/footer.jsp" %>
