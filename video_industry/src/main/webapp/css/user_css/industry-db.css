@@ -309,17 +309,17 @@
 }
 
 .location-container {
-    padding-top: 40px;
-    display: flex;
-	flex-wrap: wrap;
+    display: grid;
+	grid-template-columns: repeat(4, 24%);
     width: 100%;
-    max-width: 1760px;
+    max-width: 1800px;
     margin: 0 auto;
     gap: 20px;
+    padding: 40px 20px 0 20px;
 }
 
 .location-item {
-    width: 425px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     user-select: none;
@@ -381,9 +381,7 @@
 }
 
 .location-item .hashtag {
-    overflow: hidden;
     color: #8B96A2;
-    text-overflow: ellipsis;
     font-family: SUIT;
     font-size: 16px;
     font-style: normal;
@@ -391,6 +389,11 @@
     line-height: 100%;
     /* 16px */
     letter-spacing: -0.8px;
+    
+	  overflow: hidden;
+	  white-space: nowrap;
+	  text-overflow: ellipsis;
+	  word-break: break-all;
 }
 
 .location-item .address {
@@ -481,20 +484,19 @@
 @media (max-width : 1800px) {
 
     .location-item {
-        width: 350px;
+        width: 100%;
     }
 }
 
 @media (max-width : 1475px) {
     .location-item {
-        width: 300px;
+        width: 100%;
     }
 }
 
 @media (max-width : 1465px) {
     .main-section {
         padding: 20px;
-        padding-top: 40px;
     }
 }
 
@@ -522,17 +524,25 @@
         padding-bottom: 0;
         justify-content: center;
     }
+	.location-container {
+	    padding-top: 0;
+	    display: grid;
+		grid-template-columns: repeat(2, 49%);
+	    width: 100%;
+	    max-width: 1760px;
+	    margin: 0 auto;
+	}
 
 }
 
 @media (max-width:768px) {
     .category-head {
         font-size: 14px;
+       	width: 109px;
     }
 
-
     .location-item {
-        width: 171px;
+        width: 100%;
     }
 
     .visual-section .content h2 {
@@ -589,4 +599,39 @@
     }
 
     .pagination .page-button {}
+}
+.hashtag {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+.location-item {
+  position: relative;
+  /* 기존 스타일 유지 */
+}
+
+.tooltip-text {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  z-index: 10;
+  font-size: 14px;
+  bottom: 80px;
+  left: 0;
+}
+
+.tooltip-text::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
 }

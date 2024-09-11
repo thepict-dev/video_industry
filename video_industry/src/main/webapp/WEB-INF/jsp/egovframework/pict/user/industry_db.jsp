@@ -427,7 +427,7 @@
 	                	<c:if test="${resultList.scale eq '3'}">협동조합</c:if>
 	                </span>
 	                <h6>${resultList.title}</h6>
-	                <p class="hashtag">${resultList.introduce}</p>
+	                <p class="hashtag" data-tooltip="${resultList.introduce}">${resultList.introduce}</p>
 	                <p class="address">${resultList.address}</p>
 	                <p class="tel">${resultList.tel}</p>
 				</a>
