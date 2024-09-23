@@ -62,7 +62,7 @@
             	<c:forEach var="resultList" items="${resultList}" varStatus="status">
 	                <a href="/location_view.do?idx=${resultList.idx}" class="location-item">
 	                    <div class="img-container">
-	                        <img src="http://118.67.128.150:8080${resultList.img_thumb}" alt="" srcset="">
+	                        <img src="http://118.67.128.150${resultList.img_thumb}" alt="" srcset="">
 	                    </div>
 	                    <span class="type">
 	                    	<c:if test="${resultList.location_category eq '1'}">공공/기관</c:if>

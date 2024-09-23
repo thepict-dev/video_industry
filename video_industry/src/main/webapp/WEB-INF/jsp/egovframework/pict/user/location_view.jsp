@@ -45,24 +45,24 @@
             <div class="img-grid-container">
             	<c:if test="${pictVO.img_thumb ne '' && pictVO.img_thumb ne null && pictVO.img_thumb ne undefined}">
 	                <div class="main-img-container">
-	                    <img src="http://118.67.128.150:8080${pictVO.img_thumb}" alt="" srcset="">
+	                    <img src="http://118.67.128.150${pictVO.img_thumb}" alt="" srcset="">
 	                </div>
                 </c:if>
                 <c:if test="${pictVO.img_url1 ne '' && pictVO.img_url1 ne null && pictVO.img_url1 ne undefined}">
 	                <div class="sub-img-container">
-	                    <img src="http://118.67.128.150:8080${pictVO.img_url1}" alt="" srcset="">
+	                    <img src="http://118.67.128.150${pictVO.img_url1}" alt="" srcset="">
 	
 	                </div>
                 </c:if>
                 <c:if test="${pictVO.img_url2 ne '' && pictVO.img_url2 ne null && pictVO.img_url2 ne undefined}">
 	                <div class="sub-img-container">
-	                    <img src="http://118.67.128.150:8080${pictVO.img_url2}" alt="" srcset="">
+	                    <img src="http://118.67.128.150${pictVO.img_url2}" alt="" srcset="">
                     </div>
 				</c:if>
                 <c:if test="${pictVO.img_url3 ne '' && pictVO.img_url3 ne null && pictVO.img_url3 ne undefined}">
 	                
 	                <div class="sub-img-container">
-	                    <img src="http://118.67.128.150:8080${pictVO.img_url3}" alt="" srcset="">
+	                    <img src="http://118.67.128.150${pictVO.img_url3}" alt="" srcset="">
 	                </div>
                 </c:if>
             </div>

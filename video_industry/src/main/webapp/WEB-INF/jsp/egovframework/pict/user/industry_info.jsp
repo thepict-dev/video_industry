@@ -51,22 +51,22 @@
 				        <div class="swiper-wrapper">
 					        <c:if test="${pictVO.main_img_url ne '' && pictVO.main_img_url ne null && pictVO.main_img_url ne undefined}">
 						        <div class="swiper-slide">
-		                    		<img src="http://118.67.128.150:8080${pictVO.main_img_url}" alt="" srcset="">
+		                    		<img src="http://118.67.128.150${pictVO.main_img_url}" alt="" srcset="">
 	                    		</div>
 					        </c:if>
 					        <c:if test="${pictVO.img_1 ne '' && pictVO.img_1 ne null && pictVO.img_1 ne undefined}">
 						        <div class="swiper-slide">
-		                    		<img src="http://118.67.128.150:8080${pictVO.img_1}" alt="" srcset="">
+		                    		<img src="http://118.67.128.150${pictVO.img_1}" alt="" srcset="">
 	                    		</div>
 					        </c:if>
 					        <c:if test="${pictVO.img_2 ne '' && pictVO.img_2 ne null && pictVO.img_2 ne undefined}">
 						        <div class="swiper-slide">
-		                    		<img src="http://118.67.128.150:8080${pictVO.img_2}" alt="" srcset="">
+		                    		<img src="http://118.67.128.150${pictVO.img_2}" alt="" srcset="">
 	                    		</div>
 					        </c:if>
 					        <c:if test="${pictVO.img_3 ne '' && pictVO.img_3 ne null && pictVO.img_3 ne undefined}">
 						        <div class="swiper-slide">
-		                    		<img src="http://118.67.128.150:8080${pictVO.img_3}" alt="" srcset="">
+		                    		<img src="http://118.67.128.150${pictVO.img_3}" alt="" srcset="">
 	                    		</div>
 					        </c:if>
                    		</div>

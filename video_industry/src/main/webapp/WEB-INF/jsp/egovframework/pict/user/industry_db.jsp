@@ -419,7 +419,7 @@
         	<c:forEach var="resultList" items="${resultList}" varStatus="status">
 	            <a href="/industry_portfolio.do?idx=${resultList.idx}" class="location-item">
 	                <div class="img-container">
-	                    <img src="http://118.67.128.150:8080${resultList.logo_url}" alt="" srcset="">
+	                    <img src="http://118.67.128.150${resultList.logo_url}" alt="" srcset="">
 	                </div>
 	                <span class="type">
 	                	<c:if test="${resultList.scale eq '1'}">법인</c:if>
