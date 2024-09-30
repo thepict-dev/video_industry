@@ -10,34 +10,34 @@
 	pageContext.setAttribute("url", url);
 	
 %>
-<c:set var="user_list" value="${fn:indexOf(url, 'user_list')}"/>
-<c:set var="feed_list" value="${fn:indexOf(url, 'feed_list')}"/>
-<c:set var="history_list" value="${fn:indexOf(url, 'history_list')}"/>
-<c:set var="event_list" value="${fn:indexOf(url, 'event_list')}"/>
-<c:set var="event_register" value="${fn:indexOf(url, 'event_register')}"/>
+<c:set var="board_list" value="${fn:indexOf(url, 'board_list')}"/>
+<c:set var="board_register" value="${fn:indexOf(url, 'board_register')}"/>
 
-<c:set var="course_list" value="${fn:indexOf(url, 'course_list')}"/>
-<c:set var="course_register" value="${fn:indexOf(url, 'course_register')}"/>
+<c:set var="location_list" value="${fn:indexOf(url, 'location_list')}"/>
+<c:set var="location_register" value="${fn:indexOf(url, 'location_register')}"/>
 
 <div class="lnb">
     <nav>
         <div class="nav">
-            <div class="depth1 <c:if test="${user_list ne -1}">active</c:if>">
+            <div class="depth1 <c:if test="${board_list ne -1 || board_register ne -1}">active</c:if>">
                 <span><img src="/img/admin/lnb_icons/user.png" alt=""></span>
-                <a href="#lnk">사용자 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
+                <a href="#lnk">게시물 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
             </div>
             <ul class="depth2">
-                <li class="<c:if test="${user_list ne -1}">active</c:if>"><a href="/user/user_list.do">사용자 리스트</a></li>
+                <li class="<c:if test="${board_list ne -1}">active</c:if>"><a href="/board/board_list.do">게시물 리스트</a></li>
+                <li class="<c:if test="${board_register ne -1}">active</c:if>"><a href="/board/board_register.do">게시물 등록</a></li>
             </ul>
             
             <div class="depth1 <c:if test="${feed_list ne -1}">active</c:if>">
                 <span><img src="/img/admin/lnb_icons/lnb-feed.png" alt=""></span>
-                <a href="#lnk">피드 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
+                <a href="#lnk">로케이션 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
             </div>
             <ul class="depth2">
-                <li class="<c:if test="${feed_list ne -1}">active</c:if>"><a href="/feed/feed_list.do">피드 리스트</a></li>
+                <li class="<c:if test="${location_list ne -1}">active</c:if>"><a href="/location/location_list.do">로케이션 리스트</a></li>
+                <li class="<c:if test="${location_register ne -1}">active</c:if>"><a href="/location/location_register.do">로케이션 등록</a></li>
             </ul>
             
+            <!-- 
             <div class="depth1 <c:if test="${history_list ne -1}">active</c:if>">
                 <span><img src="/img/admin/lnb_icons/lnb-history.png" alt=""></span>
                 <a href="#lnk">코스이력 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
@@ -63,15 +63,11 @@
                 <li class="<c:if test="${course_list ne -1}">active</c:if>"><a href="/course/course_list.do">코스 리스트</a></li>
                 <li class="<c:if test="${course_register ne -1}">active</c:if>"><a href="/course/course_register.do">코스 등록</a></li>
             </ul>
+             -->
         </div>
     </nav>
 </div>
 
-<script>
-	function tttt() {
-		alert("준비중입니다.")
-	}
-</script>
 
 <script src="../../../../../js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="../../../../../js/scripts.js"></script>

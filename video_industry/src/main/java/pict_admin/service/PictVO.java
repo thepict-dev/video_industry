@@ -137,6 +137,7 @@ public class PictVO extends PictDefaultVO {
 	private int startPage;
 	private int endPage;
 	private int limit_cnt;
+	private int limit;
 	
 	private String address;
 	private String control;
@@ -203,8 +204,35 @@ public class PictVO extends PictDefaultVO {
 	private String establishment_date;
 	private String certificate;
 	private String open_date;
+	private String file_url1;
+	private String file_url2;
+	private String file_url3;
 	
 	
+	public int getLimit() {
+		return limit;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+	public String getFile_url1() {
+		return file_url1;
+	}
+	public void setFile_url1(String file_url1) {
+		this.file_url1 = file_url1;
+	}
+	public String getFile_url2() {
+		return file_url2;
+	}
+	public void setFile_url2(String file_url2) {
+		this.file_url2 = file_url2;
+	}
+	public String getFile_url3() {
+		return file_url3;
+	}
+	public void setFile_url3(String file_url3) {
+		this.file_url3 = file_url3;
+	}
 	public String getOpen_date() {
 		return open_date;
 	}

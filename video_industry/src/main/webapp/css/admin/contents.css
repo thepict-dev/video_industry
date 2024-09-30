@@ -172,6 +172,33 @@
     background-color: #fff;
 }
 
+/* 공지사항 리스트용 */
+.listHead.boardlist{
+    display: grid;
+    grid-template-columns: 15% 40% 30% 15%;
+    text-align: center;
+}
+.listBody.boardlist li{
+    display: grid;
+    grid-template-columns: 15% 40% 30% 15%;
+    text-align: center;
+    border-bottom: 1px solid var(--grey-100);
+    background-color: #fff;
+}
+
+/* 로케이션 리스트용 */
+.listHead.location{
+    display: grid;
+    grid-template-columns: 5% 5% 10% 25% 10% 35% 10%;
+    text-align: center;
+}
+.listBody.location li{
+    display: grid;
+    grid-template-columns: 5% 5% 10% 25% 10% 35% 10%;
+    text-align: center;
+    border-bottom: 1px solid var(--grey-100);
+    background-color: #fff;
+}
 .listBody li p, .listBody li > a{
     display: flex;
     align-items: center;

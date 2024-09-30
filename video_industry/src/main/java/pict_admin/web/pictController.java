@@ -464,6 +464,35 @@ public class pictController {
 		}
 		pictVO.setUser_id(session);
 	
+		
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		Integer pageNum = pictVO.getPageNumber();
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		Integer totalCnt = pictService.board_list_cnt(pictVO);
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		model.addAttribute("pictVO", pictVO);
+		model.addAttribute("board_cnt", totalCnt);
+		
 		List<?> board_list = pictService.board_list(pictVO);
 		model.addAttribute("resultList", board_list);
 		model.addAttribute("size", board_list.size());
@@ -494,9 +523,10 @@ public class pictController {
 	}
 	@RequestMapping(value = "/board/board_save.do", method = RequestMethod.POST)
 	public String board_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, MultipartHttpServletRequest request,
-			@RequestParam("attach_file") MultipartFile attach_file) throws Exception {
+			@RequestParam("attach_file") MultipartFile attach_file,
+			@RequestParam("attach_file1") MultipartFile attach_file1,
+			@RequestParam("attach_file2") MultipartFile attach_file2) throws Exception {
 		String sessions = (String)request.getSession().getAttribute("id");
-		String depart = (String)request.getSession().getAttribute("depart");
 		if(sessions == null || sessions == "null") {
 			return "redirect:/pict_login.do";
 		}
@@ -504,15 +534,25 @@ public class pictController {
 		if(attach_file.getSize() != 0) {
 			UUID uuid = UUID.randomUUID();
 			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
-			String filepath = "/user1/upload_file/billconcert_chuncheon/";
-			//String filepath = "D:\\user1\\upload_file\\billconcert\\";
+			String filepath = "/user1/upload_file/video_industry/";
 			String filename = uuid+uploadPath.split("#####")[1];
-			
-			pictVO.setImg_url(filepath+filename);
+			pictVO.setFile_url1(filepath+filename);
+		}
+		if(attach_file1.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file1, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setFile_url2(filepath+filename);
+		}
+		if(attach_file2.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file2, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setFile_url3(filepath+filename);
 		}
 
-		pictVO.setDepart(depart);
-		System.out.println("::::::::::::::::::::::::::::::::::::::::::"+pictVO.getImg_url());
 		if(pictVO.getSaveType() != null && pictVO.getSaveType().equals("update")) {
 			pictService.board_update(pictVO);
 			model.addAttribute("message", "정상적으로 수정되었습니다.");
@@ -543,20 +583,142 @@ public class pictController {
 		model.addAttribute("retUrl", "/board/board_list.do");
 		return "pict/main/message";
 		
-	}	
-	@RequestMapping(value = "/board/board_file_delete.do")
-	public String video_file_delete(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+	}
+
+
+    //로케이션
+    @RequestMapping(value = "/location/location_list.do")
+	public String location_list(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
 		String session = (String)request.getSession().getAttribute("id");
 		if(session == null || session == "null") {
 			return "redirect:/pict_login.do";
 		}
-		String idx = pictVO.getIdx()+"";
-		System.out.println(pictVO.getIdx());
-		pictService.board_file_delete(pictVO);
+		pictVO.setUser_id(session);
+	
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		Integer pageNum = pictVO.getPageNumber();
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		Integer totalCnt = pictService.location_list_cnt(pictVO);
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		model.addAttribute("pictVO", pictVO);
+		model.addAttribute("board_cnt", totalCnt);
+		
+		List<?> location_list = pictService.location_list(pictVO);
+		model.addAttribute("resultList", location_list);
+		model.addAttribute("size", location_list.size());
+		model.addAttribute("pictVO", pictVO);
+		
+		return "pict/location/location_list";
+	}
+	@RequestMapping(value = "/location/location_register.do")
+	public String location_register(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		String session = (String)request.getSession().getAttribute("id");
+		if(session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+		pictVO.setUser_id(session);
+		System.out.println(pictVO.getUser_id());
+		if(pictVO.getIdx() != 0) {
+			//수정
+			pictVO = pictService.location_list_one(pictVO);
+			pictVO.setSaveType("update");
+			
+		}
+		else {
+			pictVO.setSaveType("insert");
+		}
+		
+		model.addAttribute("pictVO", pictVO);
+		return "pict/location/location_register";
+	}
+	@RequestMapping(value = "/location/location_save.do", method = RequestMethod.POST)
+	public String location_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, MultipartHttpServletRequest request,
+			@RequestParam("attach_file") MultipartFile attach_file,
+			@RequestParam("attach_file1") MultipartFile attach_file1,
+			@RequestParam("attach_file2") MultipartFile attach_file2,
+			@RequestParam("attach_file3") MultipartFile attach_file3) throws Exception {
+		String sessions = (String)request.getSession().getAttribute("id");
+		if(sessions == null || sessions == "null") {
+			return "redirect:/pict_login.do";
+		}
+		 
+		if(attach_file.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setImg_thumb(filepath+filename);
+		}
+		if(attach_file1.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file1, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setImg_url1(filepath+filename);
+		}
+		if(attach_file2.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file2, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setImg_url2(filepath+filename);
+		}
+		if(attach_file3.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file3, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setImg_url3(filepath+filename);
+		}
+
+		if(pictVO.getSaveType() != null && pictVO.getSaveType().equals("update")) {
+			pictService.location_update(pictVO);
+			model.addAttribute("message", "정상적으로 수정되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/location/location_list.do");
+			return "pict/main/message";
+		}
+		else {
+			pictService.location_insert(pictVO);
+			model.addAttribute("message", "정상적으로 저장되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/location/location_list.do");
+			return "pict/main/message";	
+		}
+		
+	}	
+	@RequestMapping(value = "/location/location_delete.do")
+	public String location_delete(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		String session = (String)request.getSession().getAttribute("id");
+		if(session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+		
+		pictService.location_delete(pictVO);
 		
 		model.addAttribute("message", "정상적으로 삭제되었습니다.");
 		model.addAttribute("retType", ":location");
-		model.addAttribute("retUrl", "/board/board_register.do?idx="+idx);
+		model.addAttribute("retUrl", "/location/location_list.do");
 		return "pict/main/message";
 		
 	}

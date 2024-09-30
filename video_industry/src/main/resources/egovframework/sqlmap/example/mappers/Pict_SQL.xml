@@ -1,120 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pict_admin.service.impl.PictMapper">
+	
+	<!-- 공지사항 -->
 	<select id="board_list" resultType="pictVO">
-		select idx, title, img_url, text, date_format(reg_date, '%Y-%m-%d') as reg_date, from_date, to_date, link_url, reg_date as rr_d from board_master
+		select * from board_table
 		<if test="search_text != null and search_text != '' ">
 			where (
 				title LIKE CONCAT('%', #{search_text}, '%')
 			) 
 		</if>
-		order by rr_d desc
+		order by reg_date
+		LIMIT #{limit} OFFSET #{startNumber}
 	</select>
 	
 	<select id="board_list_one" resultType="pictVO">
-		select * from board_master
+		select * from board_table
 		where idx = #{idx}
 	</select>
 	
 	<insert id="board_insert" parameterType="pictVO">
-		INSERT INTO board_master
+		INSERT INTO board_table
 			(
-			 title, reg_date, use_at, img_url, text, link_url, from_date, to_date
+			 title, text, file_url1, file_url2, file_url3, reg_date, use_at
 			)
 		VALUES (
-			 #{title}, now(), 'Y', #{img_url}, #{text}, #{link_url}, #{from_date}, #{to_date}
+			 #{title}, #{text}, #{file_url1}, #{file_url2}, #{file_url3}, now(), "Y"
 			  ) 
 	</insert>
 	
 	<update id="board_update" parameterType="pictVO">
-		update board_master
+		update board_table
 		set title =#{title}, 
 		reg_date = now(), 
-		<if test="img_url != null and img_url != '' ">
-			img_url = #{img_url}, 
+		<if test="file_url1 != null and file_url1 != '' ">
+			file_url1 = #{file_url1}, 
 		</if>
-		text =#{text},
-		link_url = #{link_url},
-		from_date = #{from_date},
-		to_date = #{to_date} 
+		<if test="file_url2 != null and file_url2 != '' ">
+			file_url2 = #{file_url2}, 
+		</if>
+		<if test="file_url3 != null and file_url3 != '' ">
+			file_url3 = #{file_url3}, 
+		</if>
+		text = #{text}
 		where idx = #{idx}
 	</update>
 	
 
 	<delete id="board_delete" parameterType="pictVO">
-		delete from board_master where idx = #{idx}
+		delete from board_table where idx = #{idx}
 	</delete>
 	
-	<update id="board_file_delete" parameterType="pictVO">
-		update board_master
-		set img_url=NULL
-		where idx = #{idx}
-	</update>
 	
-	
-	<select id="pemtour_select" resultType="pictVO">
-		select * from pemtour_table
-	</select>
-	
-	<update id="pemtour_update" parameterType="pictVO">
-		update pemtour_table
-		set pemtour_url = #{pemtour_url},
-		maintitle = #{maintitle}, title = #{title}, subtitle = #{subtitle}
-	</update>
-	
-	
-	<select id="event_list" resultType="pictVO">
-		select idx, title, img_url, text, date_format(reg_date, '%Y-%m-%d') as reg_date, from_date, to_date, link_url, reg_date as rr_d from event_table
+	<!-- 로케이션 -->
+	<select id="location_list" resultType="pictVO">
+		select * from location_table
 		<if test="search_text != null and search_text != '' ">
 			where (
 				title LIKE CONCAT('%', #{search_text}, '%')
 			) 
 		</if>
-		order by rr_d desc
+		order by reg_date
+		LIMIT #{limit} OFFSET #{startNumber}
 	</select>
 	
-	<select id="event_list_one" resultType="pictVO">
-		select * from event_table
+	<select id="location_list_one" resultType="pictVO">
+		select * from location_table
 		where idx = #{idx}
 	</select>
 	
-	<insert id="event_insert" parameterType="pictVO">
-		INSERT INTO event_table
+	<insert id="location_insert" parameterType="pictVO">
+		INSERT INTO location_table
 			(
-			 title, reg_date, use_at, img_url, text, link_url, from_date, to_date
+			 category, location_category, title, img_thumb, img_url1, img_url2, img_url3, introduce, keyword, tel, time, 
+			 width, light, fee, sound, wating, toilet, elevator, electricity, parking, lighting, pet, wifi, etc, drone, night,
+			 holiyday, control, address, reg_date 
 			)
 		VALUES (
-			 #{title}, now(), 'Y', #{img_url}, #{text}, #{link_url}, #{from_date}, #{to_date}
+			 #{category},#{location_category}, #{title}, #{img_thumb}, #{img_url1}, #{img_url2}, #{img_url3}, #{introduce}, #{keyword}, #{tel}, #{time},
+			 #{width},#{light}, #{fee}, #{sound}, #{wating}, #{toilet}, #{elevator}, #{electricity}, #{parking}, #{lighting}, #{pet}, #{wifi},#{etc},#{drone},#{night},
+			 #{holiyday},#{control}, #{address}, now()
 			  ) 
 	</insert>
 	
-	<update id="event_update" parameterType="pictVO">
-		update event_table
-		set title =#{title}, 
-		reg_date = now(), 
-		<if test="img_url != null and img_url != '' ">
-			img_url = #{img_url}, 
-		</if>
-		text =#{text},
-		link_url = #{link_url},
-		from_date = #{from_date},
-		to_date = #{to_date} 
+	<update id="location_update" parameterType="pictVO">
+		update location_table
+		set
+		category=#{category},
+		location_category=#{location_category},
+		title=#{title},
+		img_thumb=#{img_thumb},
+		img_url1=#{img_url1},
+		img_url2=#{img_url2},
+		img_url3=#{img_url3},
+		introduce=#{introduce},
+		keyword=#{keyword},
+		tel=#{tel},
+		time=#{time},
+		width=#{width},
+		light=#{light},
+		fee=#{fee},
+		sound=#{sound},
+		wating=#{wating},
+		toilet=#{toilet},
+		elevator=#{elevator},
+		electricity=#{electricity},
+		parking=#{parking},
+		lighting=#{lighting},
+		pet=#{pet},
+		wifi=#{wifi},
+		etc=#{etc},
+		drone=#{drone},
+		night=#{night},
+		holiyday=#{holiyday},
+		control=#{control},
+		address=#{address},
+		reg_date = now()
 		where idx = #{idx}
 	</update>
 	
 
-	<delete id="event_delete" parameterType="pictVO">
-		delete from event_table where idx = #{idx}
+	<delete id="location_delete" parameterType="pictVO">
+		delete from location_table where idx = #{idx}
 	</delete>
-	
-	<update id="event_file_delete" parameterType="pictVO">
-		update event_table
-		set img_url=NULL
-		where idx = #{idx}
-	</update>
-	
-	
-	
 	
 	
 	<!-- 영상로케이션 -->
@@ -324,4 +332,26 @@
 	<select id="movie_list" resultType="pictVO">
 		select * from movie_table where location_id = #{idx}
 	</select>
+	
+	
+	
+	<select id="board_list_cnt" resultType="int">
+		select count(idx) from board_table
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+	</select>
+	<select id="location_list_cnt" resultType="int">
+		select count(idx) from location_table
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+	</select>
+	
+	
+	
 </mapper>

@@ -200,5 +200,47 @@ public class PictServiceImpl extends EgovAbstractServiceImpl implements PictServ
 		return pictMapper.movie_list(pictVO);
 	}
 
+	@Override
+	public List<?> location_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.location_list(pictVO);
+	}
+
+	@Override
+	public PictVO location_list_one(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.location_list_one(pictVO);
+	}
+
+	@Override
+	public void location_update(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.location_update(pictVO);
+	}
+
+	@Override
+	public void location_insert(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.location_insert(pictVO);
+	}
+
+	@Override
+	public void location_delete(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.location_delete(pictVO);
+	}
+
+	@Override
+	public Integer board_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.board_list_cnt(pictVO);
+	}
+
+	@Override
+	public Integer location_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.location_list_cnt(pictVO);
+	}
+
 	
 }

@@ -8,72 +8,77 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-	<c:import url="../main/header.jsp">
+	<c:import url="../main/head.jsp">
     	<c:param name="pageTitle" value="게시물 리스트"/>
     </c:import>
     
-    <body class="sb-nav-fixed">
-        <%@include file="../main/navigation.jsp" %>
-        <div id="layoutSidenav">
-	        <div id="layoutSidenav_nav">
-				<%@include file="../main/gnb.jsp" %>
-			</div>
-			
-			<div id="layoutSidenav_content">
-				<main class="contents">
-					<h2 class="contents-title">게시물 리스트</h2>
-					<div class="contents-box">
-						<div class="card">
-						    <div class="card-body">
-							    <div class="search-form">
-							    	<form action="" id="search_fm" name="search_fm" method="get" class="search-box">
-								    	<input type="text" id="search_text" name="search_text" value="${pictVO.search_text}" class="input" placeholder="검색어를 입력하세요." autocomplete="off">
-								    	<button type="button" onclick="search();" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-							    	</form>
-							    </div>
-						    	<div class="tbl-basic tbl-hover">
-							        <table>
-							        	<colgroup>
-							        		<col style="width:20%;">
-							        		<col style="width:20%;">
-							        		<col style="width:20%;">
-							        		<col style="width:20%;">
-							        		<col style="width:20%;">
-							        	</colgroup>
-							            <thead>
-							                <tr class="thead">
-							                    <th>순서</th>
-							                    <th>공지사항 제목</th>
-							                    <th>내용</th>
-							                    <th>발행일시</th>
-							                    <th>삭제</th>
-							                    
-							                </tr>
-							            </thead>
-							            <tbody>
-								            <c:forEach var="resultList" items="${resultList}" varStatus="status">
-								                <tr>
-							                    	<td>${size - status.index}</td>
-							                    	<td class="opt-tl"><a href="javascript:void(0);" onclick="board_mod('${resultList.idx}');" class="link">${resultList.title}</a></td>
-							                    	<td>${resultList.text}</td>
-							                    	<td>${resultList.reg_date}</td>
-							                    	<td>
-							                    		<button type="button" onclick="javascript:board_delete('${resultList.idx}')" class="btn-basic btn-fill btn-sm">삭제</button>
-									            	</td>
-								                </tr>
-							                </c:forEach>
-							            </tbody>
-						            </table>
-				            	</div>
-				            </div>
-			            </div>
-		            </div>
-		            <!-- <div style="float : right; margin-right: 20%">
-			            <button type="button" id="button1" onclick="board_list();">게시글 리스트</button>
-		            </div> -->
-				</main>
-			</div>
-		</div>
+    <%@include file="../main/lnb.jsp" %>
+		<c:import url="../main/header.jsp">
+	    	<c:param name="title" value="게시물 관리"/>
+	    	<c:param name="subtitle" value="게시물 리스트"/>
+	    </c:import>
+	    <div class="contentsContainer">
+	        <div class="listContainer">
+	            <div class="listInner">
+	                <form action="" class="countList" id="search_fm" name="search_fm" method="get">
+	                    <p>총 <span>${totalCnt}</span>개</p>
+	                    <div class="inputsContainer">
+	                        <div class="inputBox listSearch">
+	                            <input type="text" name="search_text" id="search_text" placeholder="내용을 입력하세요…" value="${pictVO.search_text}">
+	                            <a href="#lnk" onclick="search_list();"><img src="/img/admin/search2.png" alt=""></a>
+	                        </div>
+	                    </div>
+	                </form>
+	               
+	                <div class="ListWrpper">
+	                    <ul class="listHead boardlist">
+	                        <li>순서</li>
+	                        <li>제목</li>
+	                        <li>작성일</li>
+	                        <li>삭제</li>
+	                    </ul>
+	                    <ul class="listBody boardlist">
+	                    	<c:forEach var="resultList" items="${resultList}" varStatus="status">
+		                        <li>
+		                            <c:if test="${pictVO.pageNumber eq 1}">
+										<p>${board_cnt - status.index}</p>					
+									</c:if>
+									<c:if test="${pictVO.pageNumber ne 1}">
+										<p>${board_cnt - (status.index +  ((pictVO.pageNumber - 1) * 20))}</p>
+									</c:if>
+		                            <a href="/board/board_register.do?idx=${resultList.idx}"><p>${resultList.title}</p></a>
+		                            <p>${resultList.reg_date}</p>
+		                            <p class="delete"><a href="#lnk" onclick="board_delete('${resultList.idx}')"></a></p>
+		                        </li>
+	                        </c:forEach>
+	                    </ul>
+	                    
+	                    <div class="listButton">
+	                        <a href="/board/board_register.do"><img src="/img/admin/add.png" alt="등록버튼">등록</a>
+	                    </div>
+	                    
+	                    <div class="pagination">
+	                    	<c:if test="${pictVO.pageNumber ne 1}">
+								<li><a href="/board/board_list.do?search_text=${param.search_text}&pageNumber=${pictVO.pageNumber - 10 < 1 ? 1 : pictVO.pageNumber - 10}"><img src="/img/admin/prev.png" alt=""></a></li>
+							</c:if>	
+							
+							<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
+								<c:if test="${i eq pictVO.pageNumber}">
+									<li class="active"><a href="/board/board_list.do?search_text=${param.search_text}&pageNumber=${i}" >${i}</a></li>
+								</c:if>
+								<c:if test="${i ne pictVO.pageNumber}">
+									<li><a href="/board/board_list.do?search_text=${param.search_text}&pageNumber=${i}" >${i}</a></li>
+								</c:if>
+							</c:forEach>	
+	                    
+		                    <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
+								<li><a href="/board/board_list.do?search_text=${param.search_text}&pageNumber=${pictVO.pageNumber + 10 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 10}"><img src="/img/admin/next.png" alt=""></a></li>
+							</c:if>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 		<form action="" id="register" name="register" method="post" enctype="multipart/form-data">
 			<input type='hidden' name="idx" id="idx" value='' />
 			<input type='hidden' name="use_at" id="use_at" value='' />
@@ -87,27 +92,7 @@
 			function board_list(){
 				location.href= "/board/board_list.do";
 			}
-			function cng_use_at(idx, use_at){
-				$('#idx').val(idx)
-				if(use_at == 'Y'){
-					$('#use_at').val('N') 
-				}
-				else{
-					$('#use_at').val('Y')
-				}
-				$('#type').val('1');
-				var text = "활성화 상태로 변경하시겠습니까?";
-				if(use_at == "Y"){
-					$('#type').val('2');
-					text = "비활성화 상태로 변경하시겠습니까?";
-				}
-				
-				if(confirm (text)){
-					$("#register").attr("action", "/board/cng_use_at.do");
-					$("#register").submit();
-				}
-				
-			}
+
 			function board_delete(idx) {
 				if (confirm("삭제 하시겠습니까?")) {
 					$('#idx').val(idx)

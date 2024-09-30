@@ -84,5 +84,19 @@ public interface PictService {
 
 	List<PictVO> movie_list(PictVO pictVO) throws Exception;
 
+	List<?> location_list(PictVO pictVO) throws Exception;
+
+	PictVO location_list_one(PictVO pictVO) throws Exception;
+
+	void location_update(PictVO pictVO) throws Exception;
+
+	void location_insert(PictVO pictVO) throws Exception;
+
+	void location_delete(PictVO pictVO) throws Exception;
+
+	Integer board_list_cnt(PictVO pictVO) throws Exception;
+
+	Integer location_list_cnt(PictVO pictVO) throws Exception;
+
 
 }
