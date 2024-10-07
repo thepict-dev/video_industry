@@ -10,10 +10,10 @@
     </a>
     <ul class="menu-depth">
         <li>
-            <a href="#lnk">센터소개</a>
+            <a href="/introduce.do">센터소개</a>
         </li>
         <li>
-            <a href="#lnk">지원사업</a>
+            <a href="/support.do">지원사업</a>
         </li>
         <li class="active-sub-depth">
             <a href="">콘텐츠DB</a>
@@ -60,10 +60,10 @@
         </div>
         <ul class="depth">
             <li>
-                <a href="">센터소개</a>
+                <a href="/introduce.do">센터소개</a>
             </li>
             <li>
-                <a href="">지원사업</a>
+                <a href="/support.do">지원사업</a>
             </li>
             <li class="use-depth">
                 <span>콘텐츠DB</span>

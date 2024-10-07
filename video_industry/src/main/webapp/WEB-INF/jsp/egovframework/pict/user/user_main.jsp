@@ -9,36 +9,97 @@
 <html>
 <meta charset="ko">
 <%@ include file="./include/head.jsp" %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <link rel="stylesheet" href="/css/user_css/main.css">
 <body>
-	<%@ include file="./include/header.jsp" %>
-    <div class="main-section">
-        <div class="opacity-back"></div>
-        <div class="contents-container">
+    <div class="home-section">
+        <div class="introSecContents">
+            <div class="logo">
+                <img src="/img/user_img/logo-white.png" alt="logo">
+            </div>
             <div class="title">
                 <h1>춘천시 영상산업지원센터는</h1>
                 <h2>‘영화특별시’로 도약하기 위한 중추적인 역할을<br />
                     수행하기 위하여 설립, 출범하게 되었습니다
                 </h2>
             </div>
-            <button>
-                <a href="#">
-                    <span>보러가기</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="arrow_outward">
-                            <mask id="mask0_9_1606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
-                                width="24" height="24">
-                                <rect id="Bounding-box" width="24" height="24" fill="#D9D9D9" />
-                            </mask>
-                            <g mask="url(#mask0_9_1606)">
-                                <path id="arrow_outward_2"
-                                    d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z"
-                                    fill="white" />
-                            </g>
-                        </g>
+            <div class="scroll">Scroll Down<img src="/img/user_img/down.png" alt=""></div>
+        </div>
+    </div>
+	<%@ include file="./include/header.jsp" %>
+    <div class="main-section">
+    	<div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+			        <div class="contents-container">
+			            <div class="title">
+			                <h1>춘천시 영상산업지원센터는</h1>
+			                <h2>‘영화특별시’로 도약하기 위한 중추적인 역할을<br />
+			                    수행하기 위하여 설립, 출범하게 되었습니다
+			                </h2>
+			            </div>
+		                <a href="#">
+		                    <span>보러가기</span>
+		                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		                        <g id="arrow_outward">
+		                            <mask id="mask0_9_1606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+		                                width="24" height="24">
+		                                <rect id="Bounding-box" width="24" height="24" fill="#D9D9D9" />
+		                            </mask>
+		                            <g mask="url(#mask0_9_1606)">
+		                                <path id="arrow_outward_2"
+		                                    d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z"
+		                                    fill="white" />
+		                            </g>
+		                        </g>
+		                    </svg>
+		                </a>
+		                <img src="/img/user_img/main.webp" alt="">
+			        </div>
+		        </div>
+                <div class="swiper-slide">
+			        <div class="contents-container">
+			            <div class="title">
+			                <h1>춘천시 영상산업지원센터는</h1>
+			                <h2>‘영화특별시’로 도약하기 위한 중추적인 역할을<br />
+			                    수행하기 위하여 설립, 출범하게 되었습니다
+			                </h2>
+			            </div>
+		                <a href="#">
+		                    <span>보러가기</span>
+		                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		                        <g id="arrow_outward">
+		                            <mask id="mask0_9_1606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+		                                width="24" height="24">
+		                                <rect id="Bounding-box" width="24" height="24" fill="#D9D9D9" />
+		                            </mask>
+		                            <g mask="url(#mask0_9_1606)">
+		                                <path id="arrow_outward_2"
+		                                    d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z"
+		                                    fill="white" />
+		                            </g>
+		                        </g>
+		                    </svg>
+		                </a>
+	                	<img src="/img/user_img/main.webp" alt="">
+			        </div>
+		        </div>
+        	</div>
+            <div class="buttonsWrapper">
+                <div class="swiperButtons">
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-pause"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div class="autoplay-progress">
+                    <svg viewBox="0 0 48 48">
+                        <circle cx="24" cy="24" r="20"></circle>
+                        <circle cx="24" cy="24" r="20"></circle>
                     </svg>
-                </a>
-            </button>
+                    <span></span>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
     </div>
     <div class="sec-01">

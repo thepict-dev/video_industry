@@ -57,6 +57,33 @@ public class pictController {
 	public String lending(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
 		return "pict/user/user_main";
 	}
+	//센터소개
+	@RequestMapping(value = "/introduce.do")
+	public String introduce(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/introduce";
+	}
+
+	//지원사업
+	@RequestMapping(value = "/support.do")
+	public String support(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/support";
+	}
+	//지원사업 뷰
+	@RequestMapping(value = "/support_view.do")
+	public String support_view(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/support_view";
+	}
+
+	//지원사업
+	@RequestMapping(value = "/notice.do")
+	public String notice(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/notice";
+	}
+	//지원사업 뷰
+	@RequestMapping(value = "/notice_view.do")
+	public String notice_view(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/notice_view";
+	}
 	
 	//로케이션
 	@RequestMapping(value = "/location_db_list.do")

@@ -39,8 +39,8 @@
 }
 
 .content {
-    padding: 40px 0;
-    margin-bottom: 40px;
+	padding: 40px 0;
+    border-bottom: 1px solid var(--grey-grey-500, #8B96A2);
 }
 
 .content p {
@@ -58,9 +58,13 @@
     display: flex;
     justify-content: center;
     column-gap: 20px;
+    margin-top: 40px;
 }
 
 .go-list {
+	display: flex;
+	justify-content: center;
+	align-items: center;
     flex: 1;
     max-width: 363px;
     height: 56px;
@@ -77,6 +81,9 @@
 }
 
 .go-form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
     flex: 1;
     max-width: 363px;
     height: 56px;
@@ -97,7 +104,7 @@
     width: 100%;
     height: 100%;
     position: fixed;
-    z-index: 3;
+    z-index: 10;
     background: rgba(0, 0, 0, 0.60);
     top: 0;
     left: 0;
@@ -418,4 +425,21 @@ label.custom-file>.attach-file {
         max-width: 43%;
     }
 
+}
+
+.addFile{
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+	width: 100%;
+	padding: 16px 20px;
+    border-bottom: 1px solid var(--grey-grey-500, #8B96A2);
+}
+.addFile a{
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+}
+.addFile a img{
+	width: 16px;
 }

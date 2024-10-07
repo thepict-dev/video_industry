@@ -33,3 +33,15 @@ body.no-scroll {
 :root {
     --fn-suit: "SUIT"
 }
+
+.mb{
+	display: none; 
+}
+@media all and (max-width : 1024px){	
+	.mb{
+		display: block; 
+	}
+	.pc{
+		display: none; 
+	}
+}
