@@ -21,6 +21,16 @@
 	        <div class="listContainer">
 	            <div class="listInner">
 	            	<form action="" id="register" name="register" method="post" enctype="multipart/form-data" class="boardForm">
+		            	<div class="inputsContainer">
+	                        <div class="inputBox">
+	                            <p class="inputCaption">카테고리*</p>
+	                            <select name="category" id="category" class="lgThinInput">
+	                                <option value="1" <c:if test="${pictVO.category eq '1'}">selected</c:if>>공지사항</option>
+	                                <option value="2" <c:if test="${pictVO.category eq '2'}">selected</c:if>>뉴스</option>
+	                            </select>
+	                        </div>
+	                    </div>
+	                    
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
 	                            <p class="inputCaption">제목*</p>
