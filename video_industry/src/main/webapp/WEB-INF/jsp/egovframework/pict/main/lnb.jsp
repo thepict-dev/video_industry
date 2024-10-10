@@ -16,6 +16,16 @@
 <c:set var="location_list" value="${fn:indexOf(url, 'location_list')}"/>
 <c:set var="location_register" value="${fn:indexOf(url, 'location_register')}"/>
 
+<c:set var="movie_list" value="${fn:indexOf(url, 'movie_list')}"/>
+<c:set var="movie_register" value="${fn:indexOf(url, 'movie_register')}"/>
+
+<c:set var="support_list" value="${fn:indexOf(url, 'support_list')}"/>
+<c:set var="support_register" value="${fn:indexOf(url, 'support_register')}"/>
+
+<c:set var="location_apply_list" value="${fn:indexOf(url, 'location_apply_list')}"/>
+
+<c:set var="support_apply_list" value="${fn:indexOf(url, 'support_apply_list')}"/>
+
 <div class="lnb">
     <nav>
         <div class="nav">
@@ -28,42 +38,36 @@
                 <li class="<c:if test="${board_register ne -1}">active</c:if>"><a href="/board/board_register.do">게시물 등록</a></li>
             </ul>
             
-            <div class="depth1 <c:if test="${feed_list ne -1}">active</c:if>">
+            <div class="depth1 <c:if test="${location_list ne -1 || location_register ne -1}">active</c:if>">
                 <span><img src="/img/admin/lnb_icons/lnb-feed.png" alt=""></span>
                 <a href="#lnk">로케이션 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
             </div>
             <ul class="depth2">
                 <li class="<c:if test="${location_list ne -1}">active</c:if>"><a href="/location/location_list.do">로케이션 리스트</a></li>
                 <li class="<c:if test="${location_register ne -1}">active</c:if>"><a href="/location/location_register.do">로케이션 등록</a></li>
+                <li class="<c:if test="${location_apply_list ne -1}">active</c:if>"><a href="/location/location_apply_list.do">로케이션 신청 리스트</a></li>
             </ul>
             
-            <!-- 
-            <div class="depth1 <c:if test="${history_list ne -1}">active</c:if>">
-                <span><img src="/img/admin/lnb_icons/lnb-history.png" alt=""></span>
-                <a href="#lnk">코스이력 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
+            <div class="depth1 <c:if test="${movie_register ne -1 || movie_list ne -1}">active</c:if>">
+                <span><img src="/img/admin/lnb_icons/lnb-feed.png" alt=""></span>
+                <a href="#lnk">영화 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
             </div>
             <ul class="depth2">
-                <li class="<c:if test="${history_list ne -1}">active</c:if>"><a href="/history/history_list.do">코스이력 리스트</a></li>
+                <li class="<c:if test="${movie_list ne -1}">active</c:if>"><a href="/movie/movie_list.do">영화 리스트</a></li>
+                <li class="<c:if test="${movie_register ne -1}">active</c:if>"><a href="/movie/movie_register.do">영화 등록</a></li>
             </ul>
             
-            <div class="depth1 <c:if test="${event_list ne -1 || event_register ne -1}">active</c:if>">
-                <span><img src="/img/admin/lnb_icons/lnb-event.png" alt=""></span>
-                <a href="#lnk">행사 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
+            <div class="depth1 <c:if test="${support_register ne -1 || support_list ne -1}">active</c:if>">
+                <span><img src="/img/admin/lnb_icons/lnb-feed.png" alt=""></span>
+                <a href="#lnk">지원사업 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
             </div>
             <ul class="depth2">
-                <li class="<c:if test="${event_list ne -1}">active</c:if>"><a href="/event/event_list.do">행사 리스트</a></li>
-                <li class="<c:if test="${event_register ne -1}">active</c:if>"><a href="/event/event_register.do">행사 등록</a></li>
+                <li class="<c:if test="${support_list ne -1}">active</c:if>"><a href="/support/support_list.do">지원사업 리스트</a></li>
+                <li class="<c:if test="${support_register ne -1}">active</c:if>"><a href="/support/support_register.do">지원사업 등록</a></li>
+                <li class="<c:if test="${support_apply_list ne -1}">active</c:if>"><a href="/support/support_apply_list.do">지원사업 신청리스트</a></li>
             </ul>
             
-            <div class="depth1 <c:if test="${course_list ne -1 || course_register ne -1}">active</c:if>">
-                <span><img src="/img/admin/lnb_icons/lnb-coarse.png" alt=""></span>
-                <a href="#lnk">코스 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
-            </div>
-            <ul class="depth2">
-                <li class="<c:if test="${course_list ne -1}">active</c:if>"><a href="/course/course_list.do">코스 리스트</a></li>
-                <li class="<c:if test="${course_register ne -1}">active</c:if>"><a href="/course/course_register.do">코스 등록</a></li>
-            </ul>
-             -->
+            
         </div>
     </nav>
 </div>

@@ -13,7 +13,7 @@
     <div class="headerTop">
         <h1><a href="/"></a></h1>
         <div class="headerInner">
-            <p class="proTitle">맨발루 관리자 페이지</p>
+            <p class="proTitle">영상산업지원센터 관리자 페이지</p>
             <div class="profileWrap">
                 <div class="profile">
                     <div class="profileTexts">

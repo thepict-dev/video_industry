@@ -53,6 +53,13 @@
 	                    </div>
 	                    
 	                    <div class="inputsContainer">
+	                        <div class="inputBox">
+	                            <p class="inputCaption">메인노출순서(최대3개)</p>
+	                            <input type="text" name="main_y" id="main_y" placeholder="내용을 입력하세요…" value="${pictVO.main_y}">
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="inputsContainer">
 	                        <div class="inputBox" style="width:100%">
 	                            <p class="inputCaption">소개*</p>
 	                            <textarea name="introduce" id="introduce" cols="50" rows="10" class="txt" style="width:100%;">${pictVO.text}</textarea>
@@ -161,11 +168,10 @@
 	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
 	                        </div>
 	                    </div>
-	                    
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
 	                            <p class="inputCaption">첨부파일
-	                                <label for="attach_file1">파일추가</label>
+	                                <label for="attach_file">파일추가</label>
 	                                <input type="file" id="attach_file1" name="attach_file1" multiple style="display: none;">
 	                            </p>
 	                            <ul class="fileList">
@@ -180,6 +186,19 @@
 	                            <p class="inputCaption">첨부파일
 	                                <label for="attach_file2">파일추가</label>
 	                                <input type="file" id="attach_file2" name="attach_file2" multiple style="display: none;">
+	                            </p>
+	                            <ul class="fileList">
+	                                
+	                            </ul>
+	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="inputsContainer">
+	                        <div class="inputBox">
+	                            <p class="inputCaption">첨부파일
+	                                <label for="attach_file3">파일추가</label>
+	                                <input type="file" id="attach_file3" name="attach_file3" multiple style="display: none;">
 	                            </p>
 	                            <ul class="fileList">
 	                                
@@ -215,7 +234,7 @@
 				}
 				oEditors[0].exec("UPDATE_CONTENTS_FIELD", []);
 				if (confirm(text)) {
-					$("#register").attr("action", "/board/board_save.do");
+					$("#register").attr("action", "/location/location_save.do");
 					$("#register").submit();
 				}
 			}

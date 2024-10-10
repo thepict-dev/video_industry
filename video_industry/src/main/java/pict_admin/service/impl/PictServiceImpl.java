@@ -242,5 +242,107 @@ public class PictServiceImpl extends EgovAbstractServiceImpl implements PictServ
 		return pictMapper.location_list_cnt(pictVO);
 	}
 
+	@Override
+	public List<?> main_movie_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.main_movie_list(pictVO);
+	}
+
+	@Override
+	public Integer movie_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.movie_list_cnt(pictVO);
+	}
+
+	@Override
+	public List<?> movie_admin_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.movie_admin_list(pictVO);
+	}
+
+	@Override
+	public PictVO movie_list_one(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.movie_list_one(pictVO);
+	}
+
+	@Override
+	public void movie_update(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.movie_update(pictVO);
+	}
+
+	@Override
+	public void movie_insert(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.movie_insert(pictVO);
+	}
+
+	@Override
+	public void movie_delete(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.movie_delete(pictVO);
+	}
+
+	@Override
+	public Integer support_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.support_list_cnt(pictVO);
+	}
+
+	@Override
+	public List<?> support_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.support_list(pictVO);
+	}
+
+	@Override
+	public PictVO support_list_one(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.support_list_one(pictVO);
+	}
+
+	@Override
+	public void support_update(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.support_update(pictVO);
+	}
+
+	@Override
+	public void support_insert(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.support_insert(pictVO);
+	}
+
+	@Override
+	public void support_delete(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.support_delete(pictVO);
+	}
+
+	@Override
+	public Integer support_apply_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.support_apply_list_cnt(pictVO);
+	}
+
+	@Override
+	public List<?> support_apply_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.support_apply_list(pictVO);
+	}
+
+	@Override
+	public Integer location_apply_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.location_apply_list_cnt(pictVO);
+	}
+
+	@Override
+	public List<?> location_apply_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.location_apply_list(pictVO);
+	}
+
 	
 }

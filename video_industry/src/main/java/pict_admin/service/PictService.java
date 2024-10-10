@@ -98,5 +98,39 @@ public interface PictService {
 
 	Integer location_list_cnt(PictVO pictVO) throws Exception;
 
+	List<?> main_movie_list(PictVO pictVO) throws Exception;
+
+	Integer movie_list_cnt(PictVO pictVO) throws Exception;
+
+	List<?> movie_admin_list(PictVO pictVO) throws Exception;
+
+	PictVO movie_list_one(PictVO pictVO) throws Exception;
+
+	void movie_update(PictVO pictVO) throws Exception;
+
+	void movie_insert(PictVO pictVO) throws Exception;
+
+	void movie_delete(PictVO pictVO) throws Exception;
+
+	Integer support_list_cnt(PictVO pictVO) throws Exception;
+
+	List<?> support_list(PictVO pictVO) throws Exception;
+
+	PictVO support_list_one(PictVO pictVO) throws Exception;
+
+	void support_update(PictVO pictVO) throws Exception;
+
+	void support_insert(PictVO pictVO) throws Exception;
+
+	void support_delete(PictVO pictVO) throws Exception;
+
+	Integer support_apply_list_cnt(PictVO pictVO) throws Exception;
+
+	List<?> support_apply_list(PictVO pictVO) throws Exception;
+
+	Integer location_apply_list_cnt(PictVO pictVO) throws Exception;
+
+	List<?> location_apply_list(PictVO pictVO) throws Exception;
+
 
 }

@@ -22,49 +22,43 @@
     <div class="main-section">
         <ul class="navigator">
             <li>
-                <a class="active" href="">로케이션 지원사업</a>
+                <a class="<c:if test='${pictVO.category eq "1"}'> active</c:if>" href="/support.do?category=1">VFX특화 산업육성사업</a>
             </li>
             <li>
-                <a href="">독립영화 육성</a>
+                <a class="<c:if test='${pictVO.category eq "3"}'> active</c:if>" href="/support.do?category=3">로케이션 지원사업</a>
             </li>
             <li>
-                <a href="">산업인력 양성</a>
-            </li>
-            <li>
-                <a href="">시민참여 행사</a>
+                <a class="<c:if test='${pictVO.category eq "2"}'> active</c:if>" href="/support.do?category=2">독립영화육성 및 시민참여행사</a>
             </li>
         </ul>
-        <h2 class="main-text">
-            춘천에서 촬영하는 국내외 영상물의<br />
-            촬영‧제작 지원을 통해 지역 경제 활성화에 기여하고,<br />
-            지역 영화산업 생태계를 조성하기 위한 지원사업
-        </h2>
-
+        <h2 class="main-text">춘천에서 촬영하는 국내외 영상물의<br /> 촬영‧제작 지원을 통해 지역 경제 활성화에 기여하고,<br /> 지역 영화산업 생태계를 조성하기 위한 지원사업</h2>
         <ul class="list-container">
-            <li>
-                <a href="/support_view.do" rel="noopener noreferrer">
-	                <span class="content">
-	                    <span class="index">01</span>
-	                    <p>[타부서 공고 건] SW융합 해커톤 대회 강원지역 참가팀 모집 공고</p>
-	                </span>
-	                <div class="row">
-	                    <span class="date">2024.07.15</span>
-	                    <div class="arrow">
-	                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-	                            <mask id="mask0_95_1360" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
-	                                width="24" height="24">
-	                                <rect width="24" height="24" fill="#D9D9D9" />
-	                            </mask>
-	                            <g mask="url(#mask0_95_1360)">
-	                                <path
-	                                    d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z"
-	                                    fill="black" />
-	                            </g>
-	                        </svg>
-	                    </div>
-	                </div>
-                </a>
-            </li>
+        	<c:forEach var="resultList" items="${resultList}" varStatus="status">
+	            <li>
+	                <a href="/support_view.do?idx=${resultList.idx}" rel="noopener noreferrer">
+		                <span class="content">
+		                    <span class="index">${status.count}</span>
+		                    <p>${resultList.title}</p>
+		                </span>
+		                <div class="row">
+		                    <span class="date">${resultList.reg_date}</span>
+		                    <div class="arrow">
+		                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+		                            <mask id="mask0_95_1360" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+		                                width="24" height="24">
+		                                <rect width="24" height="24" fill="#D9D9D9" />
+		                            </mask>
+		                            <g mask="url(#mask0_95_1360)">
+		                                <path
+		                                    d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z"
+		                                    fill="black" />
+		                            </g>
+		                        </svg>
+		                    </div>
+		                </div>
+	                </a>
+	            </li>
+            </c:forEach>
         </ul>
         <div class="pagination">
             <button class="first-page page-button">

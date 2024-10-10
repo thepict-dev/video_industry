@@ -194,7 +194,7 @@
                     </div>
                 </div> -->
             </div>
-            <button class="active-form">
+            <button class="active-form" onclick="apply_move()">
                 <span>로케이션 신청하기</span>
                 <i>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -376,6 +376,9 @@
 	<script src="/js/user_js/header.js"></script>
 	<script src="/js/user_js/location-db-detail.js"></script>
 	<script>
+		function apply_move(){
+			window.location.href= "/support.do?main_category=3"
+		}
 		function fn_submit(){
 			var start_date = $('#start_date').val()
 			var end_date = $('#end_date').val()
@@ -455,14 +458,12 @@
 				$("#register").attr("action", "/location_apply_save.do");
 				$("#register").submit();
 			}
-			
-			
-			
-			
 		}
+		/*
 		$('.active-form').click(function(){
 			$('.form-outter').css('display', 'flex');
 		});
+		*/
 		$('.form-header>button').click(function(){
 			$('.form-outter').css('display', 'none');
 		});

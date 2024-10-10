@@ -199,6 +199,49 @@
     border-bottom: 1px solid var(--grey-100);
     background-color: #fff;
 }
+
+/* 영화 리스트용 */
+.listHead.movielist{
+    display: grid;
+    grid-template-columns: 10% 25% 15% 10% 10% 15% 15%;
+    text-align: center;
+}
+.listBody.movielist li{
+    display: grid;
+    grid-template-columns: 10% 25% 15% 10% 10% 15% 15%;
+    text-align: center;
+    border-bottom: 1px solid var(--grey-100);
+    background-color: #fff;
+}
+/* 지원사업 리스트용 */
+.listHead.support{
+    display: grid;
+    grid-template-columns: 10% 30% 30% 15% 15%;
+    text-align: center;
+}
+.listBody.support li{
+    display: grid;
+    grid-template-columns: 10% 30% 30% 15% 15%;
+    text-align: center;
+    border-bottom: 1px solid var(--grey-100);
+    background-color: #fff;
+}
+
+/* 지원사업 신청 리스트용 */
+.listHead.support_apply{
+    display: grid;
+    grid-template-columns: 5% 10% 20% 10% 10% 10% 10% 15% 10%;
+    text-align: center;
+}
+.listBody.support_apply li{
+    display: grid;
+    grid-template-columns: 5% 10% 20% 10% 10% 10% 10% 15% 10%;
+    text-align: center;
+    border-bottom: 1px solid var(--grey-100);
+    background-color: #fff;
+}
+
+
 .listBody li p, .listBody li > a{
     display: flex;
     align-items: center;

@@ -207,8 +207,36 @@ public class PictVO extends PictDefaultVO {
 	private String file_url1;
 	private String file_url2;
 	private String file_url3;
+	private String main_y;
+	private String location_name;
+	private String status;
+	private String main_category;
 	
 	
+	public String getMain_category() {
+		return main_category;
+	}
+	public void setMain_category(String main_category) {
+		this.main_category = main_category;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getLocation_name() {
+		return location_name;
+	}
+	public void setLocation_name(String location_name) {
+		this.location_name = location_name;
+	}
+	public String getMain_y() {
+		return main_y;
+	}
+	public void setMain_y(String main_y) {
+		this.main_y = main_y;
+	}
 	public int getLimit() {
 		return limit;
 	}

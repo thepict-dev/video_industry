@@ -5,13 +5,28 @@
 	<!-- 공지사항 -->
 	<select id="board_list" resultType="pictVO">
 		select * from board_table
+		where 1=1
 		<if test="search_text != null and search_text != '' ">
-			where (
+			and (
 				title LIKE CONCAT('%', #{search_text}, '%')
 			) 
 		</if>
-		order by reg_date
-		LIMIT #{limit} OFFSET #{startNumber}
+		<if test="type != null and type != '' and type == 'board'">
+			and category = '1'
+		</if>
+		<if test="type != null and type != '' and type == 'news'">
+			and category = '2'
+		</if>
+		
+		<if test="type != null and type != '' ">
+			order by reg_date
+			limit 3 offset 0
+		</if>
+		
+		<if test="type == null or type == '' ">
+			order by reg_date
+			LIMIT #{limit} OFFSET #{startNumber}
+		</if>
 	</select>
 	
 	<select id="board_list_one" resultType="pictVO">
@@ -22,10 +37,10 @@
 	<insert id="board_insert" parameterType="pictVO">
 		INSERT INTO board_table
 			(
-			 title, text, file_url1, file_url2, file_url3, reg_date, use_at
+			 title, text, file_url1, file_url2, file_url3, reg_date, use_at, category
 			)
 		VALUES (
-			 #{title}, #{text}, #{file_url1}, #{file_url2}, #{file_url3}, now(), "Y"
+			 #{title}, #{text}, #{file_url1}, #{file_url2}, #{file_url3}, now(), "Y", #{category}
 			  ) 
 	</insert>
 	
@@ -33,6 +48,7 @@
 		update board_table
 		set title =#{title}, 
 		reg_date = now(), 
+		category = #{category},
 		<if test="file_url1 != null and file_url1 != '' ">
 			file_url1 = #{file_url1}, 
 		</if>
@@ -55,13 +71,29 @@
 	<!-- 로케이션 -->
 	<select id="location_list" resultType="pictVO">
 		select * from location_table
+		where 1=1
 		<if test="search_text != null and search_text != '' ">
-			where (
+			and  (
 				title LIKE CONCAT('%', #{search_text}, '%')
 			) 
 		</if>
-		order by reg_date
-		LIMIT #{limit} OFFSET #{startNumber}
+
+		
+		<if test="type != null and type != '' and type == 'main_layer'">
+			order by rand()
+			limit 4 offset 0
+		</if>
+		
+		<if test="type != null and type != '' and type == 'movie'">
+			order by idx asc
+		</if>
+		
+		<if test="type == null or type == '' ">
+			order by reg_date
+			LIMIT #{limit} OFFSET #{startNumber}
+		</if>
+		
+		
 	</select>
 	
 	<select id="location_list_one" resultType="pictVO">
@@ -74,7 +106,7 @@
 			(
 			 category, location_category, title, img_thumb, img_url1, img_url2, img_url3, introduce, keyword, tel, time, 
 			 width, light, fee, sound, wating, toilet, elevator, electricity, parking, lighting, pet, wifi, etc, drone, night,
-			 holiyday, control, address, reg_date 
+			 holiyday, control, address, reg_date
 			)
 		VALUES (
 			 #{category},#{location_category}, #{title}, #{img_thumb}, #{img_url1}, #{img_url2}, #{img_url3}, #{introduce}, #{keyword}, #{tel}, #{time},
@@ -165,12 +197,12 @@
 	</select>
 	
 	<insert id="location_apply_save" parameterType="pictVO">
-		INSERT INTO location_apply_table
+		INSERT INTO apply_table
 			(
-			 location_id, start_date, end_date, name, tel, email, company, depart, category, title, file_url, reg_date
+			 start_date, end_date, name, tel, email, company, depart, category, title, file_url, reg_date, main_category, status
 			)
 		VALUES (
-			 #{idx}, #{start_date}, #{end_date}, #{name}, #{tel}, #{email}, #{company}, #{depart}, #{category}, #{title}, #{file_url}, now()
+			 #{start_date}, #{end_date}, #{name}, #{tel}, #{email}, #{company}, #{depart}, #{category}, #{title}, #{file_url}, now(), #{main_category}, #{status}
 			  ) 
 	</insert>
 	
@@ -352,6 +384,183 @@
 		</if>
 	</select>
 	
+	<select id="main_movie_list" resultType="pictVO">
+		select * from movie_table
+		where (main_y is not null and main_y != '')
+		order by cast(main_y as unsigned) asc
+        limit 3 offset 0
+	</select>
 	
 	
+	<!-- 영화 -->
+	<select id="movie_admin_list" resultType="pictVO">
+		select l.title as location_name, m.*
+		from movie_table m
+		left outer join location_table l on m.location_id = l.idx
+
+		where 1=1
+		<if test="search_text != null and search_text != '' ">
+			and (
+				m.title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+
+		order by m.reg_date desc
+		LIMIT #{limit} OFFSET #{startNumber}
+	</select>
+	
+	<select id="movie_list_cnt" resultType="int">
+		select count(idx) from movie_table
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+	</select>
+	
+	<select id="movie_list_one" resultType="pictVO">
+		select * from movie_table
+		where idx = #{idx}
+	</select>
+	
+	<insert id="movie_insert" parameterType="pictVO">
+		INSERT INTO movie_table
+			(
+			 location_id, title, open_date, text, img_thumb, main_y, reg_date
+			)
+		VALUES (
+			 #{location_id}, #{title}, #{open_date}, #{text}, #{img_thumb}, #{main_y}, now()
+			  ) 
+	</insert>
+	
+	<update id="movie_update" parameterType="pictVO">
+		update movie_table
+		set location_id =#{location_id}, 
+		title = #{title}, 
+		open_date =#{open_date},
+		reg_date = now(),
+		<if test="img_thumb != null and img_thumb != '' ">
+			img_thumb = #{img_thumb}, 
+		</if>
+		
+		text = #{text}
+		where idx = #{idx}
+	</update>
+	
+
+	<delete id="movie_delete" parameterType="pictVO">
+		delete from movie_table where idx = #{idx}
+	</delete>
+	
+	
+	
+	<!-- 모집공고 -->
+	<select id="support_list" resultType="pictVO">
+		select * from support_table
+		
+		where 1=1
+		<if test="search_text != null and search_text != '' ">
+			and (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+		
+		<if test="category != null and category != '' ">
+			and category = #{category}
+		</if>
+
+		order by reg_date desc
+		LIMIT #{limit} OFFSET #{startNumber}
+	</select>
+	
+	<select id="support_list_cnt" resultType="int">
+		select count(idx) from support_table
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+	</select>
+	
+	<select id="support_list_one" resultType="pictVO">
+		select * from support_table
+		where idx = #{idx}
+	</select>
+	
+	<insert id="support_insert" parameterType="pictVO">
+		INSERT INTO support_table
+			(
+			 category, title, text, file_url1, reg_date
+			)
+		VALUES (
+			 #{category}, #{title}, #{text}, #{file_url1}, now()
+			  ) 
+	</insert>
+	
+	<update id="support_update" parameterType="pictVO">
+		update support_table
+		set category =#{category}, 
+		title = #{title}, 
+		reg_date = now(),
+		<if test="file_url1 != null and file_url1 != '' ">
+			file_url1 = #{file_url1}, 
+		</if>
+		text = #{text}
+		where idx = #{idx}
+	</update>
+	
+
+	<delete id="support_delete" parameterType="pictVO">
+		delete from support_table where idx = #{idx}
+	</delete>
+	
+	
+	<select id="support_apply_list" resultType="pictVO">
+		select * from apply_table
+		
+		where 1=1 and main_category != '3'
+		<if test="search_text != null and search_text != '' ">
+			and (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+
+		order by reg_date desc
+		LIMIT #{limit} OFFSET #{startNumber}
+	</select>
+	
+	<select id="support_apply_list_cnt" resultType="int">
+		select count(idx) from apply_table
+		where 1=1 and main_category != '3'
+		<if test="search_text != null and search_text != '' ">
+			and (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+	</select>
+	
+	
+	<select id="location_apply_list" resultType="pictVO">
+		select * from apply_table
+		
+		where 1=1 and main_category = '3'
+		<if test="search_text != null and search_text != '' ">
+			and (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+
+		order by reg_date desc
+		LIMIT #{limit} OFFSET #{startNumber}
+	</select>
+	
+	<select id="location_apply_list_cnt" resultType="int">
+		select count(idx) from apply_table
+		where 1=1 and main_category = '3'
+		<if test="search_text != null and search_text != '' ">
+			and (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+	</select>
 </mapper>
