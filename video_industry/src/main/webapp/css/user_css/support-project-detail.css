@@ -450,3 +450,76 @@ label.custom-file>.attach-file {
     flex-direction: column;
     row-gap: 20px;
 }
+
+.input input::placeholder {
+    color: var(--grey-grey-500, #8B96A2);
+    font-family: SUIT;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1;
+    /* 18px */
+}
+
+.input .date-range-container {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+    padding: 0 10px 0 0
+}
+
+.input .date-container {
+    display: flex;
+    border-bottom: 1px solid var(--grey-grey-100, #DBDEE2);
+    column-gap: 12px;
+    position: relative;
+    flex: 1;
+}
+
+.input .date-container>input#start_date,
+.input .date-container>input#end_date {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    padding: 24px 12px;
+}
+
+.input .date-container>span.not-seleced {
+    color: var(--grey-grey-500, #8B96A2);
+}
+
+.input .date-container>span {
+    flex: 1;
+    /* width: 154px; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 24px 12px 22px 12px;
+    color: var(--bk, #000);
+    font-family: SUIT;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    /* 18px */
+}
+
+.input .date-container>button {
+    width: 66px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.input .date-container>button>input {
+    /* display: none; */
+}
+
+.dash {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
