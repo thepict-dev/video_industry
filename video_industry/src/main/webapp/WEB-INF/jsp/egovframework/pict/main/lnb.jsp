@@ -30,7 +30,7 @@
     <nav>
         <div class="nav">
             <div class="depth1 <c:if test="${board_list ne -1 || board_register ne -1}">active</c:if>">
-                <span><img src="/img/admin/lnb_icons/user.png" alt=""></span>
+                <span><img src="/img/admin/lnb_icons/lnb-feed.png" alt=""></span>
                 <a href="#lnk">게시물 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
             </div>
             <ul class="depth2">
@@ -39,7 +39,7 @@
             </ul>
             
             <div class="depth1 <c:if test="${location_list ne -1 || location_register ne -1}">active</c:if>">
-                <span><img src="/img/admin/lnb_icons/lnb-feed.png" alt=""></span>
+                <span><img src="/img/admin/lnb_icons/lnb-coarse.png" alt=""></span>
                 <a href="#lnk">로케이션 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
             </div>
             <ul class="depth2">
@@ -49,7 +49,7 @@
             </ul>
             
             <div class="depth1 <c:if test="${movie_register ne -1 || movie_list ne -1}">active</c:if>">
-                <span><img src="/img/admin/lnb_icons/lnb-feed.png" alt=""></span>
+                <span><img src="/img/admin/lnb_icons/lnb-video.png" alt=""></span>
                 <a href="#lnk">영화 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
             </div>
             <ul class="depth2">
@@ -58,7 +58,7 @@
             </ul>
             
             <div class="depth1 <c:if test="${support_register ne -1 || support_list ne -1}">active</c:if>">
-                <span><img src="/img/admin/lnb_icons/lnb-feed.png" alt=""></span>
+                <span><img src="/img/admin/lnb_icons/lnb-doc.png" alt=""></span>
                 <a href="#lnk">지원사업 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
             </div>
             <ul class="depth2">

@@ -34,3 +34,10 @@ $(document).ready(function () {
     $('.navigator').dragScroll();
     $('.poster-container').dragScroll();
 });
+
+$('.applyLo').click(function(){
+	$('.form-outter').addClass('active');
+});
+$('.close, .go-list').click(function(){
+	$('.form-outter').removeClass('active');
+})

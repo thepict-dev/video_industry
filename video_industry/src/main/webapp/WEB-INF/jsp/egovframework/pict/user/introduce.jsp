@@ -100,7 +100,7 @@
             <h4>CI</h4>
             <div class="ci-container">
                 <img src="/img/user_img/ci.png" alt="" alt="로고">
-	            ㅇㅇ
+	            <a href="/img/user_img/ci.png" download>CI 다운로드</a>
             </div>
         </div>
         <h3 class="section-title">오시는 길</h3>

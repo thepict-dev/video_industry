@@ -16,7 +16,7 @@
             <a href="/support.do">지원사업</a>
         </li>
         <li class="active-sub-depth">
-            <a href="/location_db_list.do">콘텐츠DB</a>
+            <a href="/location_db_map.do">콘텐츠DB</a>
             <ul class="sub-depth">
                 <li><a href="/location_db_list.do">로케이션DB</a></li>
                 <li><a href="/industry_db.do">산업체DB</a></li>

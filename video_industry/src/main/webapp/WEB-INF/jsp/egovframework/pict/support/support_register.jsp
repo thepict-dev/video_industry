@@ -62,9 +62,10 @@
 	                                <label for="attach_file">파일추가</label>
 	                                <input type="file" id="attach_file" name="attach_file" multiple style="display: none;">
 	                            </p>
-	                            <ul class="fileList">
-	                                
-	                            </ul>
+	                            <div class="fileList">
+	                                <p></p>
+	                                <button><img src="/img/admin/close2.png" alt=""></button>
+	                            </div>
 	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
 	                        </div>
 	                    </div>
@@ -82,6 +83,25 @@
 	        </div>
 	    </div>
 	    <script>
+
+		 	// 파일 입력 변경 이벤트 리스너
+		    $('#attach_file').on('change', function(e) {
+		        var fileName = e.target.files[0].name;
+		        $('.fileList p').text(fileName);
+		        $('.fileList').css('display', 'flex');
+		    });
+	
+		    // 파일 삭제 버튼 클릭 이벤트
+		    $('.fileList button').on('click', function(e) {
+		        e.preventDefault();
+		        $('.fileList p').text('');
+		        $('#attach_file').val('');
+		        $('.fileList').hide();
+		    });
+	
+		    // 초기 상태에서 fileList 숨김
+		    $('.fileList').hide();
+	    
 			function button1_click() {
 				var title = $('#title').val();
 				

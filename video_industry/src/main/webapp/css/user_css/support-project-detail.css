@@ -443,3 +443,10 @@ label.custom-file>.attach-file {
 .addFile a img{
 	width: 16px;
 }
+
+
+.locationApp{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}

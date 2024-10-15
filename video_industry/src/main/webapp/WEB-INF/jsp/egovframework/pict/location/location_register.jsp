@@ -142,16 +142,10 @@
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
 	                            <p class="inputCaption">주변소음</p>
-                                <label class="custom" for="sound_1">
-                                    <input type="radio" id="sound_1" name="sound" value="O">
-                                    <div class="custom-radio"></div>
-                                    <span>O</span>
-                                </label>
-                                <label class="custom" for="sound_2">
-                                    <input type="radio" id="sound_2" name="sound" value="X">
-                                    <div class="custom-radio"></div>
-                                    <span>X</span>
-                                </label>
+	                            <div class="inputBoxFlex">
+		                            <input type="radio" name="sound" id="sound_1" value="O"><label for="sound_1">O</label>
+		                            <input type="radio" name="sound" id="sound_2" value="X"><label for="sound_2">X</label>
+                            	</div>
 	                        </div>
 	                    </div>
 	 
@@ -162,21 +156,23 @@
 	                                <label for="attach_file">파일추가</label>
 	                                <input type="file" id="attach_file" name="attach_file" multiple style="display: none;">
 	                            </p>
-	                            <ul class="fileList">
-	                                
-	                            </ul>
+	                            <div class="fileList">
+	                                <p></p>
+	                                <button><img src="/img/admin/close2.png" alt=""></button>
+	                            </div>
 	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
 	                        </div>
 	                    </div>
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
 	                            <p class="inputCaption">첨부파일
-	                                <label for="attach_file">파일추가</label>
+	                                <label for="attach_file1">파일추가</label>
 	                                <input type="file" id="attach_file1" name="attach_file1" multiple style="display: none;">
 	                            </p>
-	                            <ul class="fileList">
-	                                
-	                            </ul>
+	                            <div class="fileList">
+	                                <p></p>
+	                                <button><img src="/img/admin/close2.png" alt=""></button>
+	                            </div>
 	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
 	                        </div>
 	                    </div>
@@ -187,9 +183,10 @@
 	                                <label for="attach_file2">파일추가</label>
 	                                <input type="file" id="attach_file2" name="attach_file2" multiple style="display: none;">
 	                            </p>
-	                            <ul class="fileList">
-	                                
-	                            </ul>
+	                            <div class="fileList">
+	                                <p></p>
+	                                <button><img src="/img/admin/close2.png" alt=""></button>
+	                            </div>
 	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
 	                        </div>
 	                    </div>
@@ -200,9 +197,10 @@
 	                                <label for="attach_file3">파일추가</label>
 	                                <input type="file" id="attach_file3" name="attach_file3" multiple style="display: none;">
 	                            </p>
-	                            <ul class="fileList">
-	                                
-	                            </ul>
+	                            <div class="fileList">
+	                                <p></p>
+	                                <button><img src="/img/admin/close2.png" alt=""></button>
+	                            </div>
 	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
 	                        </div>
 	                    </div>
@@ -219,25 +217,55 @@
 	        </div>
 	    </div>
 	    <script>
-			function button1_click() {
-				var title = $('#title').val();
-				
-				if (title == "" || title == undefined) {
-					window.alert("제목을 입력해주세요.");
-					$('#title').focus();
-					return false;
-				}
-
-				var text = "등록하시겠습니까?";
-				if (saveType == 'update') {
-					text = "수정하시겠습니까?"
-				}
-				oEditors[0].exec("UPDATE_CONTENTS_FIELD", []);
-				if (confirm(text)) {
-					$("#register").attr("action", "/location/location_save.do");
-					$("#register").submit();
-				}
-			}
+	    
+		    $(document).ready(function() {
+		        // 첨부파일 관련 코드
+		        var fileInputs = ['attach_file', 'attach_file1', 'attach_file2', 'attach_file3'];
+	
+		        $.each(fileInputs, function(index, inputId) {
+		            var $fileInput = $('#' + inputId);
+		            var $fileList = $fileInput.closest('.inputBox').find('.fileList');
+		            var $fileName = $fileList.find('p');
+		            var $deleteButton = $fileList.find('button');
+	
+		            $fileInput.on('change', function() {
+		                if (this.files.length > 0) {
+		                    var fileName = this.files[0].name;
+		                    $fileName.text(fileName);
+		                    $fileList.css('display', 'flex');
+		                }
+		            });
+	
+		            $deleteButton.on('click', function(e) {
+		                e.preventDefault();
+		                $fileName.text('');
+		                $fileInput.val('');
+		                $fileList.hide();
+		            });
+	
+		            // 초기 상태에서 fileList 숨김
+		            $fileList.hide();
+		        });
+		    });
+	
+		    function button1_click() {
+		        var title = $('#title').val();
+		        
+		        if (title == "" || title == undefined) {
+		            window.alert("제목을 입력해주세요.");
+		            $('#title').focus();
+		            return false;
+		        }
+	
+		        var saveType = $('#saveType').val();
+		        var text = saveType === 'update' ? "수정하시겠습니까?" : "등록하시겠습니까?";
+		        
+		        oEditors[0].exec("UPDATE_CONTENTS_FIELD", []);
+		        if (confirm(text)) {
+		            $("#register").attr("action", "/location/location_save.do");
+		            $("#register").submit();
+		        }
+		    }
 		</script>
 	</body>
 	

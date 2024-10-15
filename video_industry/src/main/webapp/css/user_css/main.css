@@ -353,7 +353,7 @@
     /* 26px */
     letter-spacing: -1px;
     display: grid;
-    grid-template-columns: calc(100% - 159px) 119px;
+    grid-template-columns: calc(100% - 170px) 119px;
     border-bottom: 1px solid #000;
     white-space: nowrap;
     align-items: center;

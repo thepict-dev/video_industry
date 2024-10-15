@@ -201,26 +201,26 @@ input[type="date"]:disabled{
 label{
     cursor: pointer;
 }
-[type="radio"] {
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    border: 1px solid #8B96A2;
-    border-radius: 50%;
+input[type=radio] {
+    display:none;
 }
-[type="radio"]:checked {
-    box-shadow: 0 0 0 1px var(--blue-500);
-    border: 2px solid #fff;
-    background-color: var(--blue-500);
-}
-[type="radio"] span{
-    margin-top: 3px;
+input[type=radio] + label { 
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
     color: var(--text-color);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 100%; /* 14px */
     letter-spacing: -0.7px;
+    background-repeat: no-repeat;
+    background-image: url('/img/admin/uncheck2.png');
+    background-size: 10px;
+    background-position: 0 2px;
+}
+input[type=radio]:checked + label {
+    background-image: url('/img/admin/checked2.png');
 }
 
 /* checkbox */
