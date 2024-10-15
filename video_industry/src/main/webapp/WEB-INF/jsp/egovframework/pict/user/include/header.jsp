@@ -13,7 +13,7 @@
             <a href="/introduce.do">센터소개</a>
         </li>
         <li>
-            <a href="/support.do">지원사업</a>
+            <a href="/support.do?category=1">지원사업</a>
         </li>
         <li class="active-sub-depth">
             <a href="/location_db_map.do">콘텐츠DB</a>
@@ -63,7 +63,7 @@
                 <a href="/introduce.do">센터소개</a>
             </li>
             <li>
-                <a href="/support.do">지원사업</a>
+                <a href="/support.do?category=1">지원사업</a>
             </li>
             <li class="use-depth">
                 <span>콘텐츠DB</span>

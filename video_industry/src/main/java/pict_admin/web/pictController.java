@@ -248,7 +248,13 @@ public class pictController {
 		pictService.location_apply_save(pictVO);
 		model.addAttribute("message", "정상적으로 저장되었습니다.");
 		model.addAttribute("retType", ":location");
-		model.addAttribute("retUrl", "/support_view.do?idx="+pictVO.getIdx());
+		if(pictVO.getMain_category().equals("3")) {
+			model.addAttribute("retUrl", "/support.do?category=3");
+		}
+		else {
+			model.addAttribute("retUrl", "/support_view.do?idx="+pictVO.getIdx());
+		}
+		
 		return "pict/main/message";	
 		
 	}	
