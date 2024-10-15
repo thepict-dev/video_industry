@@ -1073,6 +1073,36 @@ public class pictController {
 		return "pict/main/message";
 		
 	}
+	@RequestMapping(value = "/location/location_cng.do")
+	public String location_cng(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		String session = (String)request.getSession().getAttribute("id");
+		if(session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+		
+		pictService.location_support_cng(pictVO);
+		
+		model.addAttribute("message", "정상적으로 상태값이 변경되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/location/location_apply_list.do");
+		return "pict/main/message";
+		
+	}
+	@RequestMapping(value = "/support/support_cng.do")
+	public String support_cng(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		String session = (String)request.getSession().getAttribute("id");
+		if(session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+		
+		pictService.location_support_cng(pictVO);
+		
+		model.addAttribute("message", "정상적으로 상태값이 변경되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/support/support_apply_list.do");
+		return "pict/main/message";
+		
+	}
 	
 	@RequestMapping(value = "/support/support_apply_list.do")
 	public String support_apply_list(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {

@@ -3,7 +3,7 @@
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+<%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
@@ -248,7 +248,7 @@
 			                    <p>${resultList.title}</p>
 			                </span>
 			                <div class="row">
-			                    <span class="date">${resultList.reg_date}</span>
+			                    <span class="date">	${fn:substring(resultList.reg_date,0,11) }</span>
 			                    <div class="arrow">
 			                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 			                            <mask id="mask0_95_1360" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"

@@ -10,7 +10,6 @@
 <meta charset="ko">
 <%@ include file="./include/head.jsp" %>
 <link rel="stylesheet" href="/css/user_css/location-db.css">
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0d776bb34a08483e971b1a5e18e0b065&libraries=services"></script>
 <body>
 	<%@ include file="./include/header.jsp" %>
     <div class="visual-section">
@@ -61,6 +60,7 @@
     
 	<%@ include file="./include/footer.jsp" %>
 	<script src="/js/user_js/header.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0d776bb34a08483e971b1a5e18e0b065&libraries=services"></script>
 	<script>
 
 		$.getScript("/js/user_js/location-db.js", function() {

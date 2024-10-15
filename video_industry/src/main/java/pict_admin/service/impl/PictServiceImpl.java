@@ -344,5 +344,12 @@ public class PictServiceImpl extends EgovAbstractServiceImpl implements PictServ
 		return pictMapper.location_apply_list(pictVO);
 	}
 
+	@Override
+	public void location_support_cng(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.location_support_cng(pictVO);
+	}
+
+
 	
 }

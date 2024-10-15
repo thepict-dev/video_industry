@@ -39,6 +39,7 @@
 	                        <li>연락처</li>
 	                        <li>소속</li>
 	                        <li>직책</li>
+	                        <li>신청서</li>
 	                        <li>등록일</li>
 	                        <li>상태</li>
 	                    </ul>
@@ -61,11 +62,12 @@
 		                            <p>${resultList.tel}</p>
 		                            <p>${resultList.company}</p>
 		                            <p>${resultList.depart}</p>
+		                            <a href="${resultList.file_url}" download>첨부파일</a>
 		                            <p>${resultList.reg_date}</p>
-		                            <select name="category" id="category" class="lgThinInput" style="width: 250px">
-		                                <option value="1" <c:if test="${pictVO.category eq '1'}">selected</c:if>>신청</option>
-		                                <option value="2" <c:if test="${pictVO.category eq '2'}">selected</c:if>>승인</option>
-		                                <option value="3" <c:if test="${pictVO.category eq '3'}">selected</c:if>>삭제</option>
+		                            <select name="status_front" id="status_front" class="lgThinInput" style="width: 250px" onchange="fn_change('${resultList.idx}', this.value)">
+		                                <option value="0" <c:if test="${resultList.status eq '0'}">selected</c:if>>신청</option>
+		                                <option value="1" <c:if test="${resultList.status eq '1'}">selected</c:if>>승인</option>
+		                                <option value="2" <c:if test="${resultList.status eq '2'}">selected</c:if>>취소</option>
 		                            </select>
 		                        </li>
 	                        </c:forEach>
@@ -101,9 +103,15 @@
 			<input type='hidden' name="idx" id="idx" value='' />
 			<input type='hidden' name="use_at" id="use_at" value='' />
 			<input type='hidden' name="type" id="type" value='' />
+			<input type='hidden' name="status" id="status" value='' />
 		</form>
 		<script>
-
+			function fn_change(idx, selectValue){
+				$('#idx').val(idx)
+				$('#status').val(selectValue)
+				$("#register").attr("action", "/support/support_cng.do");
+				$("#register").submit();
+		    }
 			function board_mod(idx){
 				location.href= "/support/support_register.do?idx="+ idx;
 			}

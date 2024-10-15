@@ -234,12 +234,12 @@
 /* 지원사업 신청 리스트용 */
 .listHead.support_apply{
     display: grid;
-    grid-template-columns: 5% 10% 20% 10% 10% 10% 10% 15% 10%;
+    grid-template-columns: 5% 10% 10% 10% 10% 10% 10% 15% 10% 10%;
     text-align: center;
 }
 .listBody.support_apply li{
     display: grid;
-    grid-template-columns: 5% 10% 20% 10% 10% 10% 10% 15% 10%;
+    grid-template-columns: 5% 10% 10% 10% 10% 10% 10% 15% 10% 10%;
     text-align: center;
     border-bottom: 1px solid var(--grey-100);
     background-color: #fff;

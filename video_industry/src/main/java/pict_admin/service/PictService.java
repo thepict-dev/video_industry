@@ -132,5 +132,8 @@ public interface PictService {
 
 	List<?> location_apply_list(PictVO pictVO) throws Exception;
 
+	void location_support_cng(PictVO pictVO) throws Exception;
+
+
 
 }
