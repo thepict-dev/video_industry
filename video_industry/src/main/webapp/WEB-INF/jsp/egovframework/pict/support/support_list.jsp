@@ -50,6 +50,7 @@
 		                            <p>
 		                            	<c:if test="${resultList.category eq '1'}">VFX특화 산업육성사업</c:if>
 		                            	<c:if test="${resultList.category eq '2'}">독립영화육성 및 시민참여행사</c:if>
+		                            	<c:if test="${resultList.category eq '3'}">로케이션 지원사업</c:if>
 	                            	</p>
 		                            <a href="/support/support_register.do?idx=${resultList.idx}"><p>${resultList.title}</p></a>
 		                            <p>${resultList.reg_date}</p>

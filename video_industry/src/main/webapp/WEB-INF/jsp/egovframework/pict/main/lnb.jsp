@@ -22,7 +22,6 @@
 <c:set var="support_list" value="${fn:indexOf(url, 'support_list')}"/>
 <c:set var="support_register" value="${fn:indexOf(url, 'support_register')}"/>
 
-<c:set var="location_apply_list" value="${fn:indexOf(url, 'location_apply_list')}"/>
 
 <c:set var="support_apply_list" value="${fn:indexOf(url, 'support_apply_list')}"/>
 
@@ -45,7 +44,6 @@
             <ul class="depth2">
                 <li class="<c:if test="${location_list ne -1}">active</c:if>"><a href="/location/location_list.do">로케이션 리스트</a></li>
                 <li class="<c:if test="${location_register ne -1}">active</c:if>"><a href="/location/location_register.do">로케이션 등록</a></li>
-                <li class="<c:if test="${location_apply_list ne -1}">active</c:if>"><a href="/location/location_apply_list.do">로케이션 신청 리스트</a></li>
             </ul>
             
             <div class="depth1 <c:if test="${movie_register ne -1 || movie_list ne -1}">active</c:if>">
@@ -57,7 +55,7 @@
                 <li class="<c:if test="${movie_register ne -1}">active</c:if>"><a href="/movie/movie_register.do">영화 등록</a></li>
             </ul>
             
-            <div class="depth1 <c:if test="${support_register ne -1 || support_list ne -1}">active</c:if>">
+            <div class="depth1 <c:if test="${support_register ne -1 || support_list ne -1 || support_apply_list ne -1}">active</c:if>">
                 <span><img src="/img/admin/lnb_icons/lnb-doc.png" alt=""></span>
                 <a href="#lnk">지원사업 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
             </div>

@@ -53,9 +53,9 @@
 										<p>${support_cnt - (status.index +  ((pictVO.pageNumber - 1) * 5))}</p>
 									</c:if>
 		                            <p>
-		                            	<c:if test="${resultList.category eq '1'}">VFX특화 산업육성사업</c:if>
-		                            	<c:if test="${resultList.category eq '2'}">독립영화육성 및 시민참여행사</c:if>
-		                            	<c:if test="${resultList.category eq '3'}">로케이션 지원사업</c:if>
+		                            	<c:if test="${resultList.main_category eq '1'}">VFX특화 산업육성사업</c:if>
+		                            	<c:if test="${resultList.main_category eq '2'}">독립영화육성 및 시민참여행사</c:if>
+		                            	<c:if test="${resultList.main_category eq '3'}">로케이션 지원사업</c:if>
 	                            	</p>
 		                            <p>${resultList.start_date} ~ ${resultList.end_date}</p>
 		                            <p>${resultList.name}</p>

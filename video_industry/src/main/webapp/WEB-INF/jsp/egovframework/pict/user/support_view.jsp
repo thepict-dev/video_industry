@@ -20,14 +20,16 @@
         <div class="content">
             <p>${pictVO.text}</p>
         </div>
-        <div class="addFile">
-            <a href="#lnk" download>
-                <img src="/img/user_img/file.png" alt="">
-                ${pictVO.file_url}
-            </a>
-        </div>
+        <c:if test="${pictVO.file_url ne '' && pictVO.file_url ne null && pictVO.file_url ne undefined}">
+	        <div class="addFile">
+	            <a href="#lnk" download>
+	                <img src="/img/user_img/file.png" alt="">
+	                ${pictVO.file_url}
+	            </a>
+	        </div>
+        </c:if>
         <div class="buttons">
-            <a href="/support.do" class="go-list">목록으로</a>
+            <a href="javascript:history.back()" class="go-list">목록으로</a>
             <button id="goForm" class="go-form">신청하기</button>
         </div>
     </main>

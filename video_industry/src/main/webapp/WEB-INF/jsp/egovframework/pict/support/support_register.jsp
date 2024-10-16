@@ -27,6 +27,7 @@
 	                            <select name="category" id="category" class="lgThinInput" style="width: 250px">
 	                                <option value="1" <c:if test="${pictVO.category eq '1'}">selected</c:if>>VFX특화 산업육성사업</option>
 	                                <option value="2" <c:if test="${pictVO.category eq '2'}">selected</c:if>>독립영화육성 및 시민참여행사</option>
+	                                <option value="3" <c:if test="${pictVO.category eq '3'}">selected</c:if>>로케이션 지원사업</option>
 	                            </select>
 	                        </div>
 	                    </div>

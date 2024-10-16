@@ -82,7 +82,7 @@ public class pictController {
 	//지원사업
 	@RequestMapping(value = "/support.do")
 	public String support(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
-		System.out.println(pictVO.getMain_category()+"카테고리::::::::::");
+		System.out.println(pictVO.getCategory()+"카테고리::::::::::");
 		int limitNumber = 5;
 		pictVO.setLimit(limitNumber);
 		Integer pageNum = pictVO.getPageNumber();
