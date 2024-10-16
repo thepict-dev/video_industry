@@ -38,10 +38,10 @@
 	<meta name="description" content=" ">
 	<meta name="keywords" content=" ">
 	<meta name="robots" content="INDEX,FOLLOW">
-	<meta property="og:url" content="http://www.scout.or.kr/">
+	<meta property="og:url" content="http://ccfc.or.kr">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content=" " >
 	<meta property="og:description" content=" ">
-	<meta property="og:image" content="/user_img/opengraph.png">
+	<meta property="og:image" content="/img/user_img/logo-white.png">
     
 </head>
