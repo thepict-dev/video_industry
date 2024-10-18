@@ -31,7 +31,18 @@
                 <a class="<c:if test='${pictVO.category eq "2"}'> active</c:if>" href="/support.do?category=2">독립영화육성 및 시민참여행사</a>
             </li>
         </ul>
+        <!-- 
         <h2 class="main-text">춘천에서 촬영하는 국내외 영상물의<br /> 촬영‧제작 지원을 통해 지역 경제 활성화에 기여하고,<br /> 지역 영화산업 생태계를 조성하기 위한 지원사업</h2>
+        -->
+        <c:if test="${pictVO.category eq '1'}">
+        	<h2 class="main-text">아시아 최대 VFX산업 클러스터 조성을 위한 특화 산업 육성</h2>
+       	</c:if>
+       	<c:if test="${pictVO.category eq '2'}">
+       		<h2 class="main-text">지역 독립‧예술 영화 활성화 및 춘천시민들의<br>영상문화 향유권 확대를 위한 시민참여 행사 추진</h2>
+       	</c:if>
+       	<c:if test="${pictVO.category eq '3'}">
+        	<h2 class="main-text">춘천에서 촬영하는 국내외 영상물의 촬영‧제작 지원을 통해 지역 경제 활성화에 기여하고<br>지역영화산업 생태계를 조성하기 위한 지원사업</h2>
+       	</c:if>
         
         <ul class="list-container">
         	<c:forEach var="resultList" items="${resultList}" varStatus="status">
