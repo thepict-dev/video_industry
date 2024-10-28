@@ -44,12 +44,10 @@
 		/******************** 인증정보 ********************/
 		
 		/******************** 전송정보 ********************/
-		
-		if(request.getAttribute("str").toString() != null){
-			sms.put("title", request.getAttribute("title").toString());
-		}
-		sms.put("msg", request.getAttribute("str").toString());
-		sms.put("receiver", request.getAttribute("mobile").toString()); // 수신번호
+
+		//request.getAttribute("mobile").toString()
+		sms.put("msg", "안녕하세요 테스트 문자입니다.");
+		sms.put("receiver", "01055516393"); // 수신번호
 		sms.put("sender", "16444845"); // 발신번호
 		
 		String image = "";

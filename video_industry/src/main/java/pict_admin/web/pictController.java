@@ -1215,7 +1215,20 @@ public class pictController {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-  	}
+  	} 
+  	
+  	//이메일발송
+    @RequestMapping(value = "/sms_test.do")
+	public String sms_test(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+
+    	model.addAttribute("str", "안녕하세요 테스트 문자입니다.");
+		model.addAttribute("mobile", "01055516393");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/");
+		
+    	return "pict/main/message_sms";
+    }
+    
 	
 	
 	//파일업로드 메소드
