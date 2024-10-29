@@ -1217,7 +1217,7 @@ public class pictController {
 		}
   	} 
   	
-  	//이메일발송
+  	//문자
     @RequestMapping(value = "/sms_test.do")
 	public String sms_test(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
 
