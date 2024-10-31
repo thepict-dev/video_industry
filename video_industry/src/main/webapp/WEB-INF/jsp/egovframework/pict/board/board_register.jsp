@@ -107,6 +107,35 @@
 	        </div>
 	    </div>
 	    <script>
+		    $(document).ready(function() {
+		        // 첨부파일 관련 코드
+		        var fileInputs = ['attach_file', 'attach_file1', 'attach_file2', 'attach_file3'];
+	
+		        $.each(fileInputs, function(index, inputId) {
+		            var $fileInput = $('#' + inputId);
+		            var $fileList = $fileInput.closest('.inputBox').find('.fileList');
+		            var $fileName = $fileList.find('p');
+		            var $deleteButton = $fileList.find('button');
+	
+		            $fileInput.on('change', function() {
+		                if (this.files.length > 0) {
+		                    var fileName = this.files[0].name;
+		                    $fileName.text(fileName);
+		                    $fileList.css('display', 'flex');
+		                }
+		            });
+	
+		            $deleteButton.on('click', function(e) {
+		                e.preventDefault();
+		                $fileName.text('');
+		                $fileInput.val('');
+		                $fileList.hide();
+		            });
+	
+		            // 초기 상태에서 fileList 숨김
+		            $fileList.hide();
+		        });
+		    });
 			function button1_click() {
 				var title = $('#title').val();
 				

@@ -470,18 +470,12 @@ label.custom-file>.attach-file {
 
 .input .date-container {
     display: flex;
-    border-bottom: 1px solid var(--grey-grey-100, #DBDEE2);
     column-gap: 12px;
-    position: relative;
-    flex: 1;
 }
 
 .input .date-container>input#start_date,
 .input .date-container>input#end_date {
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
-    padding: 24px 12px;
+    z-index: 100;
 }
 
 .input .date-container>span.not-seleced {
@@ -489,6 +483,7 @@ label.custom-file>.attach-file {
 }
 
 .input .date-container>span {
+	position:absolute;
     flex: 1;
     /* width: 154px; */
     white-space: nowrap;
@@ -513,6 +508,59 @@ label.custom-file>.attach-file {
     cursor: pointer;
 }
 
+/* date */
+input[type="date"]{
+    position: relative;
+	border: 0;
+	width: 100%;
+    padding: 24px 12px;
+    border-bottom: 1px solid var(--grey-STROKE-grey-100, #DBDEE2);
+    background: #FFF;
+    color: var(--text-color);
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 100%; /* 18px */
+	font-family: var(--fn-suit);
+	letter-spacing: -0.9px;
+    transition: all .3s;
+    
+}
+
+input[type="date"]::-webkit-clear-button,
+input[type="date"]::-webkit-inner-spin-button { 
+    display: none;
+} 
+input[type="date"]::-webkit-calendar-picker-indicator { 
+    background: transparent;
+    z-index: 1;
+}
+input[type="date"]::before{
+	width: 100%;
+	content: attr(data-placeholder);
+	color: var(--grey-500);
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 100%; /* 18px */
+	letter-spacing: -0.9px;
+}
+input[type="date"]::after{
+	position: absolute;
+	top:50%;
+	right:16px;
+	content: '';
+	width: 22px;
+	height: 22px;
+	background: url(/img/user_img/date.png) center center / 100%;
+	transform: translateY(-50%);
+	z-index: 0;
+}
+@media all and (max-width : 768px){
+	
+	input[type="date"]{
+		width: 122px;
+	    padding: 24px 4px;
+	}
+}
 .input .date-container>button>input {
     /* display: none; */
 }
