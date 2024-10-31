@@ -38,17 +38,18 @@
 		
 		Map<String, String> sms = new HashMap<String, String>();
 		
-		sms.put("user_id", "finecom"); // SMS 아이디
-		sms.put("key", "rox9v7vxxxuoawg6i3yb7ofaf8ih3f5s"); //인증키
+		sms.put("user_id", "gica"); // SMS 아이디
+		sms.put("key", "rarf9fv8guylxaw80avten6uig3spw1b"); //인증키
 		
 		/******************** 인증정보 ********************/
 		
 		/******************** 전송정보 ********************/
 
-		//request.getAttribute("text").toString();
-		sms.put("msg", "안녕하세요 테스트 문자입니다.");
-		sms.put("receiver", "01055516393"); // 수신번호
-		sms.put("sender", "16444845"); // 발신번호
+		String msg = request.getAttribute("msg").toString();
+		String mobile = request.getAttribute("mobile").toString();
+		sms.put("msg", msg);
+		sms.put("receiver", mobile); // 수신번호
+		sms.put("sender", "0332456330"); // 발신번호
 		
 		String image = "";
 		//image = "/tmp/pic_57f358af08cf7_sms_.jpg"; // MMS 이미지 파일 위치
