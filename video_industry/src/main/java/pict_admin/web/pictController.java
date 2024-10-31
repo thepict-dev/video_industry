@@ -254,12 +254,16 @@ public class pictController {
 		if(attach_file.getSize() != 0) {
 			UUID uuid = UUID.randomUUID();
 			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
-			String filepath = "/user1/upload_file/video_industry/";
-			//String filepath = "D:\\user1\\upload_file\\billconcert\\";
+			//String filepath = "/user1/upload_file/video_industry/";
+			String filepath = "D:\\user1\\upload_file\\video_industry\\";
 			String filename = uuid+uploadPath.split("#####")[1];
 			
 			pictVO.setFile_url(filepath+filename);
 		}
+		String mobile = pictVO.getMobile();
+		String name = pictVO.getName();
+		String email = pictVO.getEmail();
+		
 		pictVO.setStatus("0");
 		pictService.location_apply_save(pictVO);
 		model.addAttribute("message", "정상적으로 저장되었습니다.");
@@ -271,7 +275,13 @@ public class pictController {
 			model.addAttribute("retUrl", "/support_view.do?idx="+pictVO.getIdx());
 		}
 		
-		return "pict/main/message";	
+		//이메일용
+		mailsend("지원사업 신청 완료", name + "님께서 신청하신 지원사업이 정상적으로 신청되었습니다.", email);
+		
+		//문자용
+		model.addAttribute("msg", name + "님께서 신청하신 지원사업이 정상적으로 신청되었습니다.");
+		model.addAttribute("mobile", mobile);
+		return "pict/main/message_sms";	
 		
 	}	
 	
@@ -1186,8 +1196,7 @@ public class pictController {
 	
 	
 	//이메일발송
-  	@RequestMapping(value = "/mail_send.do")
-  	public void mailsend(String subejct, String body) throws Exception{
+  	public void mailsend(String subejct, String body, String email) throws Exception{
   		String host = "smtp.naver.com";
 		String user = "gica_@naver.com";
 		String password = "wlsgmddnjs-24";
@@ -1207,9 +1216,9 @@ public class pictController {
 		try {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(user));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("lovefinecom@naver.com"));
-			message.setSubject("[테스트]메일제목");
-			message.setText("테스트 입니다.");
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+			message.setSubject(subejct);
+			message.setText(body);
 			Transport.send(message);
 			System.out.println("Success Message Send");
 		} catch (MessagingException e) {
@@ -1221,7 +1230,7 @@ public class pictController {
     @RequestMapping(value = "/sms_test.do")
 	public String sms_test(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
 
-    	model.addAttribute("str", "안녕하세요 테스트 문자입니다.");
+    	model.addAttribute("msg", "안녕하세요 테스트 문자입니다.");
 		model.addAttribute("mobile", "01055516393");
 		model.addAttribute("retType", ":location");
 		model.addAttribute("retUrl", "/");
@@ -1293,7 +1302,8 @@ public class pictController {
     }
     
     private String getSaveLocation(MultipartHttpServletRequest request, MultipartFile uploadFile) {
-    	String uploadPath = "/user1/upload_file/video_industry/";
+    	//String uploadPath = "/user1/upload_file/video_industry/";
+    	String uploadPath = "D:\\user1\\upload_file\\video_industry\\";
     	return uploadPath;
     }
 
