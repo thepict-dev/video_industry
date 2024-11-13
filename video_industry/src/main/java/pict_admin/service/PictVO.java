@@ -211,8 +211,15 @@ public class PictVO extends PictDefaultVO {
 	private String location_name;
 	private String status;
 	private String main_category;
+	private String vr;
 	
 	
+	public String getVr() {
+		return vr;
+	}
+	public void setVr(String vr) {
+		this.vr = vr;
+	}
 	public String getMain_category() {
 		return main_category;
 	}

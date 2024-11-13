@@ -210,6 +210,24 @@
                     </svg>
                 </i>
             </button>
+            <c:if test="${pictVO.category eq 'VR' }">
+	            <button class="active-form" onclick="vr_link('${pictVO.vr}')">
+	                <span>로케이션 VR</span>
+	                <i>
+	                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+	                        <mask id="mask0_20_1968" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+	                            width="24" height="24">
+	                            <rect width="24" height="24" fill="#D9D9D9" />
+	                        </mask>
+	                        <g mask="url(#mask0_20_1968)">
+	                            <path
+	                                d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z"
+	                                fill="black" />
+	                        </g>
+	                    </svg>
+	                </i>
+	            </button>
+            </c:if>
         </div>
     </main>
     <!-- 폼 -->
@@ -376,6 +394,9 @@
 	<script src="/js/user_js/header.js"></script>
 	<script src="/js/user_js/location-db-detail.js"></script>
 	<script>
+		function vr_link(vr){
+			window.location.href= vr
+		}
 		function apply_move(){
 			window.location.href= "/support.do?main_category=3"
 		}
