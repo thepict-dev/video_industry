@@ -395,7 +395,7 @@
 	<script src="/js/user_js/location-db-detail.js"></script>
 	<script>
 		function vr_link(vr){
-			window.location.href= vr
+			window.open(vr)
 		}
 		function apply_move(){
 			window.location.href= "/support.do?main_category=3"
