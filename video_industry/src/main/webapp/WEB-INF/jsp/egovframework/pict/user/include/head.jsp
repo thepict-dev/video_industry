@@ -34,14 +34,14 @@
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     
-    <meta name="title" content="영상산업지원센터" >
-	<meta name="description" content=" ">
-	<meta name="keywords" content=" ">
+    <meta name="title" content="춘천시 영상산업지원센터" >
+	<meta name="description" content="춘천시영상산업지원센터, 센터소개, 지원사업신청, 로케이션DB, 춘천시 촬영작품소개, 교육프로그램, 센터소식 등 제공">
+	<meta name="keywords" content="춘천시영상산업지원센터, 센터소개, 지원사업신청, 로케이션DB, 춘천시 촬영작품소개, 교육프로그램, 센터소식 등 제공">
 	<meta name="robots" content="INDEX,FOLLOW">
-	<meta property="og:url" content="http://ccfc.or.kr">
+	<meta property="og:url" content="http://ccfc.kr">
 	<meta property="og:type" content="website">
-	<meta property="og:title" content=" " >
-	<meta property="og:description" content=" ">
+	<meta property="og:title" content="춘천시 영상산업지원센터" >
+	<meta property="og:description" content="춘천시영상산업지원센터, 센터소개, 지원사업신청, 로케이션DB, 춘천시 촬영작품소개, 교육프로그램, 센터소식 등 제공">
 	<meta property="og:image" content="/img/user_img/logo-white.png">
     
 </head>

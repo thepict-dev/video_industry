@@ -12,7 +12,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
+    <meta name="description" content="춘천시영상산업지원센터, 센터소개, 지원사업신청, 로케이션DB, 춘천시 촬영작품소개, 교육프로그램, 센터소식 등 제공" />
     <meta name="author" content="" />
     <title>${param.pageTitle}</title>
     <link rel="shortcut icon" type="image/x-icon" href="/images/pict/favicon.webp">
