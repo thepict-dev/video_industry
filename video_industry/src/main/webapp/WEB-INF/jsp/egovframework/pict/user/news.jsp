@@ -22,10 +22,10 @@
     <div class="main-section">
         <ul class="navigator notice">
             <li>
-                <a class="active" href="/notice.do">공지사항</a>
+                <a href="/notice.do">공지사항</a>
             </li>
             <li>
-                <a href="/news.do">보도자료</a>
+                <a class="active" href="/news.do">보도자료</a>
             </li>
         </ul>
 

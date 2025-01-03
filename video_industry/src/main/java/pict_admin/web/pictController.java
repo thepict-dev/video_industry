@@ -155,6 +155,19 @@ public class pictController {
 		model.addAttribute("pictVO", pictVO);
 		return "pict/user/notice_view";
 	}
+
+	//뉴스
+	@RequestMapping(value = "/news.do")
+	public String news(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/user/news";
+	}
+	//뉴스 뷰
+	@RequestMapping(value = "/news_view.do")
+	public String news_view(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		pictVO = pictService.board_list_one(pictVO);
+		model.addAttribute("pictVO", pictVO);
+		return "pict/user/news_view";
+	}
 	
 	//로케이션
 	@RequestMapping(value = "/location_db_list.do")
