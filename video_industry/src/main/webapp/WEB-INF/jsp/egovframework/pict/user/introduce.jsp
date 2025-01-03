@@ -10,6 +10,7 @@
 <meta charset="ko">
 <%@ include file="./include/head.jsp" %>
 <link rel="stylesheet" href="/css/user_css/introduce.css">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0d776bb34a08483e971b1a5e18e0b065&libraries=services"></script>
 <body>
 	<%@ include file="./include/header.jsp" %>
     <div class="visual-section">
@@ -149,7 +150,55 @@
             </div>
         </div>
     </div>
+    
+	<script type="text/javascript">
+
+	    kakao.maps.load(function() {
+	            console.log("??????")
+	            var mapContainer = document.querySelector('.map'), // 지도를 표시할 div 
+	            mapOption = { 
+	                center: new kakao.maps.LatLng('37.89304768366957', '127.69193069339971'), // 지도의 중심좌표
+	                level: 3 // 지도의 확대 레벨
+	            };
+	            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 	
+	            // 마커가 표시될 위치입니다 
+	            var markerPosition  = new kakao.maps.LatLng('37.89304768366957', '127.69193069339971'); 
+	            // 마커를 생성합니다
+	            var marker = new kakao.maps.Marker({
+	                position: markerPosition
+	            });
+	            
+	            // 마커가 지도 위에 표시되도록 설정합니다
+	            marker.setMap(map);
+	            
+	            var iwContent = '<div style="line-height:30px; width:230px; text-align:center">' + '춘천시영상산지원센터' +'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+	
+	            // 인포윈도우를 생성합니다
+	            var infowindow = new kakao.maps.InfoWindow({
+	                content : iwContent
+	            });
+	            
+	            kakao.maps.event.addListener(marker, 'mouseover', function() {
+	            // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+	                infowindow.open(map, marker);
+	            });
+	
+	            // 마우스가 지도 영역에 있을 때
+	            mapContainer.addEventListener('mouseenter', function() {
+	                document.body.style.overflow = 'hidden'; // 페이지 스크롤 비활성화
+	                /* lenis.stop(); // Lenis 스크롤 비활성화 */
+	            });
+	
+	            // 마우스가 지도 영역을 벗어날 때
+	            mapContainer.addEventListener('mouseleave', function() {
+	                document.body.style.overflow = 'auto'; // 페이지 스크롤 다시 활성화
+	                /* lenis.start(); // Lenis 스크롤 다시 활성화 */
+	            });
+	        });
+
+	
+	</script>
 	<%@ include file="./include/footer.jsp" %>
 	<script src="/js/user_js/header.js"></script>
 	<script src="/js/user_js/industry-db.js"></script>
