@@ -73,9 +73,10 @@ public class pictController {
 	public String lending(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
 		pictVO.setType("board");
 		List<?> board_list = pictService.board_list(pictVO);
+		
 		pictVO.setType("news");
 		List<?> new_list = pictService.board_list(pictVO);
-		
+		System.out.println(new_list.size());
 		
 		List<?> movie_list = pictService.main_movie_list(pictVO);
 		
@@ -83,7 +84,7 @@ public class pictController {
 		List<?> location_layer_list = pictService.location_list(pictVO);
 		
 		model.addAttribute("board_list", board_list);
-		model.addAttribute("new_list", new_list);
+		model.addAttribute("news_list", new_list);
 		model.addAttribute("movie_list", movie_list);
 		model.addAttribute("location_layer_list", location_layer_list);
 		
@@ -142,14 +143,16 @@ public class pictController {
 		return "pict/user/support_view";
 	}
 
-	//지원사업
+	//센터소식
 	@RequestMapping(value = "/notice.do")
 	public String notice(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
 		return "pict/user/notice";
 	}
-	//지원사업 뷰
+	//센터소식 뷰
 	@RequestMapping(value = "/notice_view.do")
 	public String notice_view(@ModelAttribute("searchVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		pictVO = pictService.board_list_one(pictVO);
+		model.addAttribute("pictVO", pictVO);
 		return "pict/user/notice_view";
 	}
 	

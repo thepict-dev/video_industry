@@ -14,17 +14,19 @@
 	<%@ include file="./include/header.jsp" %>
     <main class="container">
         <div class="content-header">
-            <h1>SW융합 해커톤 대회 강원지역 참가팀 모집 공고</h1>
-            <p>2024.07.15</p>
+            <h1>${pictVO.title}</h1>
+            <p>${pictVO.reg_date}</p>
         </div>
         <div class="content">
-            <p>본문내용</p>
+            <p>${pictVO.text}</p>
         </div>
         <div class="addFile">
-            <a href="#lnk" download>
-                <img src="/img/user_img/file.png" alt="">
-                파일이름ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-            </a>
+        	<c:if test="${pictVO.file_url1 ne '' && pictVO.file_url1 ne null && pictVO.file_url1 ne undefined}">
+	            <a href="#lnk" download>
+	                <img src="/img/user_img/file.png" alt="">
+	                ${pictVO.file_url1}
+	            </a>
+            </c:if>
         </div>
         <div class="buttons">
             <a href="/notice.do" class="go-list">목록으로</a>
