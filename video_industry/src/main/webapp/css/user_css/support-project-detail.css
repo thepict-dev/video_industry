@@ -306,6 +306,7 @@ label.custom>input:checked~.custom-radio::after {
 
 
 label.custom-file {
+	position: relative;
     display: flex;
     column-gap: 20px;
 }
@@ -322,7 +323,7 @@ label.custom-file>div.file-name {
     border: 1px solid var(--grey-STROKE-grey-100, #DBDEE2);
     color: var(--bk, #000);
     font-family: SUIT;
-    font-size: 18px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 100%;
@@ -344,6 +345,12 @@ label.custom-file>.attach-file {
     /* 14px */
 }
 
+.file-delete {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 .texts {
     color: var(--grey-grey-500, #8B96A2);

@@ -140,66 +140,76 @@
         </div>
 
         <div class="grid-container">
-            <div class="grid-item">
-                <h3 class="section-title">Notice</h3>
-                <ul class="list-container">
-                	<c:forEach var="board_list" items="${board_list}" varStatus="status">
-	                    <li>
-	                        <span class="content">
-	                            <span class="index">${status.count}</span>
-	                            <p>${board_list.title}</p>
-	                        </span>
-	                        <span class="row">
-	                            <span class="date">${fn:substring(board_list.reg_date,0,11) }</span>
-	                            <a href="/notice_view.do?idx=${board_list.idx}" target="_blank" rel="noopener noreferrer">
-	                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-	                                    fill="none">
-	                                    <mask id="mask0_95_1360" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
-	                                        y="0" width="24" height="24">
-	                                        <rect width="24" height="24" fill="#D9D9D9" />
-	                                    </mask>
-	                                    <g mask="url(#mask0_95_1360)">
-	                                        <path
-	                                            d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z"
-	                                            fill="black" />
-	                                    </g>
-	                                </svg>
-	                            </a>
-	                        </span>
-	                    </li>
-                    </c:forEach>
-                </ul>
-            </div>
-            <div class="grid-item">
-                <h3 class="section-title">News</h3>
-                <ul class="list-container">
-                    <c:forEach var="news_list" items="${news_list}" varStatus="status">
-	                    <li>
-	                        <span class="content">
-	                            <span class="index">${status.count}</span>
-	                            <p>${news_list.title}</p>
-	                        </span>
-	                        <span class="row">
-	                            <span class="date">${fn:substring(news_list.reg_date,0,11) }</span>
-	                            <a href="/notice_view.do?idx=${news_list.idx}" target="_blank" rel="noopener noreferrer">
-	                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-	                                    fill="none">
-	                                    <mask id="mask0_95_1360" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
-	                                        y="0" width="24" height="24">
-	                                        <rect width="24" height="24" fill="#D9D9D9" />
-	                                    </mask>
-	                                    <g mask="url(#mask0_95_1360)">
-	                                        <path
-	                                            d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z"
-	                                            fill="black" />
-	                                    </g>
-	                                </svg>
-	                            </a>
-	                        </span>
-	                    </li>
-                    </c:forEach>
-                </ul>
-            </div>
+        	<c:choose>
+            	<c:when test="${empty resultList}"></c:when>
+            	<c:otherwise>
+		            <div class="grid-item">
+		                <h3 class="section-title">Notice</h3>
+		                <ul class="list-container">
+		                	<c:forEach var="board_list" items="${board_list}" varStatus="status">
+			                    <li>
+			                        <span class="content">
+			                            <span class="index">${status.count}</span>
+			                            <p>${board_list.title}</p>
+			                        </span>
+			                        <span class="row">
+			                            <span class="date">${fn:substring(board_list.reg_date,0,11) }</span>
+			                            <a href="/notice_view.do?idx=${board_list.idx}" target="_blank" rel="noopener noreferrer">
+			                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+			                                    fill="none">
+			                                    <mask id="mask0_95_1360" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+			                                        y="0" width="24" height="24">
+			                                        <rect width="24" height="24" fill="#D9D9D9" />
+			                                    </mask>
+			                                    <g mask="url(#mask0_95_1360)">
+			                                        <path
+			                                            d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z"
+			                                            fill="black" />
+			                                    </g>
+			                                </svg>
+			                            </a>
+			                        </span>
+			                    </li>
+		                    </c:forEach>
+		                </ul>
+		            </div>
+	            </c:otherwise>
+            </c:choose>
+        	<c:choose>
+            	<c:when test="${empty resultList}"></c:when>
+            	<c:otherwise>
+	            <div class="grid-item">
+	                <h3 class="section-title">News</h3>
+	                <ul class="list-container">
+	                    <c:forEach var="news_list" items="${news_list}" varStatus="status">
+		                    <li>
+		                        <span class="content">
+		                            <span class="index">${status.count}</span>
+		                            <p>${news_list.title}</p>
+		                        </span>
+		                        <span class="row">
+		                            <span class="date">${fn:substring(news_list.reg_date,0,11) }</span>
+		                            <a href="/notice_view.do?idx=${news_list.idx}" target="_blank" rel="noopener noreferrer">
+		                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+		                                    fill="none">
+		                                    <mask id="mask0_95_1360" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+		                                        y="0" width="24" height="24">
+		                                        <rect width="24" height="24" fill="#D9D9D9" />
+		                                    </mask>
+		                                    <g mask="url(#mask0_95_1360)">
+		                                        <path
+		                                            d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z"
+		                                            fill="black" />
+		                                    </g>
+		                                </svg>
+		                            </a>
+		                        </span>
+		                    </li>
+	                    </c:forEach>
+	                </ul>
+	            </div>
+	            </c:otherwise>
+            </c:choose>
         </div>
 
         <div class="location-section">

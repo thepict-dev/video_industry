@@ -109,31 +109,36 @@
 	    <script>
 		    $(document).ready(function() {
 		        // 첨부파일 관련 코드
-		        var fileInputs = ['attach_file', 'attach_file1', 'attach_file2', 'attach_file3'];
+		        var fileInputs = ['attach_file', 'attach_file1', 'attach_file2'];
 	
 		        $.each(fileInputs, function(index, inputId) {
 		            var $fileInput = $('#' + inputId);
 		            var $fileList = $fileInput.closest('.inputBox').find('.fileList');
-		            var $fileName = $fileList.find('p');
-		            var $deleteButton = $fileList.find('button');
-	
+		            
 		            $fileInput.on('change', function() {
-		                if (this.files.length > 0) {
-		                    var fileName = this.files[0].name;
-		                    $fileName.text(fileName);
-		                    $fileList.css('display', 'flex');
+		                var files = this.files;
+		                $fileList.empty(); // 기존 목록 초기화
+		                
+		                for(var i = 0; i < files.length; i++) {
+		                    var fileName = files[i].name;
+		                    var fileItem = '<li>' + '<p>' + fileName + '</p>' + 
+		                                 '<button type="button" class="deleteFile"><img src="/img/admin/delete.png" alt="파일삭제"></button></li>';
+		                    $fileList.append(fileItem);
+		                }
+		                
+		                if(files.length > 0) {
+		                    $fileList.show();
 		                }
 		            });
-	
-		            $deleteButton.on('click', function(e) {
-		                e.preventDefault();
-		                $fileName.text('');
-		                $fileInput.val('');
-		                $fileList.hide();
+		            
+		            // 동적으로 생성된 삭제 버튼에 대한 이벤트 위임
+		            $fileList.on('click', '.deleteFile', function() {
+		                $(this).parent().remove();
+		                if($fileList.children().length === 0) {
+		                    $fileList.hide();
+		                    $fileInput.val('');
+		                }
 		            });
-	
-		            // 초기 상태에서 fileList 숨김
-		            $fileList.hide();
 		        });
 		    });
 			function button1_click() {

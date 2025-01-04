@@ -142,9 +142,9 @@
 	                            <h4>첨부파일</h4>
 	                            <div class="file-tap">
 	                                <label for="attach_file" class="custom-file">
-	                                    <input id="attach_file" type="file" name="attach_file"/>
-	                                    <div class="file-name"></div>
-	                                    <!-- <button class="attach-file">파일추가</button> -->
+	                                    <input id="attach_file" type="file" name="attach_file" style="display: none;"/>
+	                                    <div class="file-name">이곳을 클릭해 파일을 첨부해주세요.</div>
+	                                    <button type="button" class="file-delete" style="display: none;"><img src="/img/admin/delete.png" alt="삭제"></button>
 	                                </label>
 	                                <div class="texts">
 	                                    ∙ 첨부파일의 용량은 50메가바이트(mb)를 넘을 수 없습니다.<br />
@@ -253,6 +253,23 @@
 				$("#register").submit();
 			}
 		}
+    
+    document.getElementById('attach_file').addEventListener('change', function() {
+        const fileName = this.files[0] ? this.files[0].name : '이곳을 클릭해 파일을 첨부해주세요.';
+        document.querySelector('.file-name').textContent = fileName;
+        
+        // 삭제 버튼 표시
+        const deleteBtn = document.querySelector('.file-delete');
+        deleteBtn.style.display = this.files[0] ? 'inline-block' : 'none';
+    });
+    
+    document.querySelector('.file-delete').addEventListener('click', function(e) {
+        e.preventDefault();
+        const fileInput = document.getElementById('attach_file');
+        fileInput.value = ''; // 파일 입력 초기화
+        document.querySelector('.file-name').textContent = '이곳을 클릭해 파일을 첨부해주세요.';
+        this.style.display = 'none';
+    });
     
     </script>
 	<%@ include file="./include/footer.jsp" %>
