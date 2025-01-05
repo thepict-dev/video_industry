@@ -62,25 +62,33 @@
 	                    <div class="listButton">
 	                        <a href="/movie/movie_register.do"><img src="/img/admin/add.png" alt="등록버튼">등록</a>
 	                    </div>
-	                    
 	                    <div class="pagination">
-	                    	<c:if test="${pictVO.pageNumber ne 1}">
-								<li><a href="/movie/movie_list.do?search_text=${param.search_text}&pageNumber=${pictVO.pageNumber - 10 < 1 ? 1 : pictVO.pageNumber - 10}"><img src="/img/admin/prev.png" alt=""></a></li>
-							</c:if>	
-							
-							<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
-								<c:if test="${i eq pictVO.pageNumber}">
-									<li class="active"><a href="/movie/movie_list.do?search_text=${param.search_text}&pageNumber=${i}" >${i}</a></li>
-								</c:if>
-								<c:if test="${i ne pictVO.pageNumber}">
-									<li><a href="/movie/movie_list.do?search_text=${param.search_text}&pageNumber=${i}" >${i}</a></li>
-								</c:if>
-							</c:forEach>	
-	                    
-		                    <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
-								<li><a href="/movie/movie_list.do?search_text=${param.search_text}&pageNumber=${pictVO.pageNumber + 10 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 10}"><img src="/img/admin/next.png" alt=""></a></li>
-							</c:if>
-	                    </div>
+		                    <c:if test="${pictVO.pageNumber ne 1}">
+		                        <a class="first-page page-button" href="/movie/movie_list.do?search_text=${param.search_text}&pageNumber=${pictVO.pageNumber - 10 < 1 ? 1 : pictVO.pageNumber - 10}">
+		                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+		                                <path d="M11.7266 12L12.6666 11.06L9.61329 8L12.6666 4.94L11.7266 4L7.72663 8L11.7266 12Z" fill="#242A30" />
+		                                <path d="M7.33332 12L8.27332 11.06L5.21998 8L8.27331 4.94L7.33331 4L3.33332 8L7.33332 12Z" fill="#242A30" />
+		                            </svg>
+		                        </a>
+		                    </c:if>
+		                    <c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
+		                        <c:if test="${i eq pictVO.pageNumber}">
+		                            <a class="page-button active" href="/movie/movie_list.do?search_text=${param.search_text}&pageNumber=${i}">${i}</a>
+		                        </c:if>
+		                        <c:if test="${i ne pictVO.pageNumber}">
+		                            <a class="page-button" href="/movie/movie_list.do?search_text=${param.search_text}&pageNumber=${i}">${i}</a>
+		                        </c:if>
+		                    </c:forEach>
+		        			
+		                    <c:if test="${pictVO.lastPage ne pictVO.pageNumber and pictVO.lastPage ne 0}">
+		                        <a class="last-page page-button" href="/movie/movie_list.do?search_text=${param.search_text}&pageNumber=${pictVO.pageNumber + 10 > pictVO.lastPage ? pictVO.lastPage : pictVO.pageNumber + 10}">
+		                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+		                                <path d="M4.27325 4L3.33325 4.94L6.38659 8L3.33325 11.06L4.27325 12L8.27325 8L4.27325 4Z" fill="#242A30" />
+		                                <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="#242A30" />
+		                            </svg>
+		                        </a>
+		                    </c:if>
+		                </div>
 	                </div>
 	            </div>
 	        </div>

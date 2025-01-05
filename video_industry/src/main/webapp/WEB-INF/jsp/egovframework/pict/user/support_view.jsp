@@ -3,6 +3,7 @@
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <!DOCTYPE html>
@@ -20,11 +21,11 @@
         <div class="content">
             <p>${pictVO.text}</p>
         </div>
-        <c:if test="${pictVO.file_url ne '' && pictVO.file_url ne null && pictVO.file_url ne undefined}">
+        <c:if test="${pictVO.file_url1 ne '' && pictVO.file_url1 ne null && pictVO.file_url1 ne undefined}">
 	        <div class="addFile">
-	            <a href="#lnk" download>
+	            <a href="${pictVO.file_url1}" download>
 	                <img src="/img/user_img/file.png" alt="">
-	                ${pictVO.file_url}
+					${fn:replace(pictVO.file_url1, '/user1/upload_file/video_industry/', '')}
 	            </a>
 	        </div>
         </c:if>

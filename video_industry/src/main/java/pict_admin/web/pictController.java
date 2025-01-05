@@ -1384,8 +1384,8 @@ public class pictController {
     }
     
     private String getSaveLocation(MultipartHttpServletRequest request, MultipartFile uploadFile) {
-    	//String uploadPath = "/user1/upload_file/video_industry/";
-    	String uploadPath = "D:\\user1\\upload_file\\video_industry\\";
+    	String uploadPath = "/user1/upload_file/video_industry/";
+    	//String uploadPath = "D:\\user1\\upload_file\\video_industry\\";
     	return uploadPath;
     }
 

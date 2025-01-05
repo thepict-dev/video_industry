@@ -60,7 +60,7 @@
     
 	<%@ include file="./include/footer.jsp" %>
 	<script src="/js/user_js/header.js"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0d776bb34a08483e971b1a5e18e0b065&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1066a83bf5ee02ca0e84dd88546b4c42&libraries=services"></script>
 	<script>
 
 		$.getScript("/js/user_js/location-db.js", function() {

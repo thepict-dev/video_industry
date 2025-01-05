@@ -43,5 +43,6 @@
 	<meta property="og:title" content="춘천시 영상산업지원센터" >
 	<meta property="og:description" content="춘천시영상산업지원센터, 센터소개, 지원사업신청, 로케이션DB, 춘천시 촬영작품소개, 교육프로그램, 센터소식 등 제공">
 	<meta property="og:image" content="/img/user_img/logo-white.png">
+    <meta name="naver-site-verification" content="bafe054a05ae2e7ae7b07afc114e58c08d1bb213" />
     
 </head>

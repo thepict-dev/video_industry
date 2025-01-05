@@ -3,6 +3,7 @@
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <!DOCTYPE html>
@@ -22,9 +23,21 @@
         </div>
         <div class="addFile">
         	<c:if test="${pictVO.file_url1 ne '' && pictVO.file_url1 ne null && pictVO.file_url1 ne undefined}">
-	            <a href="#lnk" download>
+	            <a href="${pictVO.file_url1}" download>
 	                <img src="/img/user_img/file.png" alt="">
-	                ${pictVO.file_url1}
+					${fn:replace(pictVO.file_url1, '/user1/upload_file/video_industry/', '')}
+	            </a>
+            </c:if>
+            <c:if test="${pictVO.file_url2 ne '' && pictVO.file_url2 ne null && pictVO.file_url2 ne undefined}">
+	            <a href="${pictVO.file_url2}" download>
+	                <img src="/img/user_img/file.png" alt="">
+					${fn:replace(pictVO.file_url2, '/user1/upload_file/video_industry/', '')}
+	            </a>
+            </c:if>
+            <c:if test="${pictVO.file_url3 ne '' && pictVO.file_url3 ne null && pictVO.file_url3 ne undefined}">
+	            <a href="${pictVO.file_url3}" download>
+	                <img src="/img/user_img/file.png" alt="">
+					${fn:replace(pictVO.file_url3, '/user1/upload_file/video_industry/', '')}
 	            </a>
             </c:if>
         </div>

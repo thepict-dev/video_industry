@@ -10,7 +10,7 @@
 <meta charset="ko">
 <%@ include file="./include/head.jsp" %>
 <link rel="stylesheet" href="/css/user_css/introduce.css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0d776bb34a08483e971b1a5e18e0b065&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1066a83bf5ee02ca0e84dd88546b4c42&libraries=services"></script>
 <body>
 	<%@ include file="./include/header.jsp" %>
     <div class="visual-section">

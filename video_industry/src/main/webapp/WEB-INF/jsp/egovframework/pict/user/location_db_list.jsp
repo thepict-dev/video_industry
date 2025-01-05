@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="main-section">
-        <div class="toggle-container">
+         <div class="toggle-container">
             <a href="/location_db_list.do" class="active">리스트형</a>
             <a href="/location_db_map.do">지도형</a>
         </div>
@@ -80,8 +80,6 @@
 	                    <p class="tel">${resultList.tel}</p>
 	                </a>
                 </c:forEach>
-            </div>
-
             <div class="pagination">
                 <c:if test="${pictVO.pageNumber ne 1}">
 					<a class="first-page page-button" href="/location_db_list.do?search_text=${pictVO.search_text}&location_category=${pictVO.location_category}&pageNumber=1">
