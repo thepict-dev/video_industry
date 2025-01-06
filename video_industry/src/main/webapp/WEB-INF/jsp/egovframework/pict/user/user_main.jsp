@@ -217,7 +217,7 @@
             <div class="location-container">
             <!-- 링크가 location_view.do?idx=164 -->
                 <c:forEach var="location_layer_list" items="${location_layer_list}" varStatus="status">
-	                <div class="location-item">
+	                <a href="/location_view.do?idx=${location_layer_list.idx}" class="location-item">
 	                    <div class="img-container">
 	                        <img src="${location_layer_list.img_thumb}" alt="" srcset="">
 	                    </div>
@@ -235,7 +235,7 @@
 	                    <p class="hashtag">${location_layer_list.keyword}</p>
 	                    <p class="address">${location_layer_list.address }</p>
 	                    <p class="tel">${location_layer_list.tel }</p>
-	                </div>
+	                </a>
                 </c:forEach>
                 
         </div>
