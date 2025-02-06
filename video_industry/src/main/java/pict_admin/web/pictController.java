@@ -764,29 +764,29 @@ public class pictController {
 	}
 	@RequestMapping(value = "/board/board_save.do", method = RequestMethod.POST)
 	public String board_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, MultipartHttpServletRequest request,
-			@RequestParam("attach_file") MultipartFile attach_file,
-			@RequestParam("attach_file1") MultipartFile attach_file1,
-			@RequestParam("attach_file2") MultipartFile attach_file2) throws Exception {
+			@RequestParam(value="file_1", required=false) MultipartFile attach_file,
+			@RequestParam(value="file_2", required=false) MultipartFile attach_file1,
+			@RequestParam(value="file_3", required=false) MultipartFile attach_file2) throws Exception {
 		String sessions = (String)request.getSession().getAttribute("id");
 		if(sessions == null || sessions == "null") {
 			return "redirect:/pict_login.do";
 		}
 		 
-		if(attach_file.getSize() != 0) {
+		if(attach_file != null && attach_file.getSize() != 0) {
 			UUID uuid = UUID.randomUUID();
 			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
 			String filepath = "/user1/upload_file/video_industry/";
 			String filename = uuid+uploadPath.split("#####")[1];
 			pictVO.setFile_url1(filepath+filename);
 		}
-		if(attach_file1.getSize() != 0) {
+		if(attach_file1 != null &&attach_file1.getSize() != 0) {
 			UUID uuid = UUID.randomUUID();
 			String uploadPath = fileUpload_board(request, attach_file1, (String)request.getSession().getAttribute("id"), uuid);
 			String filepath = "/user1/upload_file/video_industry/";
 			String filename = uuid+uploadPath.split("#####")[1];
 			pictVO.setFile_url2(filepath+filename);
 		}
-		if(attach_file2.getSize() != 0) {
+		if(attach_file2 != null &&attach_file2.getSize() != 0) {
 			UUID uuid = UUID.randomUUID();
 			String uploadPath = fileUpload_board(request, attach_file2, (String)request.getSession().getAttribute("id"), uuid);
 			String filepath = "/user1/upload_file/video_industry/";

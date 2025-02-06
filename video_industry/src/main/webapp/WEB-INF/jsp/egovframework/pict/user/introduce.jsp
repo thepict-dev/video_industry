@@ -46,30 +46,30 @@
             <h4>영상산업지원팀</h4>
             <div class="table">
                 <div class="head">직책</div>
-                <div class="head">성명</div>
                 <div class="head">연락처</div>
                 <div class="head">업무</div>
                 <div class="data">팀장</div>
-                <div class="data">안종후</div>
                 <div class="data">033-245-6330</div>
                 <ul class="data">
                     <li>∙ 팀 업무 총괄</li>
                     <li>∙ 신규 사업 발굴, 네트워킹</li>
                 </ul>
                 <div class="data">대리</div>
-                <div class="data">이윤지</div>
                 <div class="data">033-245-6331</div>
                 <ul class="data">
-                    <li>∙ 현장 헬퍼 POOL 지원</li>
-                    <li>∙ 독립영화·영상 지원</li>
-                    <li>∙ 춘천씨네파크</li>
+                    <li>∙ 영상산업 육성</li>
+                    <li>∙ VFX산업 전력인력 양성</li>
                 </ul>
-                <div class="data">대리</div>
-                <div class="data">허진수</div>
+                <div class="data">주임</div>
+                <div class="data">033-245-6332</div>
+                <ul class="data">
+                    <li>∙ 로케이션 지원 (스카우팅, 인센티브)</li>
+                </ul>
+                <div class="data">주임</div>
                 <div class="data">033-245-6333</div>
                 <ul class="data">
-                    <li>∙ 로케이션 스카우팅 지원</li>
-                    <li>∙ 로케이션 인센티브 지원</li>
+                    <li>∙ 독립영화 지원</li>
+                    <li>∙ 시민참여 문화행사</li>
                 </ul>
             </div>
         </div>

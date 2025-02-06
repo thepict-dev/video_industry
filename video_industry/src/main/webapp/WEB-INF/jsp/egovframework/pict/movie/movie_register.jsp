@@ -138,6 +138,7 @@
 				}
 				oEditors[0].exec("UPDATE_CONTENTS_FIELD", []);
 				if (confirm(text)) {
+					$('input[name="main_y"]').attr('value', $('input[name="main_y"]').val())
 					$("#register").attr("action", "/movie/movie_save.do");
 					$("#register").submit();
 				}

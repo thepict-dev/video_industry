@@ -453,6 +453,7 @@
 		title = #{title}, 
 		open_date =#{open_date},
 		reg_date = now(),
+		main_y = #{main_y},
 		<if test="img_thumb != null and img_thumb != '' ">
 			img_thumb = #{img_thumb}, 
 		</if>

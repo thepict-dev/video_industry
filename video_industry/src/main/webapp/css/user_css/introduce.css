@@ -122,7 +122,7 @@
 .grid-container .table {
     display: grid;
     width: 100%;
-    grid-template-columns: 21.1% 21.1% 28.4% 28.4%;
+    grid-template-columns: 20% 40% 40%;
 }
 
 .grid-container .table .head {
