@@ -29,11 +29,6 @@ body.no-scroll {
     overflow: hidden;
 }
 
-
-:root {
-    --fn-suit: "SUIT"
-}
-
 .mb{
 	display: none; 
 }
@@ -44,4 +39,24 @@ body.no-scroll {
 	.pc{
 		display: none; 
 	}
+}
+
+
+:root {
+	--fn-suit: "SUIT"
+    --fn-ald: "Aldrich", sans-serif;
+    --grey-50: #f3f5f6;
+    --grey-100: #dbdee2;
+    --grey-200: #cacfd4;
+    --grey-300: #b1b9c1;
+    --grey-400: #a2abb5;
+    --grey-500: #8b96a2;
+    --grey-600: #7e8993;
+    --grey-700: #636b73;
+    --grey-800: #4c5359;
+    --grey-900: #3a3f44;
+    --navy-color: #171C61;
+    --gold-color: #A48B78;
+    --validation-green: rgb(19, 112, 85);
+    --validation-red: rgb(187, 16, 25);
 }

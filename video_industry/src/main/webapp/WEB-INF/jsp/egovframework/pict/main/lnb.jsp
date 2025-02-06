@@ -24,6 +24,8 @@
 
 
 <c:set var="support_apply_list" value="${fn:indexOf(url, 'support_apply_list')}"/>
+<c:set var="popup_list" value="${fn:indexOf(url, 'popup_list')}"/>
+<c:set var="popup_form" value="${fn:indexOf(url, 'popup_form')}"/>
 
 <div class="lnb">
     <nav>
@@ -36,6 +38,14 @@
                 <li class="<c:if test="${board_list ne -1}">active</c:if>"><a href="/board/board_list.do">게시물 리스트</a></li>
                 <li class="<c:if test="${board_register ne -1}">active</c:if>"><a href="/board/board_register.do">게시물 등록</a></li>
             </ul>
+            
+            <div class="depth1 <c:if test="${popup_list ne -1 || popup_form ne -1}">active</c:if>">
+               <span><img src="/img/admin/lnb_icons/lnb-popup.png" alt=""></span>
+               <a href="#lnk">팝업존<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
+           </div>
+           <ul class="depth2">
+               <li class="<c:if test="${popup_list ne -1 || popup_form ne -1}">active</c:if>"><a href="/popup/popup_list.do">팝업 리스트</a></li>
+           </ul>
             
             <div class="depth1 <c:if test="${location_list ne -1 || location_register ne -1}">active</c:if>">
                 <span><img src="/img/admin/lnb_icons/lnb-coarse.png" alt=""></span>

@@ -69,19 +69,18 @@
 								</script>
 	                        </div>
 	                    </div>
-	 
-	                    
-	                    <div class="inputsContainer">
+   	                    <div class="inputsContainer">
 	                        <div class="inputBox">
 	                            <p class="inputCaption">첨부파일
 	                                <label for="attach_file">파일추가</label>
-	                                <input type="file" id="attach_file" name="attach_file" multiple style="display: none;">
+	                                <input type="file" id="attach_file" name="attach_file" multiple style="display: none;" class="jy_input">
 	                            </p>
 	                            <div class="fileList">
-	                                <p></p>
-	                                <button><img src="/img/admin/close2.png" alt=""></button>
+	                                <p id="file_name_1">${pictVO.img_thumb}</p>
+	                                <button type="button" onclick="fn_file_delete(); return false;"><img src="/img/admin/close2.png" alt=""></button>
 	                            </div>
-	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
+	                            <p class="fileCaption">첨부 파일은 10MB 아래의 확장자 파일만 가능합니다.<br>
+	                                (jpeg, png, gif, bmp, tif)</p>
 	                        </div>
 	                    </div>
 	                    
@@ -98,24 +97,31 @@
 	        </div>
 	    </div>
 	    <script>
+			function fn_file_delete(fileidx) {
+				
+				if(saveType == 'update' && confirm("해당 첨부파일을 삭제하시겠습니까?")) {
+					
+					$("#file_name_" + fileidx).text("");
+					$("#file_" + fileidx).val("");
+					
+					if($("#idx").val()) {
+						$("#register").attr("action", "/movie/movie_file_delete.do");
+						$("#register").submit();
+					}
+				} else {
+					$("#file_name_1").text('');
+				}
+				return false;
+			}
 
 		 	// 파일 입력 변경 이벤트 리스너
-		    $('#attach_file').on('change', function(e) {
-		        var fileName = e.target.files[0].name;
-		        $('.fileList p').text(fileName);
-		        $('.fileList').css('display', 'flex');
-		    });
-	
-		    // 파일 삭제 버튼 클릭 이벤트
-		    $('.fileList button').on('click', function(e) {
-		        e.preventDefault();
-		        $('.fileList p').text('');
-		        $('#attach_file').val('');
-		        $('.fileList').hide();
-		    });
+			$(".jy_input").on('change', function(e){
+				const fileName = this.files[0].name;
+				$("#file_name_1").text(fileName);
+			})
 	
 		    // 초기 상태에서 fileList 숨김
-		    $('.fileList').hide();	
+		    
 		    
 			function button1_click() {
 				var title = $('#title').val();

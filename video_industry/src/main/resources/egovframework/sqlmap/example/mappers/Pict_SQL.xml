@@ -67,6 +67,20 @@
 		delete from board_table where idx = #{idx}
 	</delete>
 	
+	<update id="board_file_delete" parameterType="pictVO">
+		update board_table
+		set file_url1 = #{file_url1}
+	      , file_url2 = #{file_url2}
+	      , file_url3 = #{file_url3}
+		where idx = #{idx}
+	</update>
+	
+	<update id="movie_file_delete" parameterType="pictVO">
+		update movie_table
+		set img_thumb = #{img_thumb}
+		where idx = #{idx}
+	</update>
+	
 	
 	<!-- 로케이션 -->
 	<select id="location_list" resultType="pictVO">
@@ -575,6 +589,54 @@
 		
 		where idx = #{idx}
 	</update>
+	<!-- 팝업 -->
+	<select id="get_popup_list" resultType="map">
+		select * from popup_table
+		where 1=1
+		<if test="idx != null and idx != 0">
+			and idx = #{idx}
+		</if>
+		<if test="order_by != null and order_by == 'true'">
+			order by order_by asc
+		</if>
+	</select>
 	
+	<select id="popup_list_one" resultType="pictVO">
+		select idx, title, link_url, image_url, order_by as order_val from popup_table
+		where idx = #{idx}
+	</select>
 	
+	<insert id="popup_insert" parameterType="pictVO">
+		INSERT INTO popup_table
+			(
+			 title, link_url,image_url, order_by
+			)
+		VALUES (
+			 #{title}, #{link_url}, #{image_url}, #{order_val}
+			  ) 
+	</insert>
+	
+	<update id="popup_update" parameterType="pictVO">
+	  UPDATE popup_table
+	  SET 
+	    title = #{title}
+	    <if test="file_url1 != null and file_url1 != ''">
+	      , file_url1 = #{file_url1}
+	    </if>
+	    <if test="link_url != null and link_url != ''">
+	      , link_url = #{link_url}
+	    </if>
+	    <if test="order_val != null and order_val != 0">
+	      , order_by = #{order_val}
+	    </if>
+	  WHERE idx = #{idx}
+	</update>
+	
+	<delete id="popup_delete" parameterType="pictVO">
+		delete from popup_table where idx = #{idx}
+	</delete>
+	
+	<select id="get_popup_total_cnt" resultType="int">
+		select count(*) as totalCnt from popup_table
+	</select>
 </mapper>

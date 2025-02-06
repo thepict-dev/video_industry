@@ -48,7 +48,8 @@ public interface PictService {
 
 	void board_file_delete(PictVO pictVO) throws Exception;
 	
-	
+	void movie_file_delete(PictVO pictVO) throws Exception;
+
 
 	PictVO pemtour_select(PictVO pictVO) throws Exception;
 
@@ -135,5 +136,16 @@ public interface PictService {
 	void location_support_cng(PictVO pictVO) throws Exception;
 
 
-
+	// 팝업 리스트 
+	List<?> get_popup_list(PictVO pictVO) throws Exception;
+	
+	PictVO popup_list_one(PictVO pictVO) throws Exception;
+	
+	void popup_insert(PictVO pictVO) throws Exception;
+	
+	void popup_update(PictVO pictVO) throws Exception;
+	
+	void popup_delete(PictVO pictVO) throws Exception;
+	
+	Integer get_popup_total_cnt(PictVO pictVO) throws Exception;
 }

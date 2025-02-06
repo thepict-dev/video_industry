@@ -117,6 +117,18 @@ introAnimation
 });
 
 function initSwiper() {
+	const popupSwiper = new Swiper('.swiper.popup', {
+	  autoplay: {
+	    delay: 3000,
+	    disableOnInteraction: false
+	  },
+	  loop: true,	// 무한 루 적용
+	  speed: 2000, 
+	  pagination: {
+	    el: ".swiper-pagination.popup",
+	    clickable: true,
+	  },
+	});
     swiper = new Swiper(".main-section .swiper", {
         centeredSlides: true,
         loop: true,
@@ -175,3 +187,30 @@ document.body.style.overflow = 'hidden';
 
 // Swiper 컨트롤 기능
 pauseButton.addEventListener('click', toggleAutoplay);
+
+
+
+$( document ).ready(function() {
+    var cookiedata = document.cookie;
+    if (cookiedata.indexOf("ncookie=done") < 0) {
+        document.querySelector('.mainPopup').style.display = "flex";
+    }
+    else {
+        document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
+    }
+});
+
+function setCookie( name, value, expiredays ) { 
+    var todayDate = new Date(); 
+    todayDate.setDate( todayDate.getDate() + expiredays );
+    document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+}
+
+function closePopup() { 
+    document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
+}
+
+function todayClosePopup() { 
+    setCookie( "ncookie", "done" , 1 );     // 저장될 쿠키명 , 쿠키 value값 , 기간( ex. 1은 하루, 7은 일주일)
+    document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
+}

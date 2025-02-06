@@ -99,6 +99,11 @@ public class PictServiceImpl extends EgovAbstractServiceImpl implements PictServ
 		pictMapper.board_file_delete(pictVO);
 		
 	}
+	
+	@Override
+	public void movie_file_delete(PictVO pictVO) throws Exception {
+		pictMapper.movie_file_delete(pictVO);
+	}
 
 	@Override
 	public PictVO pemtour_select(PictVO pictVO) throws Exception {
@@ -351,5 +356,39 @@ public class PictServiceImpl extends EgovAbstractServiceImpl implements PictServ
 	}
 
 
+	// 팝업 리스트 
+	@Override
+	public List<?> get_popup_list(PictVO pictVO) throws Exception {
+		
+		return pictMapper.get_popup_list(pictVO);
+	}
 	
+	@Override
+	public PictVO popup_list_one(PictVO pictVO) throws Exception {
+		return pictMapper.popup_list_one(pictVO);
+	}
+	
+	
+	@Override
+	public void popup_insert(PictVO pictVO) throws Exception {
+		pictMapper.popup_insert(pictVO);
+		
+	}
+	
+	@Override
+	public void popup_update(PictVO pictVO) throws Exception {
+		pictMapper.popup_update(pictVO);
+		
+	}
+	
+	@Override
+	public void popup_delete(PictVO pictVO) throws Exception {
+		pictMapper.popup_delete(pictVO);
+		
+	}
+	
+	@Override
+	public Integer get_popup_total_cnt(PictVO pictVO) throws Exception {
+		return pictMapper.get_popup_total_cnt(pictVO);
+	}
 }

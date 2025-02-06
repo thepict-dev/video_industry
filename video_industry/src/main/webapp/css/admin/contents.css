@@ -380,16 +380,18 @@
     background-color: var(--grey-50);
 }
 
-.fileList{
+.fileList {
     position: relative;
-    display: none;
+    display: flex;
     align-items: center;
     column-gap: 10px;
     width: 190px;
     height: 40px;
     border: 1px solid var(--grey-100);
     background: var(--grey-50);
+    margin-bottom: 10px;
 }
+
 .fileList li{
 	display: flex;
 	align-items: center;
@@ -399,11 +401,12 @@
 	
 }
 .fileList p{
-    width: 120px;
+	width: 120px;
+    padding-left: 20px;
     color: var(--text-color);
     font-size: 14px;
     font-weight: 500;
-    line-height: 100%; /* 14px */
+    line-height: 100%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -59,39 +59,45 @@
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
 	                            <p class="inputCaption">첨부파일
-	                                <label for="attach_file">파일추가</label>
-	                                <input type="file" id="attach_file" name="attach_file" multiple style="display: none;">
+	                                <label for="file_1">파일추가</label>
+	                                <input type="file" id="file_1" name="file_1" multiple style="display: none;" class="jy_input">
 	                            </p>
-	                            <ul class="fileList">
-	                                
-	                            </ul>
-	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
+	                            <div class="fileList">
+	                                <p id="file_name_1">${pictVO.file_url1}</p>
+	                                <button onclick="fn_file_delete('1')"><img src="/img/admin/close2.png" alt=""></button>
+	                            </div>
+	                            <p class="fileCaption">첨부 파일은 10MB 아래의 확장자 파일만 가능합니다.<br>
+	                                (jpeg, png, gif, bmp, tif)</p>
 	                        </div>
 	                    </div>
 	                    
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
 	                            <p class="inputCaption">첨부파일
-	                                <label for="attach_file1">파일추가</label>
-	                                <input type="file" id="attach_file1" name="attach_file1" multiple style="display: none;">
+	                                <label for="file_2">파일추가</label>
+	                                <input type="file" id="file_2" name="file_2" multiple style="display: none;" class="jy_input">
 	                            </p>
-	                            <ul class="fileList">
-	                                
-	                            </ul>
-	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
+	                            <div class="fileList">
+	                                <p id="file_name_2">${pictVO.file_url2}</p>
+	                                <button onclick="fn_file_delete('2')"><img src="/img/admin/close2.png" alt=""></button>
+	                            </div>
+	                            <p class="fileCaption">첨부 파일은 10MB 아래의 확장자 파일만 가능합니다.<br>
+	                                (jpeg, png, gif, bmp, tif)</p>
 	                        </div>
 	                    </div>
 	                    
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
 	                            <p class="inputCaption">첨부파일
-	                                <label for="attach_file2">파일추가</label>
-	                                <input type="file" id="attach_file2" name="attach_file2" multiple style="display: none;">
+	                                <label for="file_3">파일추가</label>
+	                                <input type="file" id="file_3" name="file_3" multiple style="display: none;" class="jy_input">
 	                            </p>
-	                            <ul class="fileList">
-	                                
-	                            </ul>
-	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
+	                            <div class="fileList">
+	                                <p id="file_name_3">${pictVO.file_url3}</p>
+	                                <button onclick="fn_file_delete('3')"><img src="/img/admin/close2.png" alt=""></button>
+	                            </div>
+	                            <p class="fileCaption">첨부 파일은 10MB 아래의 확장자 파일만 가능합니다.<br>
+	                                (jpeg, png, gif, bmp, tif)</p>
 	                        </div>
 	                    </div>
 	                    
@@ -108,6 +114,18 @@
 	    </div>
 	    <script>
 		    $(document).ready(function() {
+		    	var file1 = '${pictVO.file_url1}'
+				var file2 = '${pictVO.file_url2}'
+				var file3 = '${pictVO.file_url3}'
+				
+				if(file1 != '' && file1 != undefined && file1 != null) 
+					$('#file_name_1').text(file1.split("/user1/upload_file/video_industry/")[1])
+				if(file2 != '' && file2 != undefined && file2 != null) 
+					$('#file_name_2').text(file2.split("/user1/upload_file/video_industry/")[1])
+				if(file3 != '' && file3 != undefined && file3 != null) 
+					$('#file_name_3').text(file3.split("/user1/upload_file/video_industry/")[1])
+		    	
+		    	
 		        // 첨부파일 관련 코드
 		        var fileInputs = ['attach_file', 'attach_file1', 'attach_file2'];
 	
@@ -159,6 +177,30 @@
 					$("#register").attr("action", "/board/board_save.do");
 					$("#register").submit();
 				}
+			}
+			$(".jy_input").on('change', function(){
+				const fileInput = this;
+                const fileIndex = fileInput.id.split('_')[1];
+                
+                if (fileInput.files.length > 0) {
+                    const fileName = fileInput.files[0].name;
+					$("#file_name_"+fileIndex).text(fileName);	
+				}
+			})
+			
+			function fn_file_delete(fileidx) {
+				if(confirm("해당 첨부파일을 삭제하시겠습니까?")) {
+
+					$("#file_name_" + fileidx).text("");
+					$("#file_" + fileidx).val("");
+					
+					if($("#idx").val()) {
+						$('#fileidx').val(fileidx);
+						$("#register").attr("action", "/board/board_file_delete.do");
+						$("#register").submit();
+					}
+				}
+				return false; // 이벤트 전파 방지
 			}
 		</script>
 	</body>

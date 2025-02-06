@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -82,10 +83,13 @@ public class pictController {
 		
 		pictVO.setType("main_layer");
 		List<?> location_layer_list = pictService.location_list(pictVO);
-		
+		List<?> popup_list = pictService.get_popup_list(pictVO);
+		System.out.println(popup_list);
 		model.addAttribute("board_list", board_list);
 		model.addAttribute("news_list", new_list);
 		model.addAttribute("movie_list", movie_list);
+		model.addAttribute("popup_list", popup_list);
+		model.addAttribute("totalCnt", popup_list.size());
 		model.addAttribute("location_layer_list", location_layer_list);
 		
 		return "pict/user/user_main";
@@ -336,8 +340,8 @@ public class pictController {
 		if(attach_file.getSize() != 0) {
 			UUID uuid = UUID.randomUUID();
 			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
-			//String filepath = "/user1/upload_file/video_industry/";
-			String filepath = "D:\\user1\\upload_file\\video_industry\\";
+			String filepath = "/user1/upload_file/video_industry/";
+//			String filepath = "D:\\user1\\upload_file\\video_industry\\";
 			String filename = uuid+uploadPath.split("#####")[1];
 			
 			pictVO.setFile_url(filepath+filename);
@@ -1015,7 +1019,8 @@ public class pictController {
 			//수정
 			pictVO = pictService.movie_list_one(pictVO);
 			pictVO.setSaveType("update");
-			
+			Optional.ofNullable(pictVO.getImg_thumb()).ifPresent(pictVO::saveFileNameToImgThumb);
+
 		}
 		else {
 			pictVO.setSaveType("insert");
@@ -1038,8 +1043,10 @@ public class pictController {
 		if(attach_file.getSize() != 0) {
 			UUID uuid = UUID.randomUUID();
 			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
+			System.out.println("uploadPath @@@@@@@"+ uploadPath);
 			String filepath = "/user1/upload_file/video_industry/";
 			String filename = uuid+uploadPath.split("#####")[1];
+			System.out.println("filename @@@@@@@@"+ filename);
 			pictVO.setImg_thumb(filepath+filename);
 		}
 
@@ -1073,6 +1080,27 @@ public class pictController {
 		model.addAttribute("retUrl", "/movie/movie_list.do");
 		return "pict/main/message";
 		
+	}
+	
+	@RequestMapping(value = "/movie/movie_file_delete.do")
+	public String video_file_delete(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model,
+			HttpServletRequest request) throws Exception {
+		String session = (String) request.getSession().getAttribute("id");
+		if (session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+		int idx = pictVO.getIdx();
+		
+		pictVO = pictService.movie_list_one(pictVO);
+		pictVO.setImg_thumb(null);
+		
+		pictService.movie_file_delete(pictVO);
+
+		model.addAttribute("message", "정상적으로 삭제되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/movie/movie_register.do?idx=" + idx);
+		return "pict/main/message";
+
 	}
 
 	
@@ -1263,6 +1291,164 @@ public class pictController {
 		return "pict/support/support_apply_list";
 	}
 	
+	
+	// 팝업리스트
+	@RequestMapping(value = "/popup/popup_list.do")
+	public String popup_list(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request)
+			throws Exception {
+		String session = (String) request.getSession().getAttribute("id");
+		if (session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+
+		int limitNumber = 20;
+		pictVO.setLimit_cnt(limitNumber);
+		// 전체 데이터 수 조회
+		Integer totalCnt = pictService.get_popup_total_cnt(pictVO);
+		
+		// 현재 페이지 번호 설정
+		Integer pageNum = pictVO.getPageNumber();
+		if (pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		// 마지막 페이지 계산 수정 (10이 아닌 limitNumber로 나눔)
+		int lastPageValue = (int) Math.ceil((double)totalCnt / limitNumber);
+		pictVO.setLastPage(lastPageValue);
+		int[] pageRange = calculatePageRange(pageNum, limitNumber, totalCnt);
+		pictVO.setStartPage(pageRange[0]);
+		pictVO.setEndPage(pageRange[1]);
+
+		pictVO.setIsOnlyAvailable(false);
+		List<?> popup_list = pictService.get_popup_list(pictVO);
+		model.addAttribute("resultList", popup_list);
+		model.addAttribute("totalCnt", totalCnt);
+		model.addAttribute("size", popup_list.size());
+		model.addAttribute("pictVO", pictVO);
+
+		return "pict/popup/popup_list";
+	}
+	
+	@RequestMapping(value = "/popup/popup_delete.do")
+	public String popup_delete(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request)
+			throws Exception {
+		String session = (String) request.getSession().getAttribute("id");
+		if (session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+
+		pictService.popup_delete(pictVO);
+
+		model.addAttribute("message", "정상적으로 삭제되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/popup/popup_list.do");
+		return "pict/main/message";
+	}
+	
+	
+	@RequestMapping(value = "/popup/popup_form.do")
+	public String popup_form(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request)
+			throws Exception {
+		String session = (String) request.getSession().getAttribute("id");
+		if (session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+		pictVO.setUser_id(session);
+		if (pictVO.getIdx() != 0) {
+			// 수정
+			pictVO = pictService.popup_list_one(pictVO);
+			pictVO.setFile(pictVO.getImage_url().substring(pictVO.getImage_url().lastIndexOf("/")+1));
+			pictVO.setSaveType("update");
+
+		} else {
+			pictVO.setSaveType("insert");
+		}
+
+		model.addAttribute("pictVO", pictVO);
+		return "pict/popup/popup_form";
+	}
+		
+	@RequestMapping(value = "/popup/popup_save.do", method = RequestMethod.POST)
+	public String popup_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model,
+			MultipartHttpServletRequest request, @RequestParam("attach_file") MultipartFile attach_file)
+			throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/pict_login.do";
+		}
+
+		if (attach_file.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file, (String) request.getSession().getAttribute("id"),
+					uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			// String filepath = "D:\\user1\\upload_file\\billconcert\\";
+			String filename = uuid + uploadPath.split("#####")[1];
+
+			pictVO.setImage_url(filepath + filename);
+		}
+
+		if (pictVO.getSaveType() != null && pictVO.getSaveType().equals("update")) {
+			pictService.popup_update(pictVO);
+			model.addAttribute("message", "정상적으로 수정되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/popup/popup_list.do");
+			return "pict/main/message";
+		} else {
+			pictService.popup_insert(pictVO);
+			model.addAttribute("message", "정상적으로 저장되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/popup/popup_list.do");
+			return "pict/main/message";
+		}
+	}
+	
+		
+		
+	/**
+	 * 현재 페이지를 기준으로 페이지 범위를 계산하는 메서드
+	 * 
+	 * @param currentPage 현재 페이지 번호
+	 * @param limit 페이지당 항목 수
+	 * @param totalCnt 전체 항목 수
+	 * @return int[] - [0]: 시작 페이지(s_page), [1]: 끝 페이지(e_page)
+	 */
+	public static int[] calculatePageRange(int currentPage, int limit, int totalCnt) {
+	    // 현재 페이지가 0이하인 경우 1로 설정
+	    if (currentPage <= 0) {
+	        currentPage = 1;
+	    }
+	    
+	    // 마지막 페이지 계산
+	    int lastPageValue = (int) Math.ceil(totalCnt * 1.0 / limit);
+	    if (lastPageValue < 1) {
+	        lastPageValue = 1;
+	    }
+	    
+	    // 시작 페이지와 끝 페이지 계산
+	    int s_page = currentPage - 4;
+	    int e_page = currentPage + 5;
+	    
+	    // 시작 페이지가 0 이하인 경우 조정
+	    if (s_page <= 0) {
+	        s_page = 1;
+	        e_page = 10;
+	    }
+	    
+	    // 끝 페이지가 마지막 페이지보다 큰 경우 조정R
+	    if (e_page > lastPageValue) {
+	        e_page = lastPageValue;
+	    }
+	    
+	    // 시작 페이지가 끝 페이지보다 큰 경우 조정
+	    if (s_page > e_page) {
+	        s_page = e_page;
+	    }
+	    
+	    return new int[]{s_page, e_page};
+	}
 	public static String encryptPassword(String password, String id) throws Exception {
 		if (password == null) return "";
 		if (id == null) return ""; // KISA 보안약점 조치 (2018-12-11, 신용호)
