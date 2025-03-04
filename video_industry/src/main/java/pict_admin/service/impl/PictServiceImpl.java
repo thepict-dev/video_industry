@@ -174,6 +174,11 @@ public class PictServiceImpl extends EgovAbstractServiceImpl implements PictServ
 		// TODO Auto-generated method stub
 		pictMapper.location_apply_save(pictVO);
 	}
+	
+	@Override
+	public List<PictVO> industry_list_in_admin(PictVO pictVO) throws Exception {
+		return pictMapper.industry_list_in_admin(pictVO);
+	}
 
 	@Override
 	public Integer industry_list_cnt(PictVO pictVO) throws Exception {

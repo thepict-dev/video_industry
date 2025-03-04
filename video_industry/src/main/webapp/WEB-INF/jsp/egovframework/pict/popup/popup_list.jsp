@@ -53,7 +53,7 @@
 			                        <p>${item.link_url}</p>
 			                        <p>${item.order_by}</p>
 			                        <p>${fn:substring(item.reg_date,0,10)}</p>
-									<p class="delete"><button onclick="board_delete(${item.idx})"></button></p>
+									<p class="delete"><a href="#lnk" onclick="board_delete('${item.idx}')"></a></p>
 			                    </li>
 		                    </c:forEach>
 		                </ul>

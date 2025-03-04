@@ -180,13 +180,14 @@ public class PictVO extends PictDefaultVO {
 	private String img_1;
 	private String img_2;
 	private String img_3;
+	private String main_subject;
 	private String main_subject1;
 	private String main_subject2;
 	private String main_subject3;
 	private String main_subject4;
 	private String main_subject5;
 	private String main_subject6;
-	
+	private String certificate_category;
 	private String certificate_category1;
 	private String certificate_category2;
 	private String certificate_category3;
@@ -1243,6 +1244,18 @@ public class PictVO extends PictDefaultVO {
 	}
 	public void setIsOnlyAvailable(Boolean isOnlyAvailable) {
 		this.isOnlyAvailable = isOnlyAvailable;
+	}
+	public String getMain_subject() {
+		return main_subject;
+	}
+	public void setMain_subject(String main_subject) {
+		this.main_subject = main_subject;
+	}
+	public String getCertificate_category() {
+		return certificate_category;
+	}
+	public void setCertificate_category(String certificate_category) {
+		this.certificate_category = certificate_category;
 	}
 	
 	

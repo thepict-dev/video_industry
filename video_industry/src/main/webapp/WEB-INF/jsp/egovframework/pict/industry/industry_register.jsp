@@ -8,14 +8,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 	<c:import url="../main/head.jsp">
-    	<c:param name="pageTitle" value="로케이션 등록"/>
+    	<c:param name="pageTitle" value="산업체 등록"/>
     </c:import>
     <body>
 	    
 		<%@include file="../main/lnb.jsp" %>
 		<c:import url="../main/header.jsp">
-	    	<c:param name="title" value="로케이션 관리"/>
-	    	<c:param name="subtitle" value="로케이션 등록"/>
+	    	<c:param name="title" value="산업체 관리"/>
+	    	<c:param name="subtitle" value="산업체 등록"/>
 	    </c:import>
 	    <div class="contentsContainer">
 	        <div class="listContainer">

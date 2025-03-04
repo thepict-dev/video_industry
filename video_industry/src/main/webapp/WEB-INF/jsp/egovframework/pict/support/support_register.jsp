@@ -74,7 +74,7 @@
 
 	                    
 	                    <div class="btnContainer">
-	                        <a href="/board/board_list.do" class="normalButton white">목록으로</a>
+	                        <a href="/support/support_list.do" class="normalButton white">목록으로</a>
 	                        <a href="#lnk" onclick="button1_click()" class="basicButton blue"><img src="/img/admin/add2.png" alt="완료">완료</a>
 	                    </div>
 	                    

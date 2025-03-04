@@ -16,6 +16,9 @@
 <c:set var="location_list" value="${fn:indexOf(url, 'location_list')}"/>
 <c:set var="location_register" value="${fn:indexOf(url, 'location_register')}"/>
 
+<c:set var="industry_list" value="${fn:indexOf(url, 'industry_list')}"/>
+<c:set var="industry_register" value="${fn:indexOf(url, 'industry_register')}"/>
+
 <c:set var="movie_list" value="${fn:indexOf(url, 'movie_list')}"/>
 <c:set var="movie_register" value="${fn:indexOf(url, 'movie_register')}"/>
 
@@ -54,6 +57,15 @@
             <ul class="depth2">
                 <li class="<c:if test="${location_list ne -1}">active</c:if>"><a href="/location/location_list.do">로케이션 리스트</a></li>
                 <li class="<c:if test="${location_register ne -1}">active</c:if>"><a href="/location/location_register.do">로케이션 등록</a></li>
+            </ul>
+            
+            <div class="depth1 <c:if test="${industry_list ne -1 || industry_register ne -1}">active</c:if>">
+                <span><img src="/img/admin/lnb_icons/lnb-coarse.png" alt=""></span>
+                <a href="#lnk">산업체 관리<span><img src="/img/admin/lnb_icons/lnb-arr.png" alt=""></span></a>
+            </div>
+            <ul class="depth2">
+                <li class="<c:if test="${industry_list ne -1}">active</c:if>"><a href="/industry/industry_list.do">산업체 리스트</a></li>
+                <li class="<c:if test="${industry_register ne -1}">active</c:if>"><a href="/industry/industry_register.do">산업체 등록</a></li>
             </ul>
             
             <div class="depth1 <c:if test="${movie_register ne -1 || movie_list ne -1}">active</c:if>">

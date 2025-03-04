@@ -82,7 +82,7 @@ public class pictController {
 		List<?> movie_list = pictService.main_movie_list(pictVO);
 		
 		pictVO.setType("main_layer");
-		List<?> location_layer_list = pictService.location_list(pictVO);
+		List<?> location_layer_list = pictService.industry_list_in_admin(pictVO);
 		List<?> popup_list = pictService.get_popup_list(pictVO);
 		System.out.println(popup_list);
 		model.addAttribute("board_list", board_list);
@@ -963,6 +963,146 @@ public class pictController {
 		return "pict/main/message";
 		
 	}
+	
+	// 산업체
+    @RequestMapping(value = "/industry/industry_list.do")
+	public String industry_list(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		String session = (String)request.getSession().getAttribute("id");
+		if(session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+		pictVO.setUser_id(session);
+	
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		Integer pageNum = pictVO.getPageNumber();
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		Integer totalCnt = pictService.industry_list_cnt(pictVO);
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		model.addAttribute("pictVO", pictVO);
+		model.addAttribute("totalCnt", totalCnt);
+		
+		List<?> industry_list = pictService.industry_list_in_admin(pictVO);
+		model.addAttribute("resultList", industry_list);
+		model.addAttribute("size", industry_list.size());
+		model.addAttribute("pictVO", pictVO);
+		
+		return "pict/industry/industry_list";
+	}
+    
+	@RequestMapping(value = "/industry/industry_register.do")
+	public String industry_register(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		String session = (String)request.getSession().getAttribute("id");
+		if(session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+		pictVO.setUser_id(session);
+		System.out.println(pictVO.getUser_id());
+		if(pictVO.getIdx() != 0) {
+			//수정
+			pictVO = pictService.industry_list_one(pictVO);
+			pictVO.setSaveType("update");
+			
+		}
+		else {
+			pictVO.setSaveType("insert");
+		}
+		
+		model.addAttribute("pictVO", pictVO);
+		return "pict/industry/industry_register";
+	}
+	@RequestMapping(value = "/industry/industry_save.do", method = RequestMethod.POST)
+	public String industry_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, MultipartHttpServletRequest request,
+			@RequestParam("attach_file") MultipartFile attach_file,
+			@RequestParam("attach_file1") MultipartFile attach_file1,
+			@RequestParam("attach_file2") MultipartFile attach_file2,
+			@RequestParam("attach_file3") MultipartFile attach_file3) throws Exception {
+		String sessions = (String)request.getSession().getAttribute("id");
+		if(sessions == null || sessions == "null") {
+			return "redirect:/pict_login.do";
+		}
+		 
+		if(attach_file.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setImg_thumb(filepath+filename);
+		}
+		if(attach_file1.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file1, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setImg_url1(filepath+filename);
+		}
+		if(attach_file2.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file2, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setImg_url2(filepath+filename);
+		}
+		if(attach_file3.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, attach_file3, (String)request.getSession().getAttribute("id"), uuid);
+			String filepath = "/user1/upload_file/video_industry/";
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setImg_url3(filepath+filename);
+		}
+
+		if(pictVO.getSaveType() != null && pictVO.getSaveType().equals("update")) {
+			pictService.location_update(pictVO);
+			model.addAttribute("message", "정상적으로 수정되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/location/location_list.do");
+			return "pict/main/message";
+		}
+		else {
+			pictService.location_insert(pictVO);
+			model.addAttribute("message", "정상적으로 저장되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/industry/industry_list.do");
+			return "pict/main/message";	
+		}
+		
+	}	
+	
+	@RequestMapping(value = "/industry/industry_delete.do")
+	public String industry_delete(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		String session = (String)request.getSession().getAttribute("id");
+		if(session == null || session == "null") {
+			return "redirect:/pict_login.do";
+		}
+		
+		pictService.location_delete(pictVO);
+		
+		model.addAttribute("message", "정상적으로 삭제되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/industry/industry_list.do");
+		return "pict/main/message";
+		
+	}
+	
 	
     //영화
     @RequestMapping(value = "/movie/movie_list.do")

@@ -296,6 +296,13 @@
 		LIMIT #{limit_cnt} OFFSET #{startNumber}
 	</select>
 	
+	
+	<select id="industry_list_in_admin" resultType="pictVO">
+		select * from industry_table 
+		where 1=1
+		order by reg_date desc
+	</select>
+	
 	<select id="industry_list_cnt" resultType="int">
 		select count(idx) from industry_table 
 		where 1=1
