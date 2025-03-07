@@ -438,3 +438,59 @@
     width: 100%;
     padding-top: 28px;
 }
+
+.induForm{
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.flexContainer{
+	display: flex;
+	gap: 20px;
+}
+.flexContainer .inputsContainer{
+	width: fit-content;
+}
+
+
+.selector-container {
+    display: flex;
+    gap: 12px;
+}
+
+.selector-container>li>label {
+    display: flex;
+    column-gap: 8px;
+    color: var(--TEXT, #242A30);
+    font-family: SUIT;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    /* 18px */
+    letter-spacing: -0.9px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selector-container>li>label input {
+    display: none;
+}
+
+.selector-container>li>label .checkbox {}
+
+.selector-container>li>label .checkbox .selected-false {
+    display: block;
+}
+
+.selector-container>li>label .checkbox .selected-true {
+    display: none;
+}
+
+.selector-container>li>label input:checked~.checkbox .selected-false {
+    display: none;
+}
+
+.selector-container>li>label input:checked~.checkbox .selected-true {
+    display: block;
+}

@@ -20,141 +20,211 @@
 	    <div class="contentsContainer">
 	        <div class="listContainer">
 	            <div class="listInner">
-	            	<form action="" id="register" name="register" method="post" enctype="multipart/form-data" class="boardForm">
-		            	<div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">카테고리*</p>
-	                            <select name="category" id="category" class="lgThinInput">
-	                                <option value="VR" <c:if test="${pictVO.category eq 'VR'}">selected</c:if>>VR</option>
-	                                <option value="일반" <c:if test="${pictVO.category eq '일반'}">selected</c:if>>일반</option>
-	                            </select>
-	                        </div>
+	            	<form action="" id="register" name="register" method="post" enctype="multipart/form-data" class="induForm">
+	            		<div class="flexContainer">
+		                    <div class="inputsContainer">
+		                        <div class="inputBox">
+		                            <p class="inputCaption">업체명*</p>
+		                            <input type="text" name="title" id="title" placeholder="내용을 입력하세요…" value="${pictVO.title}" class="lgThinInput">
+		                        </div>
+		                    </div>
+		                    
+		                    <div class="inputsContainer">
+		                        <div class="inputBox">
+		                            <p class="inputCaption">대표자명*</p>
+		                            <input type="text" name="ceo" id="ceo" placeholder="내용을 입력하세요…" value="${pictVO.ceo}" class="lgThinInput">
+		                        </div>
+		                    </div>
+	                   	</div>
+	                    <div class="flexContainer">
+	   		            	<div class="inputsContainer">
+		                        <div class="inputBox">
+		                            <p class="inputCaption">기업 형태*</p>
+		                            <select name="category" id="category" class="lgThinInput">
+		                                <option value="1" ${pictVO.scale eq '1' ? 'selected' : ''}>법인</option>
+		                                <option value="2" ${pictVO.scale eq '2' ? 'selected' : ''}>개인</option>
+		                                <option value="3" ${pictVO.scale eq '3' ? 'selected' : ''}>협동조합</option>
+		                            </select>
+		                        </div>
+		                    </div>
+		                    
+		                    <div class="inputsContainer">
+		                        <div class="inputBox">
+		                            <p class="inputCaption">설립일*</p>
+		                            <input type="text" name="establishment_date" id="establishment_date" placeholder="내용을 입력하세요…" value="${pictVO.establishment_date}" class="lgThinInput">
+		                        </div>
+		                    </div>
+		                    
+		                    <div class="inputsContainer">
+		                        <div class="inputBox">
+		                            <p class="inputCaption">연락처*</p>
+		                            <input type="text" name="tel" id="tel" placeholder="내용을 입력하세요…" value="${pictVO.tel}" class="lgThinInput">
+		                        </div>
+		                    </div>
 	                    </div>
+	                    
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
-	                            <p class="inputCaption">서브카테고리*</p>
-	                            <select name="location_category" id="location_category" class="lgThinInput">
-	                                <option value="1" <c:if test="${pictVO.location_category eq '1'}">selected</c:if>>공공/기관</option>
-	                                <option value="2" <c:if test="${pictVO.location_category eq '2'}">selected</c:if>>관광/공원/카페</option>
-	                                <option value="3" <c:if test="${pictVO.location_category eq '3'}">selected</c:if>>도로/교통</option>
-	                                <option value="4" <c:if test="${pictVO.location_category eq '4'}">selected</c:if>>숙박시설</option>
-	                                <option value="5" <c:if test="${pictVO.location_category eq '5'}">selected</c:if>>야외스튜디오</option>
-	                                <option value="6" <c:if test="${pictVO.location_category eq '6'}">selected</c:if>>유휴시설</option>
-	                                <option value="7" <c:if test="${pictVO.location_category eq '7'}">selected</c:if>>종교/전통</option>
-	                                <option value="8" <c:if test="${pictVO.location_category eq '8'}">selected</c:if>>기타</option>
-	                            </select>
-	                        </div>
-	                    </div>
-	                    <div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">제목*</p>
-	                            <input type="text" name="title" id="title" placeholder="내용을 입력하세요…" value="${pictVO.title}">
+	                            <p class="inputCaption">회사 주소*</p>
+	                            <input type="text" name="address" id="address" placeholder="내용을 입력하세요…" value="${pictVO.address}" style="width: 632px;">
 	                        </div>
 	                    </div>
 	                    
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
-	                            <p class="inputCaption">메인노출순서(최대3개)</p>
-	                            <input type="text" name="main_y" id="main_y" placeholder="내용을 입력하세요…" value="${pictVO.main_y}">
-	                        </div>
-	                    </div>
-	                    
-	                    <div class="inputsContainer">
-	                        <div class="inputBox" style="width:100%">
-	                            <p class="inputCaption">소개*</p>
-	                            <textarea name="introduce" id="introduce" cols="50" rows="10" class="txt" style="width:100%;">${pictVO.text}</textarea>
-                            	<!-- 에디터 설정 -->
-								<script type="text/javascript">
-									var oEditors = [];
-									nhn.husky.EZCreator.createInIFrame({
-										oAppRef: oEditors,
-										elPlaceHolder: "introduce", //textarea에서 지정한 id와 일치해야 합니다.
-										sSkinURI: "/js/SmartEditor2Skin.html",
-										fCreator: "createSEditor2"
-									});
-								</script>
+	                            <p class="inputCaption">주력 제품*</p>
+	                            <input type="text" name="introduce" id="introduce" placeholder="내용을 입력하세요…" value="${pictVO.introduce}" style="width: 632px;">
 	                        </div>
 	                    </div>
 	                    
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
-	                            <p class="inputCaption">키워드</p>
-	                            <input type="text" name="keyword" id="keyword" placeholder="내용을 입력하세요…" value="${pictVO.keyword}">
-	                        </div>
-	                    </div>
-	                    <div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">연락처</p>
-	                            <input type="text" name="tel" id="tel" placeholder="내용을 입력하세요…" value="${pictVO.tel}">
-	                        </div>
-	                    </div>
-	                    <div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">영업시간</p>
-	                            <input type="text" name="time" id="time" placeholder="내용을 입력하세요…" value="${pictVO.time}">
-	                        </div>
-	                    </div>
-	                    <div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">규모</p>
-	                            <input type="text" name="width" id="width" placeholder="내용을 입력하세요…" value="${pictVO.width}">
-	                        </div>
-	                    </div>
-	                    <div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">채광</p>
-	                            <input type="text" name="light" id="light" placeholder="내용을 입력하세요…" value="${pictVO.light}">
-	                        </div>
-	                    </div>
-	                    <div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">대관비용</p>
-	                            <input type="text" name="fee" id="fee" placeholder="내용을 입력하세요…" value="${pictVO.fee}">
-	                        </div>
-	                    </div>
-	                    <div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">야간 촬영</p>
-	                            <input type="text" name="night" id="night" placeholder="내용을 입력하세요…" value="${pictVO.night}">
-	                        </div>
-	                    </div>
-	                    <div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">휴관일 촬영</p>
-	                            <input type="text" name="holiyday" id="holiyday" placeholder="내용을 입력하세요…" value="${pictVO.holiyday}">
-	                        </div>
-	                    </div>
-	                    <div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">인원 통제</p>
-	                            <input type="text" name="control" id="control" placeholder="내용을 입력하세요…" value="${pictVO.control}">
+	                            <p class="inputCaption">인증 현황*</p>
+	                            <input type="text" name="certificate" id="certificate" placeholder="내용을 입력하세요…" value="${pictVO.certificate}" style="width: 632px;">
 	                        </div>
 	                    </div>
 	                    
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
-	                            <p class="inputCaption">주소</p>
-	                            <input type="text" name="address" id="address" placeholder="내용을 입력하세요…" value="${pictVO.address}">
+	                            <p class="inputCaption">인증 현황 검색 필터*</p>
+		                        <ul class="selector-container">
+		                            <li>
+		                                <label for="certificate_category1">
+		                                    <input type="checkbox" name="certificate_category1" id="certificate_category1" value="1" <c:if test="${pictVO.certificate_category1 eq '1'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>중소기업인증</span>
+		                                </label>
+		                            </li>
+		                            <li>
+		                                <label for="certificate_category2">
+		                                    <input type="checkbox" name="certificate_category2" id="certificate_category2" value="2" <c:if test="${pictVO.certificate_category2 eq '2'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>비디오물제작업</span>
+		                                </label>
+		                            </li>
+		                            <li>
+		                                <label for="certificate_category3">
+		                                    <input type="checkbox" name="certificate_category3" id="certificate_category3" value="3" <c:if test="${pictVO.certificate_category3 eq '3'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>벤처기업인증</span>
+		                                </label>
+		                            </li>
+		                            <li>
+		                                <label for="certificate_category4">
+		                                    <input type="checkbox" name="certificate_category4" id="certificate_category4" value="4" <c:if test="${pictVO.certificate_category4 eq '4'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>이노비즈인증</span>
+		                                </label>
+		                            </li>
+		                            <li>
+		                                <label for="certificate_category5">
+		                                    <input type="checkbox" name="certificate_category5" id="certificate_category5" value="5" <c:if test="${pictVO.certificate_category5 eq '5'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>직접생산확인</span>
+		                                </label>
+		                            </li>
+		                            <li>
+		                                <label for="certificate_category6">
+		                                    <input type="checkbox" name="certificate_category6" id="certificate_category6" value="6" <c:if test="${pictVO.certificate_category6 eq '6'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>기타</span>
+		                                </label>
+		                            </li>
+		                        </ul>
 	                        </div>
 	                    </div>
 	                    
-	                    <!-- 마저 해야함 마크업도? -->
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
-	                            <p class="inputCaption">주변소음</p>
-	                            <div class="inputBoxFlex">
-		                            <input type="radio" name="sound" id="sound_1" value="O"><label for="sound_1">O</label>
-		                            <input type="radio" name="sound" id="sound_2" value="X"><label for="sound_2">X</label>
-                            	</div>
+	                            <p class="inputCaption">홈페이지 링크</p>
+	                            <input type="text" name="homepage_url" id="homepage_url" placeholder="내용을 입력하세요…" value="${pictVO.homepage_url}" style="width: 632px;">
 	                        </div>
 	                    </div>
 	 
 	                    
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
-	                            <p class="inputCaption">첨부파일
-	                                <label for="attach_file">파일추가</label>
-	                                <input type="file" id="attach_file" name="attach_file" multiple style="display: none;">
+	                            <p class="inputCaption">로고 이미지
+	                                <label for="logo_url">파일추가</label>
+	                                <input type="file" id="logo_url" name="logo_url" multiple style="display: none;">
 	                            </p>
 	                            <div class="fileList">
 	                                <p></p>
@@ -165,23 +235,9 @@
 	                    </div>
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
-	                            <p class="inputCaption">첨부파일
-	                                <label for="attach_file1">파일추가</label>
-	                                <input type="file" id="attach_file1" name="attach_file1" multiple style="display: none;">
-	                            </p>
-	                            <div class="fileList">
-	                                <p></p>
-	                                <button><img src="/img/admin/close2.png" alt=""></button>
-	                            </div>
-	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
-	                        </div>
-	                    </div>
-	                    
-	                    <div class="inputsContainer">
-	                        <div class="inputBox">
-	                            <p class="inputCaption">첨부파일
-	                                <label for="attach_file2">파일추가</label>
-	                                <input type="file" id="attach_file2" name="attach_file2" multiple style="display: none;">
+	                            <p class="inputCaption">메인 이미지
+	                                <label for="main_img_url">파일추가</label>
+	                                <input type="file" id="main_img_url" name="main_img_url" multiple style="display: none;">
 	                            </p>
 	                            <div class="fileList">
 	                                <p></p>
@@ -193,9 +249,37 @@
 	                    
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
-	                            <p class="inputCaption">첨부파일
-	                                <label for="attach_file3">파일추가</label>
-	                                <input type="file" id="attach_file3" name="attach_file3" multiple style="display: none;">
+	                            <p class="inputCaption">회사정보 이미지1
+	                                <label for="img_1">파일추가</label>
+	                                <input type="file" id="img_1" name="img_1" multiple style="display: none;">
+	                            </p>
+	                            <div class="fileList">
+	                                <p></p>
+	                                <button><img src="/img/admin/close2.png" alt=""></button>
+	                            </div>
+	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="inputsContainer">
+	                        <div class="inputBox">
+	                            <p class="inputCaption">회사정보 이미지2
+	                                <label for="img_2">파일추가</label>
+	                                <input type="file" id="img_2" name="img_2" multiple style="display: none;">
+	                            </p>
+	                            <div class="fileList">
+	                                <p></p>
+	                                <button><img src="/img/admin/close2.png" alt=""></button>
+	                            </div>
+	                            <p class="fileCaption">첨부 파일은 각 10MB 이하의 파일만 가능합니다.</p>
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="inputsContainer">
+	                        <div class="inputBox">
+	                            <p class="inputCaption">회사정보 이미지3
+	                                <label for="img_3">파일추가</label>
+	                                <input type="file" id="img_3" name="img_3" multiple style="display: none;">
 	                            </p>
 	                            <div class="fileList">
 	                                <p></p>
