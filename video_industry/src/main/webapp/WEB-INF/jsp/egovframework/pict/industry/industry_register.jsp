@@ -61,6 +61,12 @@
 		                            <input type="text" name="tel" id="tel" placeholder="내용을 입력하세요…" value="${pictVO.tel}" class="lgThinInput">
 		                        </div>
 		                    </div>
+		                    <div class="inputsContainer">
+		                        <div class="inputBox">
+		                            <p class="inputCaption">이메일*</p>
+		                            <input type="text" name="email" id="email" placeholder="내용을 입력하세요…" value="${pictVO.email}" class="lgThinInput">
+		                        </div>
+		                    </div>
 	                    </div>
 	                    
 	                    <div class="inputsContainer">
@@ -304,7 +310,7 @@
 	    
 		    $(document).ready(function() {
 		        // 첨부파일 관련 코드
-		        var fileInputs = ['attach_file', 'attach_file1', 'attach_file2', 'attach_file3'];
+		        var fileInputs = ['logo_url', 'main_img_url', 'img_1', 'img_2', 'img_3'];
 	
 		        $.each(fileInputs, function(index, inputId) {
 		            var $fileInput = $('#' + inputId);
@@ -344,7 +350,7 @@
 		        var saveType = $('#saveType').val();
 		        var text = saveType === 'update' ? "수정하시겠습니까?" : "등록하시겠습니까?";
 		        
-		        oEditors[0].exec("UPDATE_CONTENTS_FIELD", []);
+		        //oEditors[0].exec("UPDATE_CONTENTS_FIELD", []);
 		        if (confirm(text)) {
 		            $("#register").attr("action", "/location/location_save.do");
 		            $("#register").submit();
