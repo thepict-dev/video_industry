@@ -310,13 +310,27 @@
 	    
 		    $(document).ready(function() {
 		        // 첨부파일 관련 코드
-		        var fileInputs = ['logo_url', 'main_img_url', 'img_1', 'img_2', 'img_3'];
+		        var fileInputs = {
+		            'logo_url': '${pictVO.logo_url}'.split('/').pop(),
+		            'main_img_url': '${pictVO.main_img_url}'.split('/').pop(),
+		            'img_1': '${pictVO.img_1}'.split('/').pop(),
+		            'img_2': '${pictVO.img_2}'.split('/').pop(),
+		            'img_3': '${pictVO.img_3}'.split('/').pop()
+		        };
 	
-		        $.each(fileInputs, function(index, inputId) {
+		        $.each(fileInputs, function(inputId, existingFileName) {
 		            var $fileInput = $('#' + inputId);
 		            var $fileList = $fileInput.closest('.inputBox').find('.fileList');
 		            var $fileName = $fileList.find('p');
 		            var $deleteButton = $fileList.find('button');
+	
+		            // 기존 파일명이 있으면 표시
+		            if (existingFileName) {
+		                $fileName.text(existingFileName);
+		                $fileList.css('display', 'flex');
+		            } else {
+		                $fileList.hide();
+		            }
 	
 		            $fileInput.on('change', function() {
 		                if (this.files.length > 0) {
@@ -331,10 +345,15 @@
 		                $fileName.text('');
 		                $fileInput.val('');
 		                $fileList.hide();
+		                
+		                // 삭제 시 hidden input 추가
+		                var $hiddenDelete = $('<input>').attr({
+		                    type: 'hidden',
+		                    name: inputId + '_delete',
+		                    value: 'Y'
+		                });
+		                $('#register').append($hiddenDelete);
 		            });
-	
-		            // 초기 상태에서 fileList 숨김
-		            $fileList.hide();
 		        });
 		    });
 	
