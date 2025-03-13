@@ -58,7 +58,7 @@
 	                <div class="form">
 	                    <div class="row">
 	                        <div class="input">
-	                            <h4>로케이션명</h4>
+	                            <h4>지원사업</h4>
 	                            <input type="text" disabled value="${pictVO.title}" />
 	                        </div>
 	                    </div>
