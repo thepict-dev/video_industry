@@ -26,6 +26,7 @@ import pict_admin.service.PictVO;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -191,7 +192,29 @@ public class PictServiceImpl extends EgovAbstractServiceImpl implements PictServ
 		// TODO Auto-generated method stub
 		return pictMapper.industry_list(pictVO);
 	}
+	
+	@Override
+	public void industry_save(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.industry_save(pictVO);
+	}
+	
+	@Override
+	public void industry_update(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.industry_update(pictVO);
+	}
+	
+	@Override
+	public String getFilePathByColumn(@Param("idx") int idx, @Param("columnName") String columnName) throws Exception {
+	    return pictMapper.getFilePathByColumn(idx, columnName);
+	}
 
+	@Override
+	public int updateFileColumnToNull(@Param("idx") int idx, @Param("columnName") String columnName) throws Exception {
+	    return pictMapper.updateFileColumnToNull(idx, columnName);
+	}
+	
 	@Override
 	public List<PictVO> portfolio_list(PictVO pictVO) throws Exception {
 		// TODO Auto-generated method stub

@@ -39,6 +39,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.apache.commons.codec.binary.Base64;
@@ -1031,54 +1032,147 @@ public class pictController {
 		return "pict/industry/industry_register";
 	}
 	@RequestMapping(value = "/industry/industry_save.do", method = RequestMethod.POST)
-	public String industry_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, MultipartHttpServletRequest request,
-			@RequestParam("attach_file") MultipartFile attach_file,
-			@RequestParam("attach_file1") MultipartFile attach_file1,
-			@RequestParam("attach_file2") MultipartFile attach_file2,
-			@RequestParam("attach_file3") MultipartFile attach_file3) throws Exception {
+	public String industry_save(ModelMap model, MultipartHttpServletRequest request) throws Exception {
+		PictVO pictVO = new PictVO();
+	    pictVO.setTitle(request.getParameter("title"));
+	    pictVO.setCeo(request.getParameter("ceo"));
+	    pictVO.setCategory(request.getParameter("category"));
+	    pictVO.setEstablishment_date(request.getParameter("establishment_date"));
+	    pictVO.setTel(request.getParameter("tel"));
+	    pictVO.setEmail(request.getParameter("email"));
+	    pictVO.setAddress(request.getParameter("address"));
+	    pictVO.setIntroduce(request.getParameter("introduce"));
+	    pictVO.setCertificate(request.getParameter("certificate"));
+	    pictVO.setHomepage_url(request.getParameter("homepage_url"));
+	    String idxStr = request.getParameter("idx");
+	    if (idxStr != null && !idxStr.isEmpty()) {
+	        pictVO.setIdx(Integer.parseInt(idxStr));
+	    }
+	    StringBuilder categoryBuilder = new StringBuilder();
+	    boolean isFirstCategory = true;
+
+	    String[] categories = {
+	        request.getParameter("certificate_category1"),
+	        request.getParameter("certificate_category2"),
+	        request.getParameter("certificate_category3"),
+	        request.getParameter("certificate_category4"),
+	        request.getParameter("certificate_category5"),
+	        request.getParameter("certificate_category6")
+	    };
+
+	    for (String category : categories) {
+	        if (category != null && !category.trim().isEmpty()) {
+	            if (!isFirstCategory) {
+	                categoryBuilder.append(",");
+	            } else {
+	            	isFirstCategory = false;
+	            }
+	            categoryBuilder.append(category.trim());
+	        }
+	    }
+
+	    pictVO.setCertificate_category(categoryBuilder.toString());
+	    
+	    StringBuilder mainSubjectBuilder = new StringBuilder();
+	    boolean isFirstSubject = true;
+
+	    String[] subjects = {
+	        request.getParameter("main_subject1"),
+	        request.getParameter("main_subject2"),
+	        request.getParameter("main_subject3"),
+	        request.getParameter("main_subject4"),
+	        request.getParameter("main_subject5"),
+	        request.getParameter("main_subject6")
+	    };
+
+	    for (String subject : subjects) {
+	        if (subject != null && !subject.trim().isEmpty()) {
+	            if (!isFirstSubject) {
+	            	mainSubjectBuilder.append(",");
+	            } else {
+	            	isFirstSubject = false;
+	            }
+	            mainSubjectBuilder.append(subject.trim());
+	        }
+	    }
+
+	    pictVO.setMain_subject(mainSubjectBuilder.toString());
+	    
+	    
+	    
+		System.out.println("title @@@"+ pictVO.getTitle());
+		System.out.println("ceo @@@"+ pictVO.getCeo());
+		System.out.println("scale @@@"+ pictVO.getCategory());
+		System.out.println("establishment_date @@@"+ pictVO.getEstablishment_date());
+		System.out.println("tel @@@"+ pictVO.getTel());
+		System.out.println("email @@@"+ pictVO.getEmail());
+		System.out.println("address @@@"+ pictVO.getAddress());
+		System.out.println("introduce @@@"+ pictVO.getIntroduce());
+		System.out.println("certificate @@@"+ pictVO.getCertificate());
+		System.out.println("certificate_category @@@"+ pictVO.getCertificate_category());
+		System.out.println("main_subject @@@"+ pictVO.getMain_subject());
+		System.out.println("homepage_url @@@"+ pictVO.getHomepage_url());
+		
+	    MultipartFile logoFile = request.getFile("logo_url");
+	    MultipartFile mainImgFile = request.getFile("main_img_url");
+	    MultipartFile img1File = request.getFile("img_1");
+	    MultipartFile img2File = request.getFile("img_2");
+	    MultipartFile img3File = request.getFile("img_3");
+	    
 		String sessions = (String)request.getSession().getAttribute("id");
 		if(sessions == null || sessions == "null") {
 			return "redirect:/pict_login.do";
 		}
-		 
-		if(attach_file.getSize() != 0) {
+		// String filepath = "/Users/choetaeho/Documents/uploads/";
+		String filepath = "/user1/upload_file/video_industry/";
+		System.out.println("logoFile @@@"+ logoFile.getSize());
+		if(logoFile.getSize() != 0) {
+			
 			UUID uuid = UUID.randomUUID();
-			String uploadPath = fileUpload_board(request, attach_file, (String)request.getSession().getAttribute("id"), uuid);
-			String filepath = "/user1/upload_file/video_industry/";
+			String uploadPath = fileUpload_board(request, logoFile, (String)request.getSession().getAttribute("id"), uuid);
+			
 			String filename = uuid+uploadPath.split("#####")[1];
-			pictVO.setImg_thumb(filepath+filename);
+			pictVO.setLogo_url(filepath+filename);
 		}
-		if(attach_file1.getSize() != 0) {
+		if(mainImgFile.getSize() != 0) {
 			UUID uuid = UUID.randomUUID();
-			String uploadPath = fileUpload_board(request, attach_file1, (String)request.getSession().getAttribute("id"), uuid);
-			String filepath = "/user1/upload_file/video_industry/";
+			String uploadPath = fileUpload_board(request, mainImgFile, (String)request.getSession().getAttribute("id"), uuid);
+			String filename = uuid+uploadPath.split("#####")[1];
+			pictVO.setMain_img_url(filepath+filename);
+		}
+		if(img1File.getSize() != 0) {
+			UUID uuid = UUID.randomUUID();
+			String uploadPath = fileUpload_board(request, img1File, (String)request.getSession().getAttribute("id"), uuid);
 			String filename = uuid+uploadPath.split("#####")[1];
 			pictVO.setImg_url1(filepath+filename);
 		}
-		if(attach_file2.getSize() != 0) {
+		if(img2File.getSize() != 0) {
 			UUID uuid = UUID.randomUUID();
-			String uploadPath = fileUpload_board(request, attach_file2, (String)request.getSession().getAttribute("id"), uuid);
-			String filepath = "/user1/upload_file/video_industry/";
+			String uploadPath = fileUpload_board(request, img2File, (String)request.getSession().getAttribute("id"), uuid);
 			String filename = uuid+uploadPath.split("#####")[1];
 			pictVO.setImg_url2(filepath+filename);
 		}
-		if(attach_file3.getSize() != 0) {
+		if(img3File.getSize() != 0) {
 			UUID uuid = UUID.randomUUID();
-			String uploadPath = fileUpload_board(request, attach_file3, (String)request.getSession().getAttribute("id"), uuid);
-			String filepath = "/user1/upload_file/video_industry/";
+			String uploadPath = fileUpload_board(request, img3File, (String)request.getSession().getAttribute("id"), uuid);
 			String filename = uuid+uploadPath.split("#####")[1];
 			pictVO.setImg_url3(filepath+filename);
 		}
+		System.out.println("logo_url @@@"+ pictVO.getLogo_url());
+		System.out.println("mainImgFile @@@"+ pictVO.getMain_img_url());
+		System.out.println("img_1 @@@"+ pictVO.getImg_url1());
+		System.out.println("img_2 @@@"+ pictVO.getImg_url2());
+		System.out.println("img_3 @@@"+ pictVO.getImg_url3());
 
 		if(pictVO.getSaveType() != null && pictVO.getSaveType().equals("update")) {
-			pictService.location_update(pictVO);
+			pictService.industry_update(pictVO);
 			model.addAttribute("message", "정상적으로 수정되었습니다.");
 			model.addAttribute("retType", ":location");
-			model.addAttribute("retUrl", "/location/location_list.do");
+			model.addAttribute("retUrl", "/industry/industry_list.do");
 			return "pict/main/message";
 		}
 		else {
-			pictService.location_insert(pictVO);
+			pictService.industry_save(pictVO);
 			model.addAttribute("message", "정상적으로 저장되었습니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/industry/industry_list.do");
@@ -1100,7 +1194,70 @@ public class pictController {
 		model.addAttribute("retType", ":location");
 		model.addAttribute("retUrl", "/industry/industry_list.do");
 		return "pict/main/message";
-		
+	}
+	
+	@RequestMapping(value = "/industry/file_delete.do")
+	public void file_delete(@RequestParam("idx") int idx, 
+	                        @RequestParam("columnName") String columnName, 
+	                        HttpServletRequest request,
+	                        HttpServletResponse response) throws Exception {
+	    response.setContentType("application/json;charset=UTF-8");
+	    PrintWriter out = response.getWriter();
+	    
+	    try {
+	    	System.out.println("columnName @@@@ " + columnName);
+	        // 세션 체크
+	        String session = (String)request.getSession().getAttribute("id");
+	        if(session == null || session == "null") {
+	            out.print("{\"success\": false, \"message\": \"로그인이 필요합니다.\"}");
+	            return;
+	        }
+	        
+	        // 유효한 컬럼명인지 확인
+	        if (!isValidColumnName(columnName)) {
+	            out.print("{\"success\": false, \"message\": \"유효하지 않은 파일 필드입니다.\"}");
+	            return;
+	        }
+	        
+	        // 파일 경로 확인 (선택적으로 파일 삭제를 위해)
+	        String filePath = pictService.getFilePathByColumn(idx, columnName);
+	        
+	        // DB 컬럼 업데이트
+	        int updateResult = pictService.updateFileColumnToNull(idx, columnName);
+	        
+	        if (updateResult > 0) {
+	            // 실제 파일 삭제 (선택적)
+	            if (filePath != null && !filePath.isEmpty()) {
+	                File file = new File(filePath);
+	                if (file.exists()) {
+	                    file.delete();
+	                }
+	            }
+	            
+	            out.print("{\"success\": true, \"message\": \"파일이 성공적으로 삭제되었습니다.\"}");
+	        } else {
+	            out.print("{\"success\": false, \"message\": \"파일 삭제에 실패했습니다. 해당 레코드가 존재하지 않습니다.\"}");
+	        }
+	    } catch (Exception e) {
+	        out.print("{\"success\": false, \"message\": \"파일 삭제 중 오류가 발생했습니다: " + e.getMessage().replace("\"", "\\\"") + "\"}");
+	    } finally {
+	        if (out != null) {
+	            out.close();
+	        }
+	    }
+	}
+
+	/**
+	 * 유효한 파일 컬럼명인지 확인
+	 */
+	private boolean isValidColumnName(String columnName) {
+	    return columnName != null && (
+	            "logo_url".equals(columnName) ||
+	            "main_img_url".equals(columnName) ||
+	            "img_1".equals(columnName) ||
+	            "img_2".equals(columnName) ||
+	            "img_3".equals(columnName)
+	    );
 	}
 	
 	
@@ -1711,6 +1868,7 @@ public class pictController {
     
     private String getSaveLocation(MultipartHttpServletRequest request, MultipartFile uploadFile) {
     	String uploadPath = "/user1/upload_file/video_industry/";
+    	//String uploadPath = "/Users/choetaeho/Documents/uploads/";
     	//String uploadPath = "D:\\user1\\upload_file\\video_industry\\";
     	return uploadPath;
     }

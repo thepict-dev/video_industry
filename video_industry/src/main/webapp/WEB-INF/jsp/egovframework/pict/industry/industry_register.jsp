@@ -76,9 +76,136 @@
 	                        </div>
 	                    </div>
 	                    
+                        <div class="inputsContainer">
+	                        <div class="inputBox">
+	                            <p class="inputCaption">주력 제품 검색필터*</p>
+	                            <ul class="selector-container">
+		                            <li>
+		                                <label for="main_subject1">
+		                                    <input type="checkbox" name="main_subject1" id="main_subject1" value="1" <c:if test="${pictVO.main_subject1 eq '1'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>영상 촬영</span>
+		                                </label>
+		                            </li>
+		                            <li>
+		                                <label for="main_subject2">
+		                                    <input type="checkbox" name="main_subject2" id="main_subject2" value="2" <c:if test="${pictVO.main_subject2 eq '2'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>광고/홍보</span>
+		                                </label>
+		                            </li>
+		                            <li>
+		                                <label for="main_subject3">
+		                                    <input type="checkbox" name="main_subject3" id="main_subject3" value="3" <c:if test="${pictVO.main_subject3 eq '3'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>무대영상</span>
+		                                </label>
+		                            </li>
+		                            <li>
+		                                <label for="main_subject4">
+		                                    <input type="checkbox" name="main_subject4" id="main_subject4" value="4" <c:if test="${pictVO.main_subject4 eq '4'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>SNS영상</span>
+		                                </label>
+		                            </li>
+		                            <li>
+		                                <label for="main_subject5">
+		                                    <input type="checkbox" name="main_subject5" id="main_subject5" value="5" <c:if test="${pictVO.main_subject5 eq '5'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>행사</span>
+		                                </label>
+		                            </li>
+		                            <li>
+		                                <label for="main_subject6">
+		                                    <input type="checkbox" name="main_subject6" id="main_subject6" value="6" <c:if test="${pictVO.main_subject6 eq '6'}">checked</c:if>>
+		                                    <i class="checkbox">
+		                                        <svg class="selected-false" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513ZM2.03513 18.3544H17.9649C18.0623 18.3544 18.1516 18.3138 18.2326 18.2326C18.3138 18.1516 18.3544 18.0623 18.3544 17.9649V2.03513C18.3544 1.93766 18.3138 1.84842 18.2326 1.7674C18.1516 1.68618 18.0623 1.64557 17.9649 1.64557H2.03513C1.93766 1.64557 1.84842 1.68618 1.76741 1.7674C1.68618 1.84842 1.64557 1.93766 1.64557 2.03513V17.9649C1.64557 18.0623 1.68618 18.1516 1.76741 18.2326C1.84842 18.3138 1.93766 18.3544 2.03513 18.3544Z"
+		                                                fill="#8B96A2" />
+		                                        </svg>
+		                                        <svg class="selected-true" xmlns="http://www.w3.org/2000/svg" width="20"
+		                                            height="20" viewBox="0 0 20 20" fill="none">
+		                                            <path
+		                                                d="M8.38608 14.1187L15.5038 7.03259L14.3282 5.85696L8.38608 11.7674L5.6962 9.10918L4.52057 10.2848L8.38608 14.1187ZM2.03513 20C1.4653 20 0.98365 19.8033 0.59019 19.4098C0.19673 19.0163 0 18.5347 0 17.9649V2.03513C0 1.4653 0.19673 0.983651 0.59019 0.590191C0.98365 0.196731 1.4653 0 2.03513 0H17.9649C18.5347 0 19.0163 0.196731 19.4098 0.590191C19.8033 0.983651 20 1.4653 20 2.03513V17.9649C20 18.5347 19.8033 19.0163 19.4098 19.4098C19.0163 19.8033 18.5347 20 17.9649 20H2.03513Z"
+		                                                fill="#583D94" />
+		                                        </svg>
+		                                    </i>
+		                                    <span>기타</span>
+		                                </label>
+		                            </li>
+		                        </ul>
+	                        </div>
+	                    </div>
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
-	                            <p class="inputCaption">주력 제품*</p>
+	                            <p class="inputCaption">상품 리스트*</p>
 	                            <input type="text" name="introduce" id="introduce" placeholder="내용을 입력하세요…" value="${pictVO.introduce}" style="width: 632px;">
 	                        </div>
 	                    </div>
@@ -308,54 +435,79 @@
 	    </div>
 	    <script>
 	    
-		    $(document).ready(function() {
-		        // 첨부파일 관련 코드
-		        var fileInputs = {
-		            'logo_url': '${pictVO.logo_url}'.split('/').pop(),
-		            'main_img_url': '${pictVO.main_img_url}'.split('/').pop(),
-		            'img_1': '${pictVO.img_1}'.split('/').pop(),
-		            'img_2': '${pictVO.img_2}'.split('/').pop(),
-		            'img_3': '${pictVO.img_3}'.split('/').pop()
-		        };
-	
-		        $.each(fileInputs, function(inputId, existingFileName) {
-		            var $fileInput = $('#' + inputId);
-		            var $fileList = $fileInput.closest('.inputBox').find('.fileList');
-		            var $fileName = $fileList.find('p');
-		            var $deleteButton = $fileList.find('button');
-	
-		            // 기존 파일명이 있으면 표시
-		            if (existingFileName) {
-		                $fileName.text(existingFileName);
-		                $fileList.css('display', 'flex');
-		            } else {
-		                $fileList.hide();
-		            }
-	
-		            $fileInput.on('change', function() {
-		                if (this.files.length > 0) {
-		                    var fileName = this.files[0].name;
-		                    $fileName.text(fileName);
-		                    $fileList.css('display', 'flex');
-		                }
-		            });
-	
-		            $deleteButton.on('click', function(e) {
-		                e.preventDefault();
-		                $fileName.text('');
-		                $fileInput.val('');
-		                $fileList.hide();
-		                
-		                // 삭제 시 hidden input 추가
-		                var $hiddenDelete = $('<input>').attr({
-		                    type: 'hidden',
-		                    name: inputId + '_delete',
-		                    value: 'Y'
-		                });
-		                $('#register').append($hiddenDelete);
-		            });
-		        });
-		    });
+	    $(document).ready(function() {
+	        // 첨부파일 관련 코드
+	        var fileInputs = {
+	            'logo_url': '${pictVO.logo_url}'.split('/').pop(),
+	            'main_img_url': '${pictVO.main_img_url}'.split('/').pop(),
+	            'img_1': '${pictVO.img_1}'.split('/').pop(),
+	            'img_2': '${pictVO.img_2}'.split('/').pop(),
+	            'img_3': '${pictVO.img_3}'.split('/').pop()
+	        };
+
+	        $.each(fileInputs, function(inputId, existingFileName) {
+	            var $fileInput = $('#' + inputId);
+	            var $fileList = $fileInput.closest('.inputBox').find('.fileList');
+	            var $fileName = $fileList.find('p');
+	            var $deleteButton = $fileList.find('button');
+
+	            // 기존 파일명이 있으면 표시
+	            if (existingFileName) {
+	                $fileName.text(existingFileName);
+	                $fileList.css('display', 'flex');
+	            } else {
+	                $fileList.hide();
+	            }
+
+	            $fileInput.on('change', function() {
+	                if (this.files.length > 0) {
+	                    var fileName = this.files[0].name;
+	                    $fileName.text(fileName);
+	                    $fileList.css('display', 'flex');
+	                }
+	            });
+
+	            $deleteButton.on('click', function(e) {
+	                e.preventDefault();
+	                var idx = $('#idx').val();
+	                
+	                // 기존 파일이 있고, idx가 있는 경우(수정 모드)에만 서버에 삭제 요청
+	                if (existingFileName && idx) {
+	                    if (confirm("파일을 삭제하시겠습니까?")) {
+	                        // AJAX로 파일 삭제 요청
+	                        $.ajax({
+	                            url: '/industry/file_delete.do',
+	                            type: 'POST',
+	                            data: {
+	                                idx: idx,
+	                                columnName: inputId
+	                            },
+	                            success: function(response) {
+	                                if (response.success) {
+	                                    // 성공 시 UI 업데이트
+	                                    $fileName.text('');
+	                                    $fileInput.val('');
+	                                    $fileList.hide();
+	                                    alert("파일이 삭제되었습니다.");
+	                                } else {
+	                                    alert("파일 삭제 실패: " + response.message);
+	                                }
+	                            },
+	                            error: function(xhr, status, error) {
+	                                alert("파일 삭제 중 오류가 발생했습니다.");
+	                                console.error(xhr.responseText);
+	                            }
+	                        });
+	                    }
+	                } else {
+	                    // 신규 등록이거나 파일을 새로 선택한 경우, UI만 업데이트
+	                    $fileName.text('');
+	                    $fileInput.val('');
+	                    $fileList.hide();
+	                }
+	            });
+	        });
+	    });
 	
 		    function button1_click() {
 		        var title = $('#title').val();
@@ -371,7 +523,7 @@
 		        
 		        //oEditors[0].exec("UPDATE_CONTENTS_FIELD", []);
 		        if (confirm(text)) {
-		            $("#register").attr("action", "/location/location_save.do");
+		            $("#register").attr("action", "/industry/industry_save.do");
 		            $("#register").submit();
 		        }
 		    }

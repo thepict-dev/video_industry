@@ -378,6 +378,101 @@
 		select * from industry_table where idx = #{idx}
 	
 	</select>
+	
+	
+	<insert id="industry_save" parameterType="pictVO">
+	  INSERT INTO industry_table
+	  (
+	    title, logo_url, main_img_url, img_1, img_2, img_3, homepage_yn, ceo, establishment_date, scale, main_subject, address,
+	    homepage_url, introduce, tel, certificate, certificate_category, reg_date
+	  )
+	  VALUES (
+	    #{title}, #{logo_url}, #{main_img_url}, #{img_1}, #{img_2}, #{img_3}, 
+	    <choose>
+	      <when test="homepage_url != null and homepage_url != ''">
+	        'O'
+	      </when>
+	      <otherwise>
+	        'X'
+	      </otherwise>
+	    </choose>,
+	    #{ceo}, #{establishment_date}, #{category}, #{main_subject}, #{address}, #{homepage_url}, #{introduce}, 
+	    CONCAT(#{tel}, '/', #{email}),
+	    #{certificate}, #{certificate_category}, now()
+	  )
+	</insert>
+	
+	<update id="industry_update" parameterType="pictVO">
+	  UPDATE industry_table
+	  SET
+	    title = #{title},
+	    <if test="logo_url != null and logo_url != ''">
+	      logo_url = #{logo_url},
+	    </if>
+	    <if test="main_img_url != null and main_img_url != ''">
+	      main_img_url = #{main_img_url},
+	    </if>
+	    <if test="img_url1 != null and img_url1 != ''">
+	      img_1 = #{img_url1},
+	    </if>
+	    <if test="img_url2 != null and img_url2 != ''">
+	      img_2 = #{img_url2},
+	    </if>
+	    <if test="img_url3 != null and img_url3 != ''">
+	      img_3 = #{img_url3},
+	    </if>
+	    homepage_yn = 
+	    <choose>
+	      <when test="homepage_url != null and homepage_url != ''">
+	        'O'
+	      </when>
+	      <otherwise>
+	        'X'
+	      </otherwise>
+	    </choose>,
+	    ceo = #{ceo},
+	    establishment_date = #{establishment_date},
+	    scale = #{category},
+	    main_subject = #{main_subject},
+	    address = #{address},
+	    homepage_url = #{homepage_url},
+	    introduce = #{introduce},
+	    tel = CONCAT(#{tel}, '/', #{email}),
+	    certificate = #{certificate},
+	    certificate_category = #{certificate_category},
+	    update_date = now()
+	  WHERE idx = #{idx}
+	</update>
+	
+	<!-- 특정 컬럼의 파일 경로 조회 -->
+	<select id="getFilePathByColumn" parameterType="java.util.Map" resultType="String">
+	    SELECT 
+	    <choose>
+	        <when test="columnName == 'logo_url'">logo_url</when>
+	        <when test="columnName == 'main_img_url'">main_img_url</when>
+	        <when test="columnName == 'img_1'">img_1</when>
+	        <when test="columnName == 'img_2'">img_2</when>
+	        <when test="columnName == 'img_3'">img_3</when>
+	        <otherwise>NULL</otherwise>
+	    </choose>
+	    FROM industry_table 
+	    WHERE idx = #{idx}
+	</select>
+	
+	<!-- 특정 컬럼 NULL로 업데이트 -->
+	<update id="updateFileColumnToNull" parameterType="java.util.Map">
+	    UPDATE industry_table
+	    SET 
+	    <choose>
+	        <when test="columnName == 'logo_url'">logo_url = NULL</when>
+	        <when test="columnName == 'main_img_url'">main_img_url = NULL</when>
+	        <when test="columnName == 'img_1'">img_1 = NULL</when>
+	        <when test="columnName == 'img_2'">img_2 = NULL</when>
+	        <when test="columnName == 'img_3'">img_3 = NULL</when>
+	    </choose>
+	    WHERE idx = #{idx}
+	</update>
+	
 	<select id="portfolio_list" resultType="pictVO">
 		select * from portfolio_table where industry_id = #{idx}
 	</select>

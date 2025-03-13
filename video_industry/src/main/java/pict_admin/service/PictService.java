@@ -18,6 +18,8 @@ package pict_admin.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 /**
  * @Class Name : EgovSampleService.java
  * @Description : EgovSampleService Class
@@ -80,6 +82,14 @@ public interface PictService {
 	Integer industry_list_cnt(PictVO pictVO) throws Exception;
 
 	List<PictVO> industry_list(PictVO pictVO) throws Exception;
+	
+	void industry_save(PictVO pictVO) throws Exception;
+	
+	void industry_update(PictVO pictVO) throws Exception;
+	
+    String getFilePathByColumn(@Param("idx") int idx, @Param("columnName") String columnName) throws Exception;
+	
+    int updateFileColumnToNull(@Param("idx") int idx, @Param("columnName") String columnName) throws Exception;
 
 	List<PictVO> portfolio_list(PictVO pictVO) throws Exception;
 

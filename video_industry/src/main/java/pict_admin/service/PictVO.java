@@ -37,6 +37,8 @@ public class PictVO extends PictDefaultVO {
 
 	private int idx;
 	private boolean api;
+	
+	
 	private String saveType;
 	private int order_val;
 	private String user_id;
@@ -73,7 +75,7 @@ public class PictVO extends PictDefaultVO {
 	private String reg_id;
 	private String std_num;
 	private String lecture_id;
-	
+	private String mainImgUrl;
 	private String in_date;
 	private String out_date;
 	private String in_out;
@@ -1256,6 +1258,12 @@ public class PictVO extends PictDefaultVO {
 	}
 	public void setCertificate_category(String certificate_category) {
 		this.certificate_category = certificate_category;
+	}
+	public String getMainImgUrl() {
+		return mainImgUrl;
+	}
+	public void setMainImgUrl(String mainImgUrl) {
+		this.mainImgUrl = mainImgUrl;
 	}
 	
 	

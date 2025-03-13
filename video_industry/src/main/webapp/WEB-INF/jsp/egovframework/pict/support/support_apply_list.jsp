@@ -34,11 +34,11 @@
 	                    <ul class="listHead support_apply">
 	                        <li>순서</li>
 	                        <li>카테고리</li>
-	                        <li>지원신청일</li>
+	                        <!-- <li>지원신청일</li> -->
 	                        <li>신청자</li>
 	                        <li>연락처</li>
-	                        <li>소속</li>
-	                        <li>직책</li>
+	                        <!-- <li>소속</li>
+	                        <li>직책</li> -->
 	                        <li>신청서</li>
 	                        <li>등록일</li>
 	                        <li>상태</li>
@@ -57,11 +57,11 @@
 		                            	<c:if test="${resultList.main_category eq '2'}">독립영화육성 및 시민참여행사</c:if>
 		                            	<c:if test="${resultList.main_category eq '3'}">로케이션 지원사업</c:if>
 	                            	</p>
-		                            <p>${resultList.start_date} ~ ${resultList.end_date}</p>
+		                            <%-- <p>${resultList.start_date} ~ ${resultList.end_date}</p> --%>
 		                            <p>${resultList.name}</p>
 		                            <p>${resultList.tel}</p>
-		                            <p>${resultList.company}</p>
-		                            <p>${resultList.depart}</p>
+		                            <%-- <p>${resultList.company}</p> --%>
+		                            <%-- <p>${resultList.depart}</p> --%>
 		                            <a href="${resultList.file_url}" download>첨부파일</a>
 		                            <p>${resultList.reg_date}</p>
 		                            <select name="status_front" id="status_front" class="lgThinInput" style="width: 250px" onchange="fn_change('${resultList.idx}', this.value)">

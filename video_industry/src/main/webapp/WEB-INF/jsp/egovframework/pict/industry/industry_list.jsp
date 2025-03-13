@@ -75,7 +75,7 @@
 	                    </ul>
 	                    
 	                    <div class="listButton">
-	                        <a href="/location/location_register.do"><img src="/img/admin/add.png" alt="등록버튼">등록</a>
+	                        <a href="/industry/industry_register.do"><img src="/img/admin/add.png" alt="등록버튼">등록</a>
 	                    </div>
 	                    <div class="pagination">
 		                    <c:if test="${pictVO.pageNumber ne 1}">

@@ -63,7 +63,7 @@
 	                        </div>
 	                    </div>
 	                    <div class="row">
-	                        <div class="input">
+	                        <!-- <div class="input">
 	                            <h4>로케이션 신청일</h4>
 	                            <div class="date-range-container">
 	                                <div class="date-container">
@@ -79,7 +79,7 @@
 	                                    <input type="date" name="end_date" id="end_date">
 	                                </div>
 	                            </div>
-	                        </div>
+	                        </div> -->
 	                        <div class="input">
 	                            <h4>신청인</h4>
 	                            <input type="text" id="name" name="name" placeholder="이름을 입력하세요" />
@@ -95,7 +95,7 @@
 	                            <input type="text" id="email" name="email" placeholder="이메일을 입력하세요" />
 	                        </div>
 	                    </div>
-	                    <div class="row">
+	                    <!-- <div class="row">
 	                        <div class="input">
 	                            <h4>소속</h4>
 	                            <input type="text" id="company" name="company" placeholder="소속을 입력하세요" />
@@ -104,8 +104,8 @@
 	                            <h4>직책</h4>
 	                            <input type="text" id="depart" name="depart" placeholder="직책을 입력하세요" />
 	                        </div>
-	                    </div>
-	                    <div class="row">
+	                    </div> -->
+	                    <!-- <div class="row">
 	                        <div class="input">
 	                            <h4>구분</h4>
 	                            <div class="radio-container">
@@ -137,7 +137,7 @@
 	                            <h4>작품명</h4>
 	                            <input type="text" placeholder="작품명을 입력하세요" id="title" name="title" />
 	                        </div>
-	                    </div>
+	                    </div> -->
 	                    <div class="row">
 	                        <div class="input">
 	                            <h4>첨부파일</h4>
@@ -188,7 +188,7 @@
 			
 			var agree = $(":input:checkbox[name=agree]:checked").val();
 			
-			if(start_date == null || start_date == undefined || start_date == ''){
+/* 			if(start_date == null || start_date == undefined || start_date == ''){
 				alert("시작 날짜를 입력해주세요.")
 				$('#start_date').focus()
 				return false;
@@ -197,7 +197,7 @@
 				alert("종료 날짜를 입력해주세요.")
 				$('#end_date').focus()
 				return false;
-			}
+			} */
 			if(name == null || name == undefined || name == ''){
 				alert("신청인 성명을 입력해주세요.")
 				$('#name').focus()
@@ -213,7 +213,7 @@
 				$('#email').focus()
 				return false;
 			}
-			if(company == null || company == undefined || company == ''){
+			/* if(company == null || company == undefined || company == ''){
 				alert("소속을 입력해주세요.")
 				$('#company').focus()
 				return false;
@@ -232,17 +232,17 @@
 				alert("작품명을 입력해주세요.")
 				$('#title').focus()
 				return false;
-			}
+			} */
 			if(attach_file == null || attach_file == undefined || attach_file == ''){
 				alert("첨부파일을 업로드 해주세요.")
 				$('#attach_file').focus()
 				return false;
 			}
-			if(start_date > end_date){
+			/* if(start_date > end_date){
 				alert("시작날짜는 종료날짜보다 클 수 없습니다.")
 				$('#end_date').focus()
 				return false;
-			}
+			} */
 			if(agree != '1'){
 				alert("개인정보 사용에 동의해주세요.")
 				$('#agree').focus()

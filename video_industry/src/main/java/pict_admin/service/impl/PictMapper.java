@@ -17,6 +17,7 @@ package pict_admin.service.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 import pict_admin.service.AdminVO;
@@ -83,6 +84,14 @@ public interface PictMapper {
 	Integer industry_list_cnt(PictVO pictVO) throws Exception;
 
 	List<PictVO> industry_list(PictVO pictVO) throws Exception;
+	
+	void industry_save(PictVO pictVO) throws Exception;
+	
+	void industry_update(PictVO pictVO) throws Exception;
+	
+    String getFilePathByColumn(@Param("idx") int idx, @Param("columnName") String columnName);
+	
+    int updateFileColumnToNull(@Param("idx") int idx, @Param("columnName") String columnName);
 
 	List<PictVO> portfolio_list(PictVO pictVO) throws Exception;
 
