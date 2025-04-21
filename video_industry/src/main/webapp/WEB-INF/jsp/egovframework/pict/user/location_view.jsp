@@ -38,7 +38,10 @@
                    	<c:if test="${pictVO.location_category eq '7'}">종교/전통</c:if>
                    	<c:if test="${pictVO.location_category eq '8'}">기타</c:if>
                 </p>
-                <h1>${pictVO.title}</h1>
+                <h1>
+                	<c:if test="${pictVO.category eq 'VR'}">[VR]</c:if>
+                	${pictVO.title}
+                </h1>
             </div>
         </div>
         <div class="grid-container">

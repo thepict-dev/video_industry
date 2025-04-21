@@ -64,7 +64,18 @@
 										oAppRef: oEditors,
 										elPlaceHolder: "text", //textarea에서 지정한 id와 일치해야 합니다.
 										sSkinURI: "/js/SmartEditor2Skin.html",
-										fCreator: "createSEditor2"
+										fCreator: "createSEditor2",
+										htParams : {
+											 bUseToolbar : true,
+											 bUseVerticalResizer : true,
+											 bUseModeChanger : true,
+											 fOnBeforeUnload : function(){},
+											 SE2M_Configuration : {
+											 uploadImagePath : "/upload_file/video_industry/",
+											 imageUploadURL : "/js/sample/photo_uploader/file_uploader_html5.jsp",
+											 popupURL : "/js/sample/photo_uploader/photo_uploader.html"
+											 }
+										},
 									});
 								</script>
 	                        </div>

@@ -74,7 +74,10 @@
 	                    	<c:if test="${resultList.location_category eq '7'}">종교/전통</c:if>
 	                    	<c:if test="${resultList.location_category eq '8'}">기타</c:if>
 	                    </span>
-	                    <h6>${resultList.title}</h6>
+	                    <h6>
+	                    	<c:if test="${resultList.category eq 'VR'}">[VR]</c:if>
+	                    	${resultList.title}
+	                    </h6>
 	                    <p class="hashtag">${resultList.keyword}</p>
 	                    <p class="address">${resultList.address}</p>
 	                    <p class="tel">${resultList.tel}</p>

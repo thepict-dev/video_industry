@@ -83,7 +83,7 @@ public class pictController {
 		List<?> movie_list = pictService.main_movie_list(pictVO);
 		
 		pictVO.setType("main_layer");
-		List<?> location_layer_list = pictService.industry_list_in_admin(pictVO);
+		List<?> location_layer_list = pictService.location_list(pictVO);
 		List<?> popup_list = pictService.get_popup_list(pictVO);
 		System.out.println(popup_list);
 		model.addAttribute("board_list", board_list);

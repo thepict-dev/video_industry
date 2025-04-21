@@ -1,3 +1,4 @@
+
 (function ($) {
     $.fn.dragScroll = function () {
         var mouseDown = false;
@@ -193,10 +194,10 @@ pauseButton.addEventListener('click', toggleAutoplay);
 $( document ).ready(function() {
     var cookiedata = document.cookie;
     if (cookiedata.indexOf("ncookie=done") < 0) {
-        document.querySelector('.mainPopup').style.display = "flex";
+        $(".mainPopup").css("display", "flex");
     }
     else {
-        document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
+        $(".mainPopup").css("display", "none");    // 팝업창 아이디
     }
 });
 
@@ -207,10 +208,10 @@ function setCookie( name, value, expiredays ) {
 }
 
 function closePopup() { 
-    document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
+    $(".mainPopup").css("display", "none");    // 팝업창 아이디
 }
 
 function todayClosePopup() { 
     setCookie( "ncookie", "done" , 1 );     // 저장될 쿠키명 , 쿠키 value값 , 기간( ex. 1은 하루, 7은 일주일)
-    document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
+    $(".mainPopup").css("display", "none");    // 팝업창 아이디
 }
