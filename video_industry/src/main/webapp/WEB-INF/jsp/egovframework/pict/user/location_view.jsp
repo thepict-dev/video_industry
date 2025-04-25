@@ -401,7 +401,7 @@
 			window.open(vr)
 		}
 		function apply_move(){
-			window.location.href= "/support.do?main_category=3"
+			window.open("https://www.filmkorea.or.kr/main/index.jsp", "_blank")
 		}
 		function fn_submit(){
 			var start_date = $('#start_date').val()

@@ -55,7 +55,7 @@
             </ul>
             <c:forEach var="resultList" items="${resultList}" varStatus="status">
 	            <div class="portfolio <c:if test='${status.index eq 0}'>active</c:if> ">
-	                <img src="http://118.67.128.150${resultList.portfolio_thumb }" alt="" srcset="">
+	                <img src="${resultList.portfolio_thumb }" alt="" srcset="">
 	                <div class="hover">
 	                    <h1>${pictVO.title}</h1>
 	                    <a href="${resultList.portfolio_link}" target="_blank">
